@@ -52,8 +52,13 @@ spec:
       claims:
         extra:
           - "NAVident"
-  envFrom:
-    - secret: isproxy-serviceuser
+  vault:
+    enabled: true
+    paths:
+      - kvPath: "/serviceuser/data/dev/srvisproxy"
+        mountPath: "/secrets/serviceuser/isproxy"
+      - kvPath: "/kv/preprod/fss/isproxy/default"
+        mountPath: "/secrets/vault"
   env:
     - name: KTOR_ENV
-      value: production
+      value: "production"
