@@ -1,12 +1,14 @@
 package no.nav.syfo.application
 
 import io.ktor.application.*
+import no.nav.syfo.util.getFileAsString
 
 data class Environment(
     val aadAppClient: String = getEnvVar("AZURE_APP_CLIENT_ID"),
     val azureAppWellKnownUrl: String = getEnvVar("AZURE_APP_WELL_KNOWN_URL"),
-    val serviceuserUsername: String = getEnvVar("SERVICEUSER_USERNAME"),
-    val serviceuserPassword: String = getEnvVar("SERVICEUSER_PASSWORD"),
+    val serviceuserUsername: String = getFileAsString("/secrets/serviceuser/isproxy/username"),
+    val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
+
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =
