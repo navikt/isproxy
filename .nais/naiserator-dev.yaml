@@ -55,10 +55,9 @@ spec:
   vault:
     enabled: true
     paths:
-      - kvPath: "/serviceuser/data/dev/srvisproxy"
-        mountPath: "/secrets/serviceuser/isproxy"
-      - kvPath: "/kv/preprod/fss/isproxy/default"
-        mountPath: "/secrets/vault"
+      - kvPath: serviceuser/data/dev/srvisproxy
+        mountPath: /secrets/serviceuser/isproxy
+  webproxy: true
   env:
     - name: KTOR_ENV
       value: "production"
