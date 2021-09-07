@@ -61,3 +61,5 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
+    - name: DOKDIST_URL
+      value: "https://dokdistfordeling-q1.nais.preprod.local"
