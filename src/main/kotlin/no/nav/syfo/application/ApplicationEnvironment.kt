@@ -8,7 +8,7 @@ data class Environment(
     val azureAppWellKnownUrl: String = getEnvVar("AZURE_APP_WELL_KNOWN_URL"),
     val serviceuserUsername: String = getFileAsString("/secrets/serviceuser/isproxy/username"),
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
-
+    val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =

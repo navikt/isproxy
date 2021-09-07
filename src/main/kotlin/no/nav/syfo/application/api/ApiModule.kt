@@ -7,6 +7,7 @@ import no.nav.syfo.api.registerProxyApi
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.authentication.*
+import no.nav.syfo.client.dokdist.DokdistClient
 
 fun Application.apiModule(
     applicationState: ApplicationState,
@@ -30,7 +31,11 @@ fun Application.apiModule(
         registerPrometheusApi()
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
-            registerProxyApi()
+            registerProxyApi(
+                dokdistClient = DokdistClient(
+                    dokdistBaseUrl = environment.dokdistUrl
+                )
+            )
         }
     }
 }
