@@ -61,5 +61,7 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
+    - name: SECURITY_TOKEN_SERVICE_URL
+      value: "https://security-token-service.nais.preprod.local"
     - name: DOKDIST_URL
       value: "https://dokdistfordeling-q1.nais.preprod.local"

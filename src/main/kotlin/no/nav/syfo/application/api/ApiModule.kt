@@ -8,6 +8,7 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.client.dokdist.DokdistClient
+import no.nav.syfo.client.sts.StsClient
 
 fun Application.apiModule(
     applicationState: ApplicationState,
@@ -26,6 +27,12 @@ fun Application.apiModule(
         ),
     )
 
+    val stsClient = StsClient(
+        baseUrl = environment.stsUrl,
+        serviceuserUsername = environment.serviceuserUsername,
+        serviceuserPassword = environment.serviceuserPassword,
+    )
+
     routing {
         registerPodApi(applicationState)
         registerPrometheusApi()
@@ -33,7 +40,8 @@ fun Application.apiModule(
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
             registerProxyApi(
                 dokdistClient = DokdistClient(
-                    dokdistBaseUrl = environment.dokdistUrl
+                    dokdistBaseUrl = environment.dokdistUrl,
+                    stsClient = stsClient,
                 )
             )
         }
