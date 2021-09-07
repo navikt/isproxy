@@ -3,12 +3,16 @@ package no.nav.syfo.client.dokdist
 import io.ktor.client.features.*
 import io.ktor.client.statement.*
 import net.logstash.logback.argument.StructuredArguments
+import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_FAIL
 import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_SUCCESS
 import org.slf4j.LoggerFactory
 import java.util.*
 
-class DokdistClient(dokdistBaseUrl: String) {
+class DokdistClient(
+    dokdistBaseUrl: String,
+    val stsClient: StsClient,
+) {
 
     private val distribuerJournalpostUrl: String = "$dokdistBaseUrl$DISTRIBUER_JOURNALPOST_PATH"
 
@@ -17,6 +21,7 @@ class DokdistClient(dokdistBaseUrl: String) {
         callId: String
     ): DokdistResponse? {
         return try {
+            val token = stsClient.token()
             // TODO: Call dokdist api with sts-token ?
             COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_SUCCESS.increment()
             DokdistResponse(
