@@ -10,6 +10,8 @@ fun PipelineContext<out Unit, ApplicationCall>.getCallId(): String {
     return this.call.request.headers[NAV_CALL_ID_HEADER].toString()
 }
 
+fun bearerHeader(token: String) = "Bearer $token"
+
 fun callIdArgument(callId: String) = StructuredArguments.keyValue("callId", callId)!!
 
 fun basicHeader(
