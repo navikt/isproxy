@@ -1,11 +1,15 @@
 package no.nav.syfo.client.sts
 
 import io.ktor.client.call.*
+import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import no.nav.syfo.client.httpClientDefault
+import no.nav.syfo.metric.COUNT_CALL_STS_FAIL
+import no.nav.syfo.metric.COUNT_CALL_STS_SUCCESS
 import no.nav.syfo.util.basicHeader
+import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 
 class StsClient(
@@ -20,12 +24,22 @@ class StsClient(
 
     suspend fun token(): String {
         if (Token.shouldRenew(cachedOidcToken)) {
-            val response: HttpResponse = httpClient.get(url) {
-                header(HttpHeaders.Authorization, basicHeader(serviceuserUsername, serviceuserPassword))
-                accept(ContentType.Application.Json)
+            try {
+                val response: HttpResponse = httpClient.get(url) {
+                    header(HttpHeaders.Authorization, basicHeader(serviceuserUsername, serviceuserPassword))
+                    accept(ContentType.Application.Json)
+                }
+                cachedOidcToken = response.receive<Token>()
+                COUNT_CALL_STS_SUCCESS.increment()
+            } catch (e: ResponseException) {
+                log.error(
+                    "Error while requesting sts token with status: ${e.response.status.value}",
+                )
+                COUNT_CALL_STS_FAIL.increment()
+                throw e
             }
-            cachedOidcToken = response.receive<Token>()
         }
+
         return cachedOidcToken!!.access_token
     }
 
@@ -45,5 +59,9 @@ class StsClient(
                 return token.expirationTime.isBefore(LocalDateTime.now())
             }
         }
+    }
+
+    companion object {
+        private val log = LoggerFactory.getLogger(StsClient::class.java)
     }
 }
