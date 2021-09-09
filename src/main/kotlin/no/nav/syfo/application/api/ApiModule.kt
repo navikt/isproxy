@@ -13,6 +13,7 @@ import no.nav.syfo.client.sts.StsClient
 fun Application.apiModule(
     applicationState: ApplicationState,
     environment: Environment,
+    wellKnown: WellKnown,
 ) {
     installMetrics()
     installContentNegotiation()
@@ -22,7 +23,7 @@ fun Application.apiModule(
             JwtIssuer(
                 acceptedAudienceList = listOf(environment.aadAppClient),
                 jwtIssuerType = JwtIssuerType.AZUREAD_V2,
-                wellKnown = getWellKnown(environment.azureAppWellKnownUrl),
+                wellKnown = wellKnown,
             ),
         ),
     )

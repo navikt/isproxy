@@ -31,7 +31,7 @@ fun Route.registerProxyApi(
                 call.respond(dokdistResponse)
             } catch (e: Exception) {
                 val message = "Could not distribute journalpost"
-                log.error("$message: {}, {}", e.message, callIdArgument(callId))
+                log.error("$message: {}, {}", e.message, callIdArgument(callId), e)
                 call.respond(HttpStatusCode.BadRequest, e.message ?: message)
             }
         }

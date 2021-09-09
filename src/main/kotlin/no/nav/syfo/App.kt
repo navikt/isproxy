@@ -8,6 +8,7 @@ import io.ktor.server.netty.*
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.apiModule
+import no.nav.syfo.application.api.authentication.getWellKnown
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
@@ -30,11 +31,12 @@ fun main() {
             connector {
                 port = applicationPort
             }
-
+            val wellKnown = getWellKnown(environment.azureAppWellKnownUrl)
             module {
                 apiModule(
                     applicationState = applicationState,
                     environment = environment,
+                    wellKnown = wellKnown,
                 )
             }
         }
