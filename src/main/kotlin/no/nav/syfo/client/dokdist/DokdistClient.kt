@@ -9,6 +9,7 @@ import no.nav.syfo.client.httpClientDefault
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_FAIL
 import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_SUCCESS
+import no.nav.syfo.util.NAV_CONSUMER_TOKEN_HEADER
 import no.nav.syfo.util.bearerHeader
 import org.slf4j.LoggerFactory
 
@@ -28,6 +29,7 @@ class DokdistClient(
             val stsToken = stsClient.token()
             val response: DokdistResponse = httpClient.post(distribuerJournalpostUrl) {
                 header(HttpHeaders.Authorization, bearerHeader(stsToken))
+                header(NAV_CONSUMER_TOKEN_HEADER, bearerHeader(stsToken))
                 accept(ContentType.Application.Json)
                 contentType(ContentType.Application.Json)
                 body = dokdistRequest

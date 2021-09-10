@@ -6,6 +6,8 @@ import net.logstash.logback.argument.StructuredArguments
 import java.util.Base64
 
 const val NAV_CALL_ID_HEADER = "Nav-Call-Id"
+const val NAV_CONSUMER_TOKEN_HEADER = "Nav-Consumer-Token"
+
 fun PipelineContext<out Unit, ApplicationCall>.getCallId(): String {
     return this.call.request.headers[NAV_CALL_ID_HEADER].toString()
 }
