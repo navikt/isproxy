@@ -57,7 +57,7 @@ class DokdistClient(
     }
 
     companion object {
-        const val DISTRIBUER_JOURNALPOST_PATH = "/rest/v1/distribuerJournalpost"
+        const val DISTRIBUER_JOURNALPOST_PATH = "/rest/v1/distribuerjournalpost"
         private val log = LoggerFactory.getLogger(DokdistClient::class.java)
     }
 }
