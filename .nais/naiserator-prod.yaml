@@ -37,6 +37,7 @@ spec:
       memory: 384Mi
   ingresses:
     - "https://isproxy.intern.nav.no"
+    - "https://isproxy.prod-fss-pub.nais.io"
   accessPolicy:
     inbound:
       rules:
