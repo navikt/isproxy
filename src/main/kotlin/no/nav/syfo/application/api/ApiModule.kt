@@ -3,12 +3,12 @@ package no.nav.syfo.application.api
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.routing.*
-import no.nav.syfo.api.registerProxyApi
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.client.dokdist.DokdistClient
 import no.nav.syfo.client.sts.StsClient
+import no.nav.syfo.dokdist.api.registerDokdistApi
 
 fun Application.apiModule(
     applicationState: ApplicationState,
@@ -34,16 +34,18 @@ fun Application.apiModule(
         serviceuserPassword = environment.serviceuserPassword,
     )
 
+    val dokdistClient = DokdistClient(
+        dokdistBaseUrl = environment.dokdistUrl,
+        stsClient = stsClient,
+    )
+
     routing {
         registerPodApi(applicationState)
         registerPrometheusApi()
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
-            registerProxyApi(
-                dokdistClient = DokdistClient(
-                    dokdistBaseUrl = environment.dokdistUrl,
-                    stsClient = stsClient,
-                )
+            registerDokdistApi(
+                dokdistClient = dokdistClient
             )
         }
     }

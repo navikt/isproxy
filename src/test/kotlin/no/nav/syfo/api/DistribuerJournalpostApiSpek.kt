@@ -7,6 +7,8 @@ import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
 import no.nav.syfo.client.dokdist.DokdistRequest
 import no.nav.syfo.client.dokdist.DokdistResponse
+import no.nav.syfo.dokdist.api.distribuerJournalpostPath
+import no.nav.syfo.dokdist.api.dokDistBasePath
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.util.bearerHeader
 import org.amshove.kluent.*
@@ -35,7 +37,7 @@ class DistribuerJournalpostApiSpek : Spek({
                 externalMockEnvironment = externalMockEnvironment,
             )
 
-            val urlDistribuerJournalpost = "$proxyPath/$distribuerJournalpostPath"
+            val urlDistribuerJournalpost = "$dokDistBasePath/$distribuerJournalpostPath"
 
             describe("Post distribuer journalpost") {
                 val validToken = generateJWT(
