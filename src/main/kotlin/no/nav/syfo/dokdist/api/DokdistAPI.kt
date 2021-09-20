@@ -1,4 +1,4 @@
-package no.nav.syfo.api
+package no.nav.syfo.dokdist.api
 
 import io.ktor.application.*
 import io.ktor.http.*
@@ -14,13 +14,13 @@ import org.slf4j.LoggerFactory
 
 private val log: Logger = LoggerFactory.getLogger("no.nav.syfo")
 
-const val proxyPath = "/api/v1"
-const val distribuerJournalpostPath = "/distribuerJournalpost"
+const val dokDistBasePath = "/api/v1/dokdist"
+const val distribuerJournalpostPath = "/distribuerjournalpost"
 
-fun Route.registerProxyApi(
+fun Route.registerDokdistApi(
     dokdistClient: DokdistClient
 ) {
-    route(proxyPath) {
+    route(dokDistBasePath) {
         post(distribuerJournalpostPath) {
             val callId = getCallId()
             try {
