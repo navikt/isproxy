@@ -41,6 +41,7 @@ class EregProxyApiSpek : Spek({
                 val validToken = generateJWT(
                     externalMockEnvironment.environment.aadAppClient,
                     externalMockEnvironment.wellKnown.issuer,
+                    testIsnarmestelederClientId,
                 )
 
                 describe("Happy path") {
@@ -63,6 +64,22 @@ class EregProxyApiSpek : Spek({
                             handleRequest(HttpMethod.Get, urlEregOrganisasjonWithParam) {}
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Unauthorized
+                        }
+                    }
+
+                    it("should return status Forbidden if unauthorized AZP is supplied") {
+                        val validTokenUnauthorizedAZP = generateJWT(
+                            externalMockEnvironment.environment.aadAppClient,
+                            externalMockEnvironment.wellKnown.issuer,
+                            testIsdialogmoteClientId,
+                        )
+
+                        with(
+                            handleRequest(HttpMethod.Get, urlEregOrganisasjonWithParam) {
+                                addHeader(Authorization, bearerHeader(validTokenUnauthorizedAZP))
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.Forbidden
                         }
                     }
                 }

@@ -43,6 +43,7 @@ class DistribuerJournalpostApiSpek : Spek({
                 val validToken = generateJWT(
                     externalMockEnvironment.environment.aadAppClient,
                     externalMockEnvironment.wellKnown.issuer,
+                    externalMockEnvironment.environment.isdialogmoteApplicationName,
                 )
                 val dokdistRequest = DokdistRequest(
                     journalpostId = "jpid",
