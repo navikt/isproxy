@@ -5,6 +5,7 @@ import no.nav.syfo.application.Environment
 import java.net.ServerSocket
 
 fun testEnvironment(
+    eregUrl: String,
     stsUrl: String,
     dokdistUrl: String,
 ) = Environment(
@@ -12,6 +13,7 @@ fun testEnvironment(
     azureAppWellKnownUrl = "wellknown",
     serviceuserUsername = "user",
     serviceuserPassword = "password",
+    eregUrl = eregUrl,
     stsUrl = stsUrl,
     dokdistUrl = dokdistUrl,
 )

@@ -44,6 +44,9 @@ spec:
         - application: isdialogmote
           namespace: teamsykefravr
           cluster: prod-gcp
+        - application: isnarmesteleder
+          namespace: teamsykefravr
+          cluster: prod-gcp
   azure:
     application:
       enabled: true
@@ -62,6 +65,8 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
+    - name: EREG_URL
+      value: "https://modapp.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.adeo.no"
     - name: DOKDIST_URL

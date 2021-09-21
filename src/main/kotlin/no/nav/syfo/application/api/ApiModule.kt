@@ -9,6 +9,8 @@ import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.client.dokdist.DokdistClient
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
+import no.nav.syfo.ereg.api.registerEregProxyApi
+import no.nav.syfo.ereg.client.EregClient
 
 fun Application.apiModule(
     applicationState: ApplicationState,
@@ -38,6 +40,10 @@ fun Application.apiModule(
         dokdistBaseUrl = environment.dokdistUrl,
         stsClient = stsClient,
     )
+    val eregClient = EregClient(
+        baseUrl = environment.eregUrl,
+        stsClient = stsClient,
+    )
 
     routing {
         registerPodApi(applicationState)
@@ -46,6 +52,9 @@ fun Application.apiModule(
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
             registerDokdistApi(
                 dokdistClient = dokdistClient
+            )
+            registerEregProxyApi(
+                eregClient = eregClient,
             )
         }
     }
