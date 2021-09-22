@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
-import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.ereg.domain.EregOrganisasjonResponse
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.testhelper.mock.EregResponseOrgNr
@@ -36,7 +35,7 @@ class EregProxyApiSpek : Spek({
                 externalMockEnvironment = externalMockEnvironment,
             )
 
-            val urlEregOrganisasjonWithParam = "$eregProxyBasePath/${EregClient.EREG_PATH}/$EregResponseOrgNr"
+            val urlEregOrganisasjonWithParam = "$eregProxyBasePath$eregProxyOrganisasjonPath/$EregResponseOrgNr"
 
             describe("Get Organisasjon from Ereg") {
                 val validToken = generateJWT(
