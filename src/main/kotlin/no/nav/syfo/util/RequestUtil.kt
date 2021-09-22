@@ -6,6 +6,7 @@ import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.util.pipeline.*
 import net.logstash.logback.argument.StructuredArguments
+import no.nav.syfo.application.api.access.ForbiddenProxyConsumer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -17,6 +18,10 @@ const val NAV_CONSUMER_TOKEN_HEADER = "Nav-Consumer-Token"
 
 fun PipelineContext<out Unit, ApplicationCall>.getCallId(): String {
     return this.call.request.headers[NAV_CALL_ID_HEADER].toString()
+}
+
+fun PipelineContext<out Unit, ApplicationCall>.getBearerHeader(): String? {
+    return this.call.request.headers[HttpHeaders.Authorization]?.removePrefix("Bearer ")
 }
 
 fun bearerHeader(token: String) = "Bearer $token"
@@ -41,6 +46,9 @@ suspend fun PipelineContext<out Unit, ApplicationCall>.handleProxyError(
         }
         is IllegalArgumentException -> {
             HttpStatusCode.BadRequest
+        }
+        is ForbiddenProxyConsumer -> {
+            HttpStatusCode.Forbidden
         }
         else -> {
             HttpStatusCode.InternalServerError

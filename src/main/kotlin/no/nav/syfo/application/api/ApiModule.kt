@@ -5,6 +5,7 @@ import io.ktor.auth.*
 import io.ktor.routing.*
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
+import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.client.dokdist.DokdistClient
 import no.nav.syfo.client.sts.StsClient
@@ -45,6 +46,10 @@ fun Application.apiModule(
         stsClient = stsClient,
     )
 
+    val apiConsumerAccessService = APIConsumerAccessService(
+        azureAppPreAuthorizedApps = environment.azureAppPreAuthorizedApps,
+    )
+
     routing {
         registerPodApi(applicationState)
         registerPrometheusApi()
@@ -54,6 +59,8 @@ fun Application.apiModule(
                 dokdistClient = dokdistClient
             )
             registerEregProxyApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
                 eregClient = eregClient,
             )
         }
