@@ -15,6 +15,7 @@ import no.nav.syfo.util.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.net.URL
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 private val log: Logger = LoggerFactory.getLogger("no.nav.syfo.application.api.authentication")
@@ -62,6 +63,15 @@ fun hasExpectedAudience(credentials: JWTCredential, expectedAudience: List<Strin
 fun Application.installMetrics() {
     install(MicrometerMetrics) {
         registry = METRICS_REGISTRY
+    }
+}
+
+fun Application.installCallId() {
+    install(CallId) {
+        retrieve { it.request.headers[NAV_CALL_ID_HEADER] }
+        generate { UUID.randomUUID().toString() }
+        verify { callId: String -> callId.isNotEmpty() }
+        header(NAV_CALL_ID_HEADER)
     }
 }
 

@@ -19,6 +19,7 @@ fun Application.apiModule(
     wellKnown: WellKnown,
 ) {
     installMetrics()
+    installCallId()
     installContentNegotiation()
     installStatusPages()
     installJwtAuthentication(
