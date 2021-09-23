@@ -1,4 +1,4 @@
-package no.nav.syfo.client.dokdist
+package no.nav.syfo.dokdist.domain
 
 data class DokdistRequest(
     val journalpostId: String,

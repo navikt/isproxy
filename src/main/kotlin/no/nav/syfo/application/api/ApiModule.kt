@@ -7,7 +7,7 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
-import no.nav.syfo.client.dokdist.DokdistClient
+import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.ereg.api.registerEregProxyApi
@@ -57,7 +57,9 @@ fun Application.apiModule(
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
             registerDokdistApi(
-                dokdistClient = dokdistClient
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.dokdistAPIAuthorizedConsumerApplicationNameList,
+                dokdistClient = dokdistClient,
             )
             registerEregProxyApi(
                 apiConsumerAccessService = apiConsumerAccessService,
