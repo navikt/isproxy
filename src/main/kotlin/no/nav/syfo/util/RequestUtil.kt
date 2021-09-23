@@ -55,7 +55,7 @@ suspend fun PipelineContext<out Unit, ApplicationCall>.handleProxyError(
         }
     }
     val callId = getCallId()
-    val message = "Failed to get response from $proxyServiceName<, callId=$callId, message=${ex.message}"
+    val message = "Failed to get response from $proxyServiceName, callId=$callId, message=${ex.message}"
     log.error("Failed to proxy $proxyServiceName: status=${responseStatus.value} message=$message")
     call.respond(responseStatus, message)
 }
