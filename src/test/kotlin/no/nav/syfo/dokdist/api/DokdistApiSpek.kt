@@ -1,24 +1,22 @@
-package no.nav.syfo.api
+package no.nav.syfo.dokdist.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
-import no.nav.syfo.client.dokdist.DokdistRequest
-import no.nav.syfo.client.dokdist.DokdistResponse
-import no.nav.syfo.dokdist.api.distribuerJournalpostPath
-import no.nav.syfo.dokdist.api.dokDistBasePath
+import no.nav.syfo.dokdist.domain.DokdistRequest
+import no.nav.syfo.dokdist.domain.DokdistResponse
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.util.bearerHeader
 import org.amshove.kluent.*
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
-class DistribuerJournalpostApiSpek : Spek({
+class DokdistApiSpek : Spek({
     val objectMapper: ObjectMapper = apiConsumerObjectMapper()
 
-    describe(DistribuerJournalpostApiSpek::class.java.simpleName) {
+    describe(DokdistApiSpek::class.java.simpleName) {
 
         with(TestApplicationEngine()) {
             start()
@@ -43,7 +41,7 @@ class DistribuerJournalpostApiSpek : Spek({
                 val validToken = generateJWT(
                     externalMockEnvironment.environment.aadAppClient,
                     externalMockEnvironment.wellKnown.issuer,
-                    externalMockEnvironment.environment.isdialogmoteApplicationName,
+                    testIsdialogmoteClientId,
                 )
                 val dokdistRequest = DokdistRequest(
                     journalpostId = "jpid",
@@ -76,6 +74,24 @@ class DistribuerJournalpostApiSpek : Spek({
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Unauthorized
+                        }
+                    }
+
+                    it("should return status Forbidden if unauthorized AZP is supplied") {
+                        val validTokenUnauthorizedAZP = generateJWT(
+                            externalMockEnvironment.environment.aadAppClient,
+                            externalMockEnvironment.wellKnown.issuer,
+                            testIsnarmestelederClientId,
+                        )
+
+                        with(
+                            handleRequest(HttpMethod.Post, urlDistribuerJournalpost) {
+                                addHeader(Authorization, bearerHeader(validTokenUnauthorizedAZP))
+                                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                                setBody(objectMapper.writeValueAsString(dokdistRequest))
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.Forbidden
                         }
                     }
                 }

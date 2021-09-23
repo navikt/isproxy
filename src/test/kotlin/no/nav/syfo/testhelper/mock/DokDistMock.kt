@@ -6,8 +6,8 @@ import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import no.nav.syfo.application.api.authentication.installContentNegotiation
-import no.nav.syfo.client.dokdist.DokdistClient
-import no.nav.syfo.client.dokdist.DokdistResponse
+import no.nav.syfo.dokdist.client.DokdistClient
+import no.nav.syfo.dokdist.domain.DokdistResponse
 import no.nav.syfo.testhelper.getRandomPort
 
 class DokDistMock {

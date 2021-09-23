@@ -21,6 +21,8 @@ class APIConsumerAccessService(
         authorizedApplicationNameList: List<String>,
         token: String,
     ) {
+        val consumerClientIdAzp = getConsumerClientId(token = token)
+            ?: throw IllegalArgumentException("Claim AZP was not found in token")
         val clientIdList = preAuthorizedClientList
             .filter {
                 authorizedApplicationNameList.contains(
@@ -29,8 +31,6 @@ class APIConsumerAccessService(
             }
             .map { it.clientId }
 
-        val consumerClientIdAzp = getConsumerClientId(token = token)
-            ?: throw IllegalArgumentException("Claim AZP was not found in token")
         if (!clientIdList.contains(consumerClientIdAzp)) {
             throw ForbiddenProxyConsumer(consumerClientIdAzp = consumerClientIdAzp)
         }

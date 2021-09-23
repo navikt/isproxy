@@ -17,6 +17,9 @@ data class Environment(
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isnarmestelederApplicationName,
+    ),
+    val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        isdialogmoteApplicationName,
     )
 )
 

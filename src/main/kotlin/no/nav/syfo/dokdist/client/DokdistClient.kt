@@ -1,14 +1,16 @@
-package no.nav.syfo.client.dokdist
+package no.nav.syfo.dokdist.client
 
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import net.logstash.logback.argument.StructuredArguments
+import no.nav.syfo.dokdist.domain.DokdistRequest
+import no.nav.syfo.dokdist.domain.DokdistResponse
 import no.nav.syfo.client.httpClientDefault
 import no.nav.syfo.client.sts.StsClient
-import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_FAIL
-import no.nav.syfo.metric.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_SUCCESS
+import no.nav.syfo.dokdist.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_FAIL
+import no.nav.syfo.dokdist.COUNT_CALL_DOKDIST_DISTRIBUER_JOURNALPOST_SUCCESS
 import no.nav.syfo.util.NAV_CONSUMER_TOKEN_HEADER
 import no.nav.syfo.util.bearerHeader
 import org.slf4j.LoggerFactory
