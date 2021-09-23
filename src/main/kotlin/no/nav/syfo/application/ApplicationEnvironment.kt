@@ -6,7 +6,7 @@ import no.nav.syfo.util.getFileAsString
 data class Environment(
     val aadAppClient: String = getEnvVar("AZURE_APP_CLIENT_ID"),
     val azureAppWellKnownUrl: String = getEnvVar("AZURE_APP_WELL_KNOWN_URL"),
-    val azureAppPreAuthorizedApps: String = getEnvVar("AZURE_APP_PRE_AUTHORIZED_APP"),
+    val azureAppPreAuthorizedApps: String = getEnvVar("AZURE_APP_PRE_AUTHORIZED_APPS"),
     val serviceuserUsername: String = getFileAsString("/secrets/serviceuser/isproxy/username"),
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
     val eregUrl: String = getEnvVar("EREG_URL"),
