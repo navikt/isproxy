@@ -12,6 +12,8 @@ import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.ereg.api.registerEregProxyApi
 import no.nav.syfo.ereg.client.EregClient
+import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
+import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
 
 fun Application.apiModule(
     applicationState: ApplicationState,
@@ -46,6 +48,10 @@ fun Application.apiModule(
         baseUrl = environment.eregUrl,
         stsClient = stsClient,
     )
+    val syfosyketilfelleClient = SyfosyketilfelleClient(
+        baseUrl = environment.syfosyketilfelleUrl,
+        stsClient = stsClient,
+    )
 
     val apiConsumerAccessService = APIConsumerAccessService(
         azureAppPreAuthorizedApps = environment.azureAppPreAuthorizedApps,
@@ -65,6 +71,11 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
                 eregClient = eregClient,
+            )
+            registerSyfosyketilfelleApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.syfosyketilfelleAPIAuthorizedConsumerApplicationNameList,
+                syfosyketilfelleClient = syfosyketilfelleClient,
             )
         }
     }

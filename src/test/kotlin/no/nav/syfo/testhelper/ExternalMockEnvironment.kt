@@ -10,17 +10,20 @@ class ExternalMockEnvironment() {
     val eregMock = EregMock()
     val stsMock = STSMock()
     val dokDistMock = DokDistMock()
+    val syfosyketilfelleMock = SyfosyketilfelleMock()
 
     val externalApplicationMockMap = hashMapOf(
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         dokDistMock.name to dokDistMock.server,
+        syfosyketilfelleMock.name to syfosyketilfelleMock.server,
     )
 
     val environment = testEnvironment(
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
         dokdistUrl = dokDistMock.url,
+        syfosyketilfelleUrl = syfosyketilfelleMock.url,
     )
 }
 

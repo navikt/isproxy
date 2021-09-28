@@ -71,3 +71,5 @@ spec:
       value: "https://security-token-service.nais.preprod.local"
     - name: DOKDIST_URL
       value: "https://dokdistfordeling-q1.nais.preprod.local"
+    - name: SYFOSYKETILFELLE_URL
+      value: "https://syfosyketilfelle.nais.preprod.local"
