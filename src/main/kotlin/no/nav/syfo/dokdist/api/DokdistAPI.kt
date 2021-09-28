@@ -7,9 +7,7 @@ import io.ktor.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.dokdist.domain.DokdistRequest
-import no.nav.syfo.util.getBearerHeader
-import no.nav.syfo.util.getCallId
-import no.nav.syfo.util.handleProxyError
+import no.nav.syfo.util.proxyRequestHandler
 
 const val dokDistBasePath = "/api/v1/dokdist"
 const val distribuerJournalpostPath = "/distribuerjournalpost"
@@ -21,27 +19,17 @@ fun Route.registerDokdistApi(
 ) {
     route(dokDistBasePath) {
         post(distribuerJournalpostPath) {
-            val callId = getCallId()
-            try {
+            proxyRequestHandler(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = authorizedApplicationNameList,
+                proxyServiceName = "Dokdist",
+            ) {
                 val dokdistRequest = call.receive<DokdistRequest>()
 
-                val token = getBearerHeader()
-                    ?: throw IllegalArgumentException("No Authorization header supplied")
-
-                apiConsumerAccessService.validateConsumerApplicationAZP(
-                    authorizedApplicationNameList = authorizedApplicationNameList,
-                    token = token,
+                val dokdistResponse = dokdistClient.distribuerJournalpost(
+                    dokdistRequest = dokdistRequest,
                 )
-
-                val dokdistResponse =
-                    dokdistClient.distribuerJournalpost(dokdistRequest, callId)
-                        ?: throw RuntimeException("Failed to distribute journalpost: missing response")
                 call.respond(dokdistResponse)
-            } catch (ex: Exception) {
-                handleProxyError(
-                    ex = ex,
-                    proxyServiceName = "Dokdist",
-                )
             }
         }
     }

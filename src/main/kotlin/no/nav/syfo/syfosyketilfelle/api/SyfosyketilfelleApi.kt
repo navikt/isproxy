@@ -7,7 +7,7 @@ import io.ktor.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.domain.AktorId
 import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
-import no.nav.syfo.util.*
+import no.nav.syfo.util.proxyRequestHandler
 
 const val syfosyktilfelleProxyBasePath = "/api/v1/syfosyketilfelle"
 const val syfosyketilfelleProxyOppfolgingstilfellePersonPath = "/oppfolgingstilfelle/person"
@@ -20,31 +20,20 @@ fun Route.registerSyfosyketilfelleApi(
 ) {
     route(syfosyktilfelleProxyBasePath) {
         get("$syfosyketilfelleProxyOppfolgingstilfellePersonPath/{$syfosyketilfelleAktorIdParam}") {
-            val callId = getCallId()
-            try {
+            proxyRequestHandler(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = authorizedApplicationNameList,
+                proxyServiceName = "Syfosyketilfelle",
+            ) {
                 val aktorId = call.parameters[syfosyketilfelleAktorIdParam]?.let { aktorId ->
                     AktorId(aktorId)
                 } ?: throw IllegalArgumentException("No AktorId found in path param")
 
-                val token = getBearerHeader()
-                    ?: throw IllegalArgumentException("No Authorization header supplied")
-
-                apiConsumerAccessService.validateConsumerApplicationAZP(
-                    authorizedApplicationNameList = authorizedApplicationNameList,
-                    token = token,
-                )
-
                 syfosyketilfelleClient.oppfolgingstilfellePerson(
-                    callId = callId,
                     aktorId = aktorId,
                 )?.let { kOppfolgingstilfellePerson ->
                     call.respond(kOppfolgingstilfellePerson)
                 } ?: call.respond(HttpStatusCode.NoContent)
-            } catch (ex: Exception) {
-                handleProxyError(
-                    ex = ex,
-                    proxyServiceName = "Syfosyketilfelle",
-                )
             }
         }
     }
