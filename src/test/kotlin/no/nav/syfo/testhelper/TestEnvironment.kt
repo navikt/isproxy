@@ -10,6 +10,7 @@ fun testEnvironment(
     eregUrl: String,
     stsUrl: String,
     dokdistUrl: String,
+    syfosyketilfelleUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
     azureAppWellKnownUrl = "wellknown",
@@ -19,6 +20,7 @@ fun testEnvironment(
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     dokdistUrl = dokdistUrl,
+    syfosyketilfelleUrl = syfosyketilfelleUrl,
 )
 
 fun testAppState() = ApplicationState(

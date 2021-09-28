@@ -12,6 +12,7 @@ data class Environment(
     val eregUrl: String = getEnvVar("EREG_URL"),
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
+    val syfosyketilfelleUrl: String = getEnvVar("SYFOSYKETILFELLE_URL"),
 
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
@@ -20,7 +21,10 @@ data class Environment(
     ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
-    )
+    ),
+    val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        isdialogmoteApplicationName,
+    ),
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =

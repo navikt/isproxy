@@ -71,3 +71,5 @@ spec:
       value: "https://security-token-service.nais.adeo.no"
     - name: DOKDIST_URL
       value: "https://dokdistfordeling.nais.adeo.no"
+    - name: SYFOSYKETILFELLE_URL
+      value: "https://syfosyketilfelle.nais.adeo.no"
