@@ -10,6 +10,8 @@ fun testEnvironment(
     eregUrl: String,
     stsUrl: String,
     dokdistUrl: String,
+    fastlegeUrl: String,
+    adresseregisterUrl: String,
     syfosyketilfelleUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
@@ -20,6 +22,8 @@ fun testEnvironment(
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     dokdistUrl = dokdistUrl,
+    fastlegeUrl = fastlegeUrl,
+    adresseregisterUrl = adresseregisterUrl,
     syfosyketilfelleUrl = syfosyketilfelleUrl,
 )
 

@@ -5,6 +5,7 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.httpClientDefault
 import no.nav.syfo.metric.COUNT_CALL_STS_FAIL
 import no.nav.syfo.metric.COUNT_CALL_STS_SUCCESS
@@ -13,20 +14,22 @@ import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 
 class StsClient(
-    baseUrl: String,
-    private val serviceuserUsername: String,
-    private val serviceuserPassword: String
+    val properties: StsClientProperties,
 ) {
     private var cachedOidcToken: Token? = null
 
     private val httpClient = httpClientDefault()
-    private val url = "$baseUrl/rest/v1/sts/token?grant_type=client_credentials&scope=openid"
+    private val url = "${properties.baseUrl}/rest/v1/sts/token?grant_type=client_credentials&scope=openid"
 
     suspend fun token(): String {
         if (Token.shouldRenew(cachedOidcToken)) {
             try {
+                val authHeader = basicHeader(
+                    credentialUsername = properties.serviceuserUsername,
+                    credentialPassword = properties.serviceuserPassword,
+                )
                 val response: HttpResponse = httpClient.get(url) {
-                    header(HttpHeaders.Authorization, basicHeader(serviceuserUsername, serviceuserPassword))
+                    header(HttpHeaders.Authorization, authHeader)
                     accept(ContentType.Application.Json)
                 }
                 cachedOidcToken = response.receive<Token>()

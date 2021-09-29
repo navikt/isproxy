@@ -20,6 +20,10 @@ fun PipelineContext<out Unit, ApplicationCall>.getBearerHeader(): String? {
     return this.call.request.headers[HttpHeaders.Authorization]?.removePrefix("Bearer ")
 }
 
+fun PipelineContext<out Unit, ApplicationCall>.getHeader(header: String): String? {
+    return this.call.request.headers[header]
+}
+
 suspend fun PipelineContext<out Unit, ApplicationCall>.proxyRequestHandler(
     authorizedApplicationNameList: List<String>,
     apiConsumerAccessService: APIConsumerAccessService,

@@ -73,3 +73,8 @@ spec:
       value: "https://dokdistfordeling.nais.adeo.no"
     - name: SYFOSYKETILFELLE_URL
       value: "https://syfosyketilfelle.nais.adeo.no"
+    - name: FASTLEGE_URL
+      value: "https://pep-gw.oera.no:9443/ekstern/helse/fastlegeinformasjon"
+    - name: ADRESSEREGISTER_URL
+      value: "https://pep-gw.oera.no:9443/ekstern/helse/adresseregisteret/v1"
+
