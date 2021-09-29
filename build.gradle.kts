@@ -7,7 +7,7 @@ version = "1.0.0"
 object Versions {
     const val jacksonVersion = "2.11.3"
     const val jedisVersion = "3.6.0"
-    const val ktorVersion = "1.5.4"
+    const val ktorVersion = "1.6.3"
     const val jaxbVersion = "2.3.1"
     const val kluentVersion = "1.68"
     const val logbackVersion = "1.2.3"
