@@ -73,3 +73,8 @@ spec:
       value: "https://dokdistfordeling-q1.nais.preprod.local"
     - name: SYFOSYKETILFELLE_URL
       value: "https://syfosyketilfelle.nais.preprod.local"
+    - name: FASTLEGE_URL
+      value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/fastlegeinformasjon"
+    - name: ADRESSEREGISTER_URL
+      value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/adresseregisteret/v1"
+

@@ -9,9 +9,16 @@ import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.client.sts.StsClient
+import no.nav.syfo.client.StsClientProperties
+import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
+import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
+import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
+import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
+import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.ereg.api.registerEregProxyApi
 import no.nav.syfo.ereg.client.EregClient
+import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
 import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
 
@@ -34,12 +41,14 @@ fun Application.apiModule(
         ),
     )
 
-    val stsClient = StsClient(
+    val stsClientProperties = StsClientProperties(
         baseUrl = environment.stsUrl,
         serviceuserUsername = environment.serviceuserUsername,
         serviceuserPassword = environment.serviceuserPassword,
     )
-
+    val stsClient = StsClient(
+        properties = stsClientProperties,
+    )
     val dokdistClient = DokdistClient(
         dokdistBaseUrl = environment.dokdistUrl,
         stsClient = stsClient,
@@ -51,6 +60,18 @@ fun Application.apiModule(
     val syfosyketilfelleClient = SyfosyketilfelleClient(
         baseUrl = environment.syfosyketilfelleUrl,
         stsClient = stsClient,
+    )
+    val fastlegeInformasjonClient = FastlegeInformasjonClient(
+        fastlegeSoapClient = fastlegeSoapClient(
+            serviceUrl = environment.fastlegeUrl,
+            stsProperties = stsClientProperties,
+        )
+    )
+    val adresseregisterClient = AdresseregisterClient(
+        adresseregisterSoapClient = adresseregisterSoapClient(
+            serviceUrl = environment.adresseregisterUrl,
+            stsProperties = stsClientProperties,
+        )
     )
 
     val apiConsumerAccessService = APIConsumerAccessService(
@@ -66,6 +87,16 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.dokdistAPIAuthorizedConsumerApplicationNameList,
                 dokdistClient = dokdistClient,
+            )
+            registerFastlegeApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.fastlegeAPIAuthorizedConsumerApplicationNameList,
+                fastlegeClient = fastlegeInformasjonClient,
+            )
+            registerFastlegepraksisApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.fastlegepraksisAPIAuthorizedConsumerApplicationNameList,
+                adresseregisterClient = adresseregisterClient,
             )
             registerEregProxyApi(
                 apiConsumerAccessService = apiConsumerAccessService,

@@ -12,15 +12,24 @@ data class Environment(
     val eregUrl: String = getEnvVar("EREG_URL"),
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
+    val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
+    val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
     val syfosyketilfelleUrl: String = getEnvVar("SYFOSYKETILFELLE_URL"),
 
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
+    val fastlegerestApplicationName: String = "fastlegerest",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isnarmestelederApplicationName,
     ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
+    ),
+    val fastlegeAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        fastlegerestApplicationName,
+    ),
+    val fastlegepraksisAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        fastlegerestApplicationName,
     ),
     val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,

@@ -10,12 +10,16 @@ class ExternalMockEnvironment() {
     val eregMock = EregMock()
     val stsMock = STSMock()
     val dokDistMock = DokDistMock()
+    val fastlegeMock = FastlegeMock()
+    val adresseregisterMock = AdresseregisterMock()
     val syfosyketilfelleMock = SyfosyketilfelleMock()
 
     val externalApplicationMockMap = hashMapOf(
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         dokDistMock.name to dokDistMock.server,
+        fastlegeMock.name to fastlegeMock.server,
+        adresseregisterMock.name to adresseregisterMock.server,
         syfosyketilfelleMock.name to syfosyketilfelleMock.server,
     )
 
@@ -23,6 +27,8 @@ class ExternalMockEnvironment() {
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
         dokdistUrl = dokDistMock.url,
+        fastlegeUrl = fastlegeMock.url,
+        adresseregisterUrl = adresseregisterMock.url,
         syfosyketilfelleUrl = syfosyketilfelleMock.url,
     )
 }

@@ -10,12 +10,17 @@ object Versions {
     const val ktorVersion = "1.6.3"
     const val jaxbVersion = "2.3.1"
     const val kluentVersion = "1.68"
+    const val cxfVersion = "3.3.9"
+    const val javaxActivationVersion = "1.2.0"
+    const val javaxWsRsApiVersion = "2.1.1"
+    const val jaxwsVersion = "2.3.5"
     const val logbackVersion = "1.2.3"
     const val logstashEncoderVersion = "6.3"
     const val mockkVersion = "1.10.5"
     const val nimbusjosejwtVersion = "7.5.1"
     const val spekVersion = "2.0.15"
     const val micrometerRegistryVersion = "1.7.1"
+    const val syfotjenesterVersion = "1.2021.06.09-13.09-b3d30de9996e"
 }
 
 plugins {
@@ -24,10 +29,19 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
 
+val githubUser: String by project
+val githubPassword: String by project
 repositories {
     mavenCentral()
     maven(url = "https://packages.confluent.io/maven/")
     maven(url = "https://jitpack.io")
+    maven {
+        url = uri("https://maven.pkg.github.com/navikt/tjenestespesifikasjoner")
+        credentials {
+            username = githubUser
+            password = githubPassword
+        }
+    }
 }
 
 dependencies {
@@ -40,6 +54,19 @@ dependencies {
     implementation("io.ktor:ktor-client-jackson:${Versions.ktorVersion}")
     implementation("io.ktor:ktor-jackson:${Versions.ktorVersion}")
     implementation("io.ktor:ktor-server-netty:${Versions.ktorVersion}")
+
+    implementation("org.apache.cxf:cxf-rt-features-logging:${Versions.cxfVersion}")
+    implementation("org.apache.cxf:cxf-rt-ws-security:${Versions.cxfVersion}")
+    implementation("org.apache.cxf:cxf-rt-ws-policy:${Versions.cxfVersion}")
+    implementation("org.apache.cxf:cxf-rt-transports-http:${Versions.cxfVersion}")
+    implementation("org.apache.cxf:cxf-rt-frontend-jaxws:${Versions.cxfVersion}")
+    implementation("javax.ws.rs:javax.ws.rs-api:${Versions.javaxWsRsApiVersion}")
+    implementation("com.sun.xml.ws:jaxws-ri:${Versions.jaxwsVersion}")
+    implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxwsVersion}")
+    implementation("com.sun.activation:javax.activation:${Versions.javaxActivationVersion}")
+
+    implementation("no.nav.syfotjenester:adresseregisteretv1-tjenestespesifikasjon:${Versions.syfotjenesterVersion}")
+    implementation("no.nav.syfotjenester:fastlegeinformasjonv1-tjenestespesifikasjon:${Versions.syfotjenesterVersion}")
 
     implementation("ch.qos.logback:logback-classic:${Versions.logbackVersion}")
     implementation("net.logstash.logback:logstash-logback-encoder:${Versions.logstashEncoderVersion}")
