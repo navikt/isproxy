@@ -7,18 +7,20 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
-import no.nav.syfo.dokdist.client.DokdistClient
-import no.nav.syfo.client.sts.StsClient
+import no.nav.syfo.axsys.api.registerAxsysApi
+import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.client.StsClientProperties
-import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
-import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
+import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
-import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
-import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
-import no.nav.syfo.fastlege.api.registerFastlegeApi
+import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.ereg.api.registerEregProxyApi
 import no.nav.syfo.ereg.client.EregClient
+import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
+import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
+import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
+import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
+import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
 import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
 
@@ -48,6 +50,9 @@ fun Application.apiModule(
     )
     val stsClient = StsClient(
         properties = stsClientProperties,
+    )
+    val axsysClient = AxsysClient(
+        baseUrl = environment.axsysUrl,
     )
     val dokdistClient = DokdistClient(
         dokdistBaseUrl = environment.dokdistUrl,
@@ -83,6 +88,11 @@ fun Application.apiModule(
         registerPrometheusApi()
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
+            registerAxsysApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.axsysAPIAuthorizedConsumerApplicationNameList,
+                axsysClient = axsysClient,
+            )
             registerDokdistApi(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.dokdistAPIAuthorizedConsumerApplicationNameList,

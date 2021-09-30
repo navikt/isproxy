@@ -47,6 +47,9 @@ spec:
         - application: isnarmesteleder
           namespace: teamsykefravr
           cluster: dev-gcp
+        - application: syfoveileder
+          namespace: teamsykefravr
+          cluster: dev-fss
   azure:
     application:
       enabled: true
@@ -65,6 +68,8 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
+    - name: AXSYS_URL
+      value: "https://axsys.nais.preprod.local"
     - name: EREG_URL
       value: "https://modapp-q1.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL

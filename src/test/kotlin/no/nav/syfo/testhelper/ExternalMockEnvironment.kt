@@ -7,6 +7,7 @@ import no.nav.syfo.testhelper.mock.*
 class ExternalMockEnvironment() {
     val applicationState: ApplicationState = testAppState()
     val wellKnown = wellKnownMock()
+    val axsysMock = AxsysMock()
     val eregMock = EregMock()
     val stsMock = STSMock()
     val dokDistMock = DokDistMock()
@@ -15,6 +16,7 @@ class ExternalMockEnvironment() {
     val syfosyketilfelleMock = SyfosyketilfelleMock()
 
     val externalApplicationMockMap = hashMapOf(
+        axsysMock.name to axsysMock.server,
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         dokDistMock.name to dokDistMock.server,
@@ -24,6 +26,7 @@ class ExternalMockEnvironment() {
     )
 
     val environment = testEnvironment(
+        axsysUrl = axsysMock.url,
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
         dokdistUrl = dokDistMock.url,

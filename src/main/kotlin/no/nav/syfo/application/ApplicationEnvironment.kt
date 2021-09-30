@@ -11,6 +11,7 @@ data class Environment(
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
     val eregUrl: String = getEnvVar("EREG_URL"),
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
+    val axsysUrl: String = getEnvVar("AXSYS_URL"),
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
@@ -19,8 +20,12 @@ data class Environment(
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
+    val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isnarmestelederApplicationName,
+    ),
+    val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        syfoveilederApplicationName,
     ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
