@@ -49,6 +49,9 @@ spec:
           cluster: dev-gcp
         - application: syfoveileder
           namespace: teamsykefravr
+          cluster: dev-gcp
+        - application: syfoveileder
+          namespace: teamsykefravr
           cluster: dev-fss
   azure:
     application:
