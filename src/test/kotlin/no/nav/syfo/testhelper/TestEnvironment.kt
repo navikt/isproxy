@@ -7,6 +7,7 @@ import no.nav.syfo.util.configuredJacksonMapper
 import java.net.ServerSocket
 
 fun testEnvironment(
+    axsysUrl: String,
     eregUrl: String,
     stsUrl: String,
     dokdistUrl: String,
@@ -19,6 +20,7 @@ fun testEnvironment(
     azureAppPreAuthorizedApps = configuredJacksonMapper().writeValueAsString(testAzureAppPreAuthorizedApps),
     serviceuserUsername = "user",
     serviceuserPassword = "password",
+    axsysUrl = axsysUrl,
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     dokdistUrl = dokdistUrl,
@@ -38,6 +40,7 @@ fun getRandomPort() = ServerSocket(0).use {
 
 const val testIsdialogmoteClientId = "isdialogmote-client-id"
 const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
+const val testSyfoveilederClientId = "syfoveileder-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
@@ -47,5 +50,9 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:isnarmesteleder",
         clientId = testIsnarmestelederClientId,
+    ),
+    PreAuthorizedClient(
+        name = "dev-fss:teamsykefravr:syfoveileder",
+        clientId = testSyfoveilederClientId,
     ),
 )
