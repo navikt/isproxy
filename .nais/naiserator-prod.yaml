@@ -49,6 +49,9 @@ spec:
           cluster: prod-gcp
         - application: syfoveileder
           namespace: teamsykefravr
+          cluster: prod-gcp
+        - application: syfoveileder
+          namespace: teamsykefravr
           cluster: prod-fss
   azure:
     application:
