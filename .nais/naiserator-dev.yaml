@@ -47,6 +47,9 @@ spec:
         - application: isnarmesteleder
           namespace: teamsykefravr
           cluster: dev-gcp
+        - application: syfoperson
+          namespace: teamsykefravr
+          cluster: dev-fss
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: dev-gcp
@@ -73,6 +76,8 @@ spec:
       value: "production"
     - name: AXSYS_URL
       value: "https://axsys.nais.preprod.local"
+    - name: DKIF_URL
+      value: "https://dkif.nais.preprod.local"
     - name: EREG_URL
       value: "https://modapp-q1.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL

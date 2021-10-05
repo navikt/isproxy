@@ -50,6 +50,9 @@ spec:
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: prod-gcp
+        - application: syfoperson
+          namespace: teamsykefravr
+          cluster: prod-fss
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: prod-fss
@@ -73,6 +76,8 @@ spec:
       value: "production"
     - name: AXSYS_URL
       value: "https://axsys.nais.adeo.no"
+    - name: DKIF_URL
+      value: "https://dkif.nais.adeo.no"
     - name: EREG_URL
       value: "https://modapp.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL

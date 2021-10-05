@@ -11,6 +11,8 @@ import no.nav.syfo.axsys.api.registerAxsysApi
 import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.sts.StsClient
+import no.nav.syfo.dkif.api.registerDkifApi
+import no.nav.syfo.dkif.client.DkifClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.ereg.api.registerEregProxyApi
@@ -54,6 +56,10 @@ fun Application.apiModule(
     val axsysClient = AxsysClient(
         baseUrl = environment.axsysUrl,
     )
+    val dkifClient = DkifClient(
+        baseUrl = environment.dkifUrl,
+        stsClient = stsClient,
+    )
     val dokdistClient = DokdistClient(
         dokdistBaseUrl = environment.dokdistUrl,
         stsClient = stsClient,
@@ -92,6 +98,11 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.axsysAPIAuthorizedConsumerApplicationNameList,
                 axsysClient = axsysClient,
+            )
+            registerDkifApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.dkifAPIAuthorizedConsumerApplicationNameList,
+                dkifClient = dkifClient,
             )
             registerDokdistApi(
                 apiConsumerAccessService = apiConsumerAccessService,
