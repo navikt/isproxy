@@ -47,6 +47,9 @@ spec:
         - application: isnarmesteleder
           namespace: teamsykefravr
           cluster: prod-gcp
+        - application: syfoperson
+          namespace: teamsykefravr
+          cluster: prod-gcp
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: prod-gcp
