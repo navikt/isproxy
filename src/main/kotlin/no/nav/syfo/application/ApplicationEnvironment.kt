@@ -20,12 +20,18 @@ data class Environment(
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
+    val syfopersonApplicationName: String = "syfoperson",
     val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isnarmestelederApplicationName,
     ),
     val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         syfoveilederApplicationName,
+    ),
+    val dkifUrl: String = getEnvVar("DKIF_URL"),
+    val dkifAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        isdialogmoteApplicationName,
+        syfopersonApplicationName,
     ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,

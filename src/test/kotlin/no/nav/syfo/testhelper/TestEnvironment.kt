@@ -8,6 +8,7 @@ import java.net.ServerSocket
 
 fun testEnvironment(
     axsysUrl: String,
+    dkifUrl: String,
     eregUrl: String,
     stsUrl: String,
     dokdistUrl: String,
@@ -21,6 +22,7 @@ fun testEnvironment(
     serviceuserUsername = "user",
     serviceuserPassword = "password",
     axsysUrl = axsysUrl,
+    dkifUrl = dkifUrl,
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     dokdistUrl = dokdistUrl,
@@ -40,6 +42,7 @@ fun getRandomPort() = ServerSocket(0).use {
 
 const val testIsdialogmoteClientId = "isdialogmote-client-id"
 const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
+const val testSyfopersonClientId = "syfoperson-client-id"
 const val testSyfoveilederClientId = "syfoveileder-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
@@ -50,6 +53,10 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:isnarmesteleder",
         clientId = testIsnarmestelederClientId,
+    ),
+    PreAuthorizedClient(
+        name = "dev-fss:teamsykefravr:syfoperson",
+        clientId = testSyfopersonClientId,
     ),
     PreAuthorizedClient(
         name = "dev-fss:teamsykefravr:syfoveileder",
