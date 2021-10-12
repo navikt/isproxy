@@ -11,6 +11,7 @@ data class Environment(
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
     val eregUrl: String = getEnvVar("EREG_URL"),
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
+    val stsSamlUrl: String = getEnvVar("STS_SAML_URL"),
     val axsysUrl: String = getEnvVar("AXSYS_URL"),
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),

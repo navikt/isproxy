@@ -32,6 +32,7 @@ class ExternalMockEnvironment() {
         dkifUrl = dkifMock.url,
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
+        stsSamlUrl = stsMock.url,
         dokdistUrl = dokDistMock.url,
         fastlegeUrl = fastlegeMock.url,
         adresseregisterUrl = adresseregisterMock.url,

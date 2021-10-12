@@ -82,6 +82,8 @@ spec:
       value: "https://modapp.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.adeo.no"
+    - name: STS_SAML_URL
+      value: "https://sts.adeo.no/SecurityTokenServiceProvider/"
     - name: DOKDIST_URL
       value: "https://dokdistfordeling.nais.adeo.no"
     - name: SYFOSYKETILFELLE_URL
