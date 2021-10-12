@@ -10,10 +10,12 @@ class AdresseregisterClient(
     fun hentPraksisInfoForFastlege(herId: Int): PraksisInfo {
         return try {
             val wsOrganizationPerson = adresseregisterSoapClient.getOrganizationPersonDetails(herId)
+            COUNT_ADRESSEREGISTER_SUCCESS.increment()
             PraksisInfo(
                 foreldreEnhetHerId = wsOrganizationPerson.parentHerId
             )
         } catch (e: ICommunicationPartyServiceGetOrganizationPersonDetailsGenericFaultFaultFaultMessage) {
+            COUNT_ADRESSEREGISTER_NOT_FOUND.increment()
             log.error(
                 "Søkte opp fastlege med HerId {} og fikk en feil fra adresseregister fordi fastlegen mangler HerId",
                 herId,
@@ -21,6 +23,7 @@ class AdresseregisterClient(
             )
             throw PraksisInfoIkkeFunnet("Fant ikke parentHerId for fastlege med HerId $herId")
         } catch (e: RuntimeException) {
+            COUNT_ADRESSEREGISTER_FAIL.increment()
             log.error(
                 "Søkte opp fastlege med HerId {} og fikk en uventet feil fra adresseregister fordi tjenesten er nede",
                 herId,

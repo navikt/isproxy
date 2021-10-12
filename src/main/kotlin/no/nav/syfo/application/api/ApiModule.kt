@@ -44,7 +44,6 @@ fun Application.apiModule(
             ),
         ),
     )
-
     val stsClientProperties = StsClientProperties(
         baseUrl = environment.stsUrl,
         serviceuserUsername = environment.serviceuserUsername,
@@ -72,16 +71,21 @@ fun Application.apiModule(
         baseUrl = environment.syfosyketilfelleUrl,
         stsClient = stsClient,
     )
+    val stsSamlProperties = StsClientProperties(
+        baseUrl = environment.stsSamlUrl,
+        serviceuserUsername = environment.serviceuserUsername,
+        serviceuserPassword = environment.serviceuserPassword,
+    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
         fastlegeSoapClient = fastlegeSoapClient(
             serviceUrl = environment.fastlegeUrl,
-            stsProperties = stsClientProperties,
+            stsProperties = stsSamlProperties,
         )
     )
     val adresseregisterClient = AdresseregisterClient(
         adresseregisterSoapClient = adresseregisterSoapClient(
             serviceUrl = environment.adresseregisterUrl,
-            stsProperties = stsClientProperties,
+            stsProperties = stsSamlProperties,
         )
     )
 

@@ -15,7 +15,6 @@ import org.apache.cxf.ws.security.trust.STSClient
 import org.apache.neethi.Policy
 import java.util.*
 
-private const val STS_PATH = "/SecurityTokenServiceProvider/"
 private const val STS_REQUEST_SAML_POLICY = "classpath:policy/requestSamlPolicy.xml"
 private const val STS_CLIENT_AUTHENTICATION_POLICY = "classpath:policy/untPolicy.xml"
 
@@ -27,7 +26,7 @@ fun configureRequestSamlToken(
     val stsClient = createCustomSTSClient(client.bus)
     configureSTSClient(
         stsClient = stsClient,
-        location = stsProperties.baseUrl + STS_PATH,
+        location = stsProperties.baseUrl,
         username = stsProperties.serviceuserUsername,
         password = stsProperties.serviceuserPassword,
     )

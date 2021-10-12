@@ -12,11 +12,14 @@ class FastlegeInformasjonClient(
     fun hentBrukersFastleger(brukersFnr: String): List<Fastlege> {
         return try {
             val patientGPDetails: WSPatientToGPContractAssociation = fastlegeSoapClient.getPatientGPDetails(brukersFnr)
+            COUNT_FASTLEGE_SUCCESS.increment()
             hentFastleger(patientGPDetails)
         } catch (e: IFlrReadOperationsGetPatientGPDetailsGenericFaultFaultFaultMessage) {
+            COUNT_FASTLEGE_NOT_FOUND.increment()
             log.warn("Søkte opp og fikk en feil fra fastlegetjenesten. Dette skjer trolig fordi FNRet ikke finnes", e)
             throw FastlegeIkkeFunnet("Feil ved oppslag av fastlege")
         } catch (e: RuntimeException) {
+            COUNT_FASTLEGE_FAIL.increment()
             log.error("Søkte opp og fikk en feil fra fastlegetjenesten fordi tjenesten er nede", e)
             throw e
         }
@@ -26,8 +29,8 @@ class FastlegeInformasjonClient(
         return patientGPDetails.doctorCycles.gpOnContractAssociations
             .map { wsgPOnContractAssociation ->
                 Fastlege(
-                    fornavn = wsgPOnContractAssociation.gp.firstName,
-                    mellomnavn = wsgPOnContractAssociation.gp.middleName,
+                    fornavn = wsgPOnContractAssociation.gp.firstName ?: "",
+                    mellomnavn = wsgPOnContractAssociation.gp.middleName ?: "",
                     etternavn = wsgPOnContractAssociation.gp.lastName,
                     fnr = wsgPOnContractAssociation.gp.nin,
                     herId = patientGPDetails.gpHerId,
@@ -58,17 +61,17 @@ class FastlegeInformasjonClient(
 
     private fun extractPhysicalAddress(wsgpOffice: WSGPOffice, field: String) =
         wsgpOffice.physicalAddresses.physicalAddresses.stream()
-            .filter { wsPhysicalAddress ->
-                wsPhysicalAddress.type != null &&
-                    wsPhysicalAddress.type.isActive &&
-                    wsPhysicalAddress.type.codeValue == field
+            .filter { wsAddress ->
+                wsAddress.type != null &&
+                    wsAddress.type.isActive &&
+                    wsAddress.type.codeValue == field
             }
             .findFirst()
-            .map { wsPhysicalAddress ->
+            .map { wsAddress ->
                 Adresse(
-                    adresse = wsPhysicalAddress.postbox,
-                    postnummer = postnummer(wsPhysicalAddress.postalCode),
-                    poststed = wsPhysicalAddress.city,
+                    adresse = if (wsAddress.postbox.isNullOrBlank()) wsAddress.streetAddress else wsAddress.postbox,
+                    postnummer = postnummer(wsAddress.postalCode),
+                    poststed = wsAddress.city,
                 )
             }
             .orElse(null)
