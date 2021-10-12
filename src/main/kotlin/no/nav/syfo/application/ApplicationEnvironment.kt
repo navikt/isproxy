@@ -45,6 +45,7 @@ data class Environment(
     ),
     val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
+        syfopersonApplicationName,
     ),
 )
 
