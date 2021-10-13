@@ -124,7 +124,7 @@ class SyfosyketilfelleApiSpek : Spek({
                 val validToken = generateJWT(
                     externalMockEnvironment.environment.aadAppClient,
                     externalMockEnvironment.wellKnown.issuer,
-                    testIsdialogmoteClientId,
+                    testSyfopersonClientId,
                 )
 
                 describe("Happy path") {
@@ -205,7 +205,7 @@ class SyfosyketilfelleApiSpek : Spek({
                 val validToken = generateJWT(
                     externalMockEnvironment.environment.aadAppClient,
                     externalMockEnvironment.wellKnown.issuer,
-                    testIsdialogmoteClientId,
+                    testSyfopersonClientId,
                 )
 
                 describe("Happy path") {
