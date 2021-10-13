@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 class AdresseregisterClient(
     private val adresseregisterSoapClient: ICommunicationPartyService
 ) {
-    fun hentPraksisInfoForFastlege(herId: Int): PraksisInfo {
+    fun hentPraksisInfoForFastlege(herId: Int): PraksisInfo? {
         return try {
             val wsOrganizationPerson = adresseregisterSoapClient.getOrganizationPersonDetails(herId)
             COUNT_ADRESSEREGISTER_SUCCESS.increment()
@@ -21,7 +21,7 @@ class AdresseregisterClient(
                 herId,
                 e
             )
-            throw PraksisInfoIkkeFunnet("Fant ikke parentHerId for fastlege med HerId $herId")
+            null
         } catch (e: RuntimeException) {
             COUNT_ADRESSEREGISTER_FAIL.increment()
             log.error(

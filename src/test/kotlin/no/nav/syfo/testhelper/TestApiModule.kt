@@ -10,5 +10,7 @@ fun Application.testApiModule(
         applicationState = externalMockEnvironment.applicationState,
         environment = externalMockEnvironment.environment,
         wellKnown = externalMockEnvironment.wellKnown,
+        fastlegeSoapClient = externalMockEnvironment.fastlegeMock,
+        adresseregisterSoapClient = externalMockEnvironment.adresseregisterMock,
     )
 }

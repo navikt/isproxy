@@ -9,6 +9,9 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.apiModule
 import no.nav.syfo.application.api.authentication.getWellKnown
+import no.nav.syfo.client.StsClientProperties
+import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
+import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
@@ -32,11 +35,28 @@ fun main() {
                 port = applicationPort
             }
             val wellKnown = getWellKnown(environment.azureAppWellKnownUrl)
+
+            val stsSamlProperties = StsClientProperties(
+                baseUrl = environment.stsSamlUrl,
+                serviceuserUsername = environment.serviceuserUsername,
+                serviceuserPassword = environment.serviceuserPassword,
+            )
+            val fastlegeSoapClient = fastlegeSoapClient(
+                serviceUrl = environment.fastlegeUrl,
+                stsProperties = stsSamlProperties,
+            )
+            val adresseregisterSoapClient = adresseregisterSoapClient(
+                serviceUrl = environment.adresseregisterUrl,
+                stsProperties = stsSamlProperties,
+            )
+
             module {
                 apiModule(
                     applicationState = applicationState,
                     environment = environment,
                     wellKnown = wellKnown,
+                    fastlegeSoapClient = fastlegeSoapClient,
+                    adresseregisterSoapClient = adresseregisterSoapClient,
                 )
             }
         }

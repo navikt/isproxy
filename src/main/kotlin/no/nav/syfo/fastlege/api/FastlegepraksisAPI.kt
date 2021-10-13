@@ -1,6 +1,7 @@
 package no.nav.syfo.fastlege.api
 
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
@@ -22,12 +23,14 @@ fun Route.registerFastlegepraksisApi(
                 authorizedApplicationNameList = authorizedApplicationNameList,
                 proxyServiceName = "Fastlegepraksis",
             ) {
-                val herid = call.parameters[herid]?.toInt()
+                val herId = call.parameters[herid]?.toInt()
                     ?: throw IllegalArgumentException("No herId found in path param")
 
-                val praksisInfo = adresseregisterClient.hentPraksisInfoForFastlege(herid)
-
-                call.respond(praksisInfo)
+                adresseregisterClient.hentPraksisInfoForFastlege(
+                    herId = herId
+                )?.let { praksisInfo ->
+                    call.respond(praksisInfo)
+                } ?: call.respond(HttpStatusCode.NotFound)
             }
         }
     }

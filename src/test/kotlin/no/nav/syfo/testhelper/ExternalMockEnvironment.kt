@@ -22,8 +22,6 @@ class ExternalMockEnvironment() {
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         dokDistMock.name to dokDistMock.server,
-        fastlegeMock.name to fastlegeMock.server,
-        adresseregisterMock.name to adresseregisterMock.server,
         syfosyketilfelleMock.name to syfosyketilfelleMock.server,
     )
 
@@ -34,8 +32,6 @@ class ExternalMockEnvironment() {
         stsUrl = stsMock.url,
         stsSamlUrl = stsMock.url,
         dokdistUrl = dokDistMock.url,
-        fastlegeUrl = fastlegeMock.url,
-        adresseregisterUrl = adresseregisterMock.url,
         syfosyketilfelleUrl = syfosyketilfelleMock.url,
     )
 }
