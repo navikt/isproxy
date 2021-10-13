@@ -25,11 +25,15 @@ import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
 import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
 import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
+import no.nhn.register.communicationparty.ICommunicationPartyService
+import no.nhn.schemas.reg.flr.IFlrReadOperations
 
 fun Application.apiModule(
     applicationState: ApplicationState,
     environment: Environment,
     wellKnown: WellKnown,
+    fastlegeSoapClient: IFlrReadOperations,
+    adresseregisterSoapClient: ICommunicationPartyService,
 ) {
     installMetrics()
     installCallId()
@@ -71,22 +75,11 @@ fun Application.apiModule(
         baseUrl = environment.syfosyketilfelleUrl,
         stsClient = stsClient,
     )
-    val stsSamlProperties = StsClientProperties(
-        baseUrl = environment.stsSamlUrl,
-        serviceuserUsername = environment.serviceuserUsername,
-        serviceuserPassword = environment.serviceuserPassword,
-    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
-        fastlegeSoapClient = fastlegeSoapClient(
-            serviceUrl = environment.fastlegeUrl,
-            stsProperties = stsSamlProperties,
-        )
+        fastlegeSoapClient = fastlegeSoapClient,
     )
     val adresseregisterClient = AdresseregisterClient(
-        adresseregisterSoapClient = adresseregisterSoapClient(
-            serviceUrl = environment.adresseregisterUrl,
-            stsProperties = stsSamlProperties,
-        )
+        adresseregisterSoapClient = adresseregisterSoapClient,
     )
 
     val apiConsumerAccessService = APIConsumerAccessService(

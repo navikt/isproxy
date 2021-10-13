@@ -17,7 +17,7 @@ class FastlegeInformasjonClient(
         } catch (e: IFlrReadOperationsGetPatientGPDetailsGenericFaultFaultFaultMessage) {
             COUNT_FASTLEGE_NOT_FOUND.increment()
             log.warn("Søkte opp og fikk en feil fra fastlegetjenesten. Dette skjer trolig fordi FNRet ikke finnes", e)
-            throw FastlegeIkkeFunnet("Feil ved oppslag av fastlege")
+            emptyList()
         } catch (e: RuntimeException) {
             COUNT_FASTLEGE_FAIL.increment()
             log.error("Søkte opp og fikk en feil fra fastlegetjenesten fordi tjenesten er nede", e)
