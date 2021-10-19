@@ -5,8 +5,8 @@ data class Fastlege(
     val mellomnavn: String,
     val etternavn: String,
     val fnr: String,
-    val herId: Int,
-    val helsepersonellregisterId: String,
+    val herId: Int?,
+    val helsepersonellregisterId: String?,
     val fastlegekontor: Fastlegekontor,
     val pasientforhold: Pasientforhold,
 )

@@ -12,6 +12,10 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTSTED
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_TLF
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_ETTERNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FORNAVN
@@ -26,9 +30,17 @@ import java.time.LocalDateTime
 class FastlegeMock : IFlrReadOperations {
 
     override fun getPatientGPDetails(patientNin: String?): WSPatientToGPContractAssociation {
-        return if (patientNin == FASTLEGEOPPSLAG_PERSON_ID) {
+        return if (
+            patientNin in arrayOf(
+                FASTLEGEOPPSLAG_PERSON_ID,
+                FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR,
+                FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR,
+                FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID,
+                FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR,
+            )
+        ) {
             WSPatientToGPContractAssociation()
-                .withGPHerId(HER_ID)
+                .withGPHerId(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID) null else HER_ID)
                 .withPeriod(
                     WSPeriod()
                         .withFrom(LocalDateTime.now().minusYears(2))
@@ -55,28 +67,7 @@ class FastlegeMock : IFlrReadOperations {
                                         )
                                 )
                                 .withPhysicalAddresses(
-                                    WSArrayOfPhysicalAddress()
-                                        .withPhysicalAddresses(
-                                            WSPhysicalAddress()
-                                                .withCity(FASTLEGEKONTOR_POSTSTED)
-                                                .withPostalCode(FASTLEGEKONTOR_POSTNR)
-                                                .withStreetAddress(FASTLEGEKONTOR_ADR)
-                                                .withType(
-                                                    WSCode()
-                                                        .withCodeValue("RES")
-                                                        .withActive(true)
-                                                ),
-                                            WSPhysicalAddress()
-                                                .withCity(FASTLEGEKONTOR_POSTSTED)
-                                                .withPostalCode(FASTLEGEKONTOR_POSTNR)
-                                                .withPostbox(FASTLEGEKONTOR_POSTBOKS)
-                                                .withStreetAddress(FASTLEGEKONTOR_ADR)
-                                                .withType(
-                                                    WSCode()
-                                                        .withCodeValue("PST")
-                                                        .withActive(true)
-                                                ),
-                                        )
+                                    getWsArrayOfPhysicalAddress(patientNin)
                                 )
                         )
                 )
@@ -91,13 +82,52 @@ class FastlegeMock : IFlrReadOperations {
                                         .withLastName(FASTLEGE_ETTERNAVN)
                                         .withNIN(FASTLEGE_FNR)
                                 )
-                                .withHprNumber(HPR_NR)
+                                .withHprNumber(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR) null else HPR_NR)
                         )
                 )
         } else {
             throw IFlrReadOperationsGetPatientGPDetailsGenericFaultFaultFaultMessage()
         }
     }
+
+    private fun getWsArrayOfPhysicalAddress(patientNin: String?): WSArrayOfPhysicalAddress {
+        return when (patientNin) {
+            FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR -> WSArrayOfPhysicalAddress()
+                .withPhysicalAddresses(
+                    getResWsPhysicalAddress(),
+                )
+            FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR -> WSArrayOfPhysicalAddress()
+                .withPhysicalAddresses(
+                    getPstWsPhysicalAddress(),
+                )
+            else -> WSArrayOfPhysicalAddress()
+                .withPhysicalAddresses(
+                    getResWsPhysicalAddress(),
+                    getPstWsPhysicalAddress(),
+                )
+        }
+    }
+
+    private fun getPstWsPhysicalAddress() = WSPhysicalAddress()
+        .withCity(FASTLEGEKONTOR_POSTSTED)
+        .withPostalCode(FASTLEGEKONTOR_POSTNR)
+        .withPostbox(FASTLEGEKONTOR_POSTBOKS)
+        .withStreetAddress(FASTLEGEKONTOR_ADR)
+        .withType(
+            WSCode()
+                .withCodeValue("PST")
+                .withActive(true)
+        )
+
+    private fun getResWsPhysicalAddress() = WSPhysicalAddress()
+        .withCity(FASTLEGEKONTOR_POSTSTED)
+        .withPostalCode(FASTLEGEKONTOR_POSTNR)
+        .withStreetAddress(FASTLEGEKONTOR_ADR)
+        .withType(
+            WSCode()
+                .withCodeValue("RES")
+                .withActive(true)
+        )
 
     override fun navGetEncryptedPatientListAlternate(
         doctorNIN: String?,

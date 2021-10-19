@@ -12,11 +12,18 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_NAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTBOKS
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTNR_STRING
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_ETTERNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FNR
+import no.nav.syfo.testhelper.UserConstants.HER_ID
+import no.nav.syfo.testhelper.UserConstants.HPR_NR
 import no.nav.syfo.util.NAV_PERSONIDENT_HEADER
 import no.nav.syfo.util.bearerHeader
 import org.amshove.kluent.shouldBeEqualTo
+import org.amshove.kluent.shouldNotBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -43,7 +50,6 @@ class FastlegeProxyApiSpek : Spek({
             )
 
             val urlFastlege = "$fastlegeBasePath"
-            val fnr = FASTLEGEOPPSLAG_PERSON_ID
             val fnrNotFound = "10101012346"
 
             describe("Get Fastlege") {
@@ -59,7 +65,7 @@ class FastlegeProxyApiSpek : Spek({
                         with(
                             handleRequest(HttpMethod.Get, urlFastlege) {
                                 addHeader(Authorization, bearerHeader(validToken))
-                                addHeader(NAV_PERSONIDENT_HEADER, fnr)
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID)
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.OK
@@ -70,9 +76,69 @@ class FastlegeProxyApiSpek : Spek({
                             fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
                             val kontor = fastlege.fastlegekontor
                             kontor.navn shouldBeEqualTo FASTLEGEKONTOR_NAVN
-                            kontor.postadresse.postnummer shouldBeEqualTo FASTLEGEKONTOR_POSTNR_STRING
-                            kontor.postadresse.adresse shouldBeEqualTo FASTLEGEKONTOR_POSTBOKS
-                            kontor.besoeksadresse.adresse shouldBeEqualTo FASTLEGEKONTOR_ADR
+                            kontor.postadresse!!.postnummer shouldBeEqualTo FASTLEGEKONTOR_POSTNR_STRING
+                            kontor.postadresse!!.adresse shouldBeEqualTo FASTLEGEKONTOR_POSTBOKS
+                            kontor.besoeksadresse!!.adresse shouldBeEqualTo FASTLEGEKONTOR_ADR
+                        }
+                        with(
+                            handleRequest(HttpMethod.Get, urlFastlege) {
+                                addHeader(Authorization, bearerHeader(validToken))
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR)
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.OK
+                            val fastleger = objectMapper.readValue<List<Fastlege>>(response.content!!)
+                            fastleger.size shouldBeEqualTo 1
+                            val fastlege = fastleger[0]
+                            fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
+                            fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
+                            fastlege.helsepersonellregisterId shouldBeEqualTo null
+                            fastlege.herId shouldBeEqualTo HER_ID
+                        }
+                        with(
+                            handleRequest(HttpMethod.Get, urlFastlege) {
+                                addHeader(Authorization, bearerHeader(validToken))
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID)
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.OK
+                            val fastleger = objectMapper.readValue<List<Fastlege>>(response.content!!)
+                            fastleger.size shouldBeEqualTo 1
+                            val fastlege = fastleger[0]
+                            fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
+                            fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
+                            fastlege.helsepersonellregisterId shouldBeEqualTo HPR_NR.toString()
+                            fastlege.herId shouldBeEqualTo null
+                        }
+                        with(
+                            handleRequest(HttpMethod.Get, urlFastlege) {
+                                addHeader(Authorization, bearerHeader(validToken))
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR)
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.OK
+                            val fastleger = objectMapper.readValue<List<Fastlege>>(response.content!!)
+                            fastleger.size shouldBeEqualTo 1
+                            val fastlege = fastleger[0]
+                            fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
+                            fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
+                            fastlege.fastlegekontor.postadresse shouldBeEqualTo null
+                            fastlege.fastlegekontor.besoeksadresse shouldNotBeEqualTo null
+                        }
+                        with(
+                            handleRequest(HttpMethod.Get, urlFastlege) {
+                                addHeader(Authorization, bearerHeader(validToken))
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR)
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.OK
+                            val fastleger = objectMapper.readValue<List<Fastlege>>(response.content!!)
+                            fastleger.size shouldBeEqualTo 1
+                            val fastlege = fastleger[0]
+                            fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
+                            fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
+                            fastlege.fastlegekontor.postadresse shouldNotBeEqualTo null
+                            fastlege.fastlegekontor.besoeksadresse shouldBeEqualTo null
                         }
                     }
                     it("should return OK if request is successful but no result") {
@@ -92,7 +158,7 @@ class FastlegeProxyApiSpek : Spek({
                     it("should return status Unauthorized if no token is supplied") {
                         with(
                             handleRequest(HttpMethod.Get, urlFastlege) {
-                                addHeader(NAV_PERSONIDENT_HEADER, fnr)
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID)
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Unauthorized
@@ -109,7 +175,7 @@ class FastlegeProxyApiSpek : Spek({
                         with(
                             handleRequest(HttpMethod.Get, urlFastlege) {
                                 addHeader(Authorization, bearerHeader(validTokenUnauthorizedAZP))
-                                addHeader(NAV_PERSONIDENT_HEADER, fnr)
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID)
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Forbidden
