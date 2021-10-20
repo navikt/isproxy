@@ -14,6 +14,7 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_TLF
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_ETTERNAVN
@@ -37,6 +38,7 @@ class FastlegeMock : IFlrReadOperations {
                 FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR,
                 FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID,
                 FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR,
+                FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN,
             )
         ) {
             WSPatientToGPContractAssociation()
@@ -80,7 +82,7 @@ class FastlegeMock : IFlrReadOperations {
                                         .withDateOfBirth(LocalDateTime.now().minusYears(30))
                                         .withFirstName(FASTLEGE_FORNAVN)
                                         .withLastName(FASTLEGE_ETTERNAVN)
-                                        .withNIN(FASTLEGE_FNR)
+                                        .withNIN(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN) null else FASTLEGE_FNR)
                                 )
                                 .withHprNumber(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR) null else HPR_NR)
                         )

@@ -14,6 +14,7 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTNR_STRING
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_ETTERNAVN
@@ -139,6 +140,21 @@ class FastlegeProxyApiSpek : Spek({
                             fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
                             fastlege.fastlegekontor.postadresse shouldNotBeEqualTo null
                             fastlege.fastlegekontor.besoeksadresse shouldBeEqualTo null
+                        }
+                        with(
+                            handleRequest(HttpMethod.Get, urlFastlege) {
+                                addHeader(Authorization, bearerHeader(validToken))
+                                addHeader(NAV_PERSONIDENT_HEADER, FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN)
+                            }
+                        ) {
+                            response.status() shouldBeEqualTo HttpStatusCode.OK
+                            val fastleger = objectMapper.readValue<List<Fastlege>>(response.content!!)
+                            fastleger.size shouldBeEqualTo 1
+                            val fastlege = fastleger[0]
+                            fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
+                            fastlege.fnr shouldBeEqualTo null
+                            fastlege.fastlegekontor.postadresse shouldNotBeEqualTo null
+                            fastlege.fastlegekontor.besoeksadresse shouldNotBeEqualTo null
                         }
                     }
                     it("should return OK if request is successful but no result") {
