@@ -44,6 +44,9 @@ spec:
         - application: fastlegerest
           namespace: teamsykefravr
           cluster: prod-fss
+        - application: fastlegerest
+          namespace: teamsykefravr
+          cluster: prod-gcp
         - application: isdialogmote
           namespace: teamsykefravr
           cluster: prod-gcp
@@ -56,9 +59,6 @@ spec:
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: prod-gcp
-        - application: syfoperson
-          namespace: teamsykefravr
-          cluster: prod-fss
   azure:
     application:
       enabled: true
