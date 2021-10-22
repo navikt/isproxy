@@ -44,6 +44,9 @@ spec:
         - application: fastlegerest
           namespace: teamsykefravr
           cluster: dev-fss
+        - application: fastlegerest
+          namespace: teamsykefravr
+          cluster: dev-gcp
         - application: isdialogmote
           namespace: teamsykefravr
           cluster: dev-gcp
@@ -53,9 +56,6 @@ spec:
         - application: syfoperson
           namespace: teamsykefravr
           cluster: dev-gcp
-        - application: syfoperson
-          namespace: teamsykefravr
-          cluster: dev-fss
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: dev-gcp
