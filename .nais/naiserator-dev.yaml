@@ -52,6 +52,9 @@ spec:
         - application: isnarmesteleder
           namespace: teamsykefravr
           cluster: dev-gcp
+        - application: syfobehandlendeenhet
+          namespace: teamsykefravr
+          cluster: dev-fss
         - application: syfoperson
           namespace: teamsykefravr
           cluster: dev-gcp
@@ -82,6 +85,8 @@ spec:
       value: "https://dkif.nais.preprod.local"
     - name: EREG_URL
       value: "https://modapp-q1.adeo.no"
+    - name: NORG2_URL
+      value: "https://app-q1.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.preprod.local"
     - name: STS_SAML_URL

@@ -82,6 +82,8 @@ spec:
       value: "https://dkif.nais.adeo.no"
     - name: EREG_URL
       value: "https://modapp.adeo.no"
+    - name: NORG2_URL
+      value: "https://app.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.adeo.no"
     - name: STS_SAML_URL

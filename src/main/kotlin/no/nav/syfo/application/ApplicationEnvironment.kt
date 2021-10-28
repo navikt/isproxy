@@ -16,11 +16,13 @@ data class Environment(
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
+    val norg2Url: String = getEnvVar("NORG2_URL"),
     val syfosyketilfelleUrl: String = getEnvVar("SYFOSYKETILFELLE_URL"),
 
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
+    val syfobehandlendeenhetApplicationName: String = "syfobehandlendeenhet",
     val syfopersonApplicationName: String = "syfoperson",
     val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
@@ -39,6 +41,9 @@ data class Environment(
     ),
     val fastlegeAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
+    ),
+    val norg2APIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        syfobehandlendeenhetApplicationName,
     ),
     val fastlegepraksisAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
