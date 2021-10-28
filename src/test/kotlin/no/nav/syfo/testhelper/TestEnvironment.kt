@@ -13,6 +13,7 @@ fun testEnvironment(
     stsUrl: String,
     stsSamlUrl: String,
     dokdistUrl: String,
+    norg2Url: String,
     syfosyketilfelleUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
@@ -26,6 +27,7 @@ fun testEnvironment(
     stsUrl = stsUrl,
     stsSamlUrl = stsSamlUrl,
     dokdistUrl = dokdistUrl,
+    norg2Url = norg2Url,
     syfosyketilfelleUrl = syfosyketilfelleUrl,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
@@ -43,6 +45,7 @@ fun getRandomPort() = ServerSocket(0).use {
 const val testFastlegerestClientId = "fastlegerest-client-id"
 const val testIsdialogmoteClientId = "isdialogmote-client-id"
 const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
+const val testSyfobehandlendeenhetClientId = "syfobehandlendeenhet-client-id"
 const val testSyfopersonClientId = "syfoperson-client-id"
 const val testSyfoveilederClientId = "syfoveileder-client-id"
 
@@ -54,6 +57,10 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:isnarmesteleder",
         clientId = testIsnarmestelederClientId,
+    ),
+    PreAuthorizedClient(
+        name = "dev-fss:teamsykefravr:syfobehandlendeenhet",
+        clientId = testSyfobehandlendeenhetClientId,
     ),
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:syfoperson",

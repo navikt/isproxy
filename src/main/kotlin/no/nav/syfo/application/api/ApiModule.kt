@@ -23,6 +23,8 @@ import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
 import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
+import no.nav.syfo.norg2.api.registerNorg2Api
+import no.nav.syfo.norg2.client.Norg2Client
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
 import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
 import no.nhn.register.communicationparty.ICommunicationPartyService
@@ -70,6 +72,9 @@ fun Application.apiModule(
     val eregClient = EregClient(
         baseUrl = environment.eregUrl,
         stsClient = stsClient,
+    )
+    val norg2Client = Norg2Client(
+        baseUrl = environment.norg2Url,
     )
     val syfosyketilfelleClient = SyfosyketilfelleClient(
         baseUrl = environment.syfosyketilfelleUrl,
@@ -120,6 +125,11 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
                 eregClient = eregClient,
+            )
+            registerNorg2Api(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.norg2APIAuthorizedConsumerApplicationNameList,
+                norg2Client = norg2Client,
             )
             registerSyfosyketilfelleApi(
                 apiConsumerAccessService = apiConsumerAccessService,
