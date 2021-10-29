@@ -59,7 +59,7 @@ val testAzureAppPreAuthorizedApps = listOf(
         clientId = testIsnarmestelederClientId,
     ),
     PreAuthorizedClient(
-        name = "dev-fss:teamsykefravr:syfobehandlendeenhet",
+        name = "dev-gcp:teamsykefravr:syfobehandlendeenhet",
         clientId = testSyfobehandlendeenhetClientId,
     ),
     PreAuthorizedClient(
