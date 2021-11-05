@@ -6,22 +6,22 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 object Versions {
-    const val jacksonVersion = "2.11.3"
-    const val jedisVersion = "3.6.0"
-    const val ktorVersion = "1.6.3"
-    const val jaxbVersion = "2.3.1"
-    const val kluentVersion = "1.68"
-    const val cxfVersion = "3.3.9"
-    const val javaxActivationVersion = "1.2.0"
-    const val javaxWsRsApiVersion = "2.1.1"
-    const val jaxwsVersion = "2.3.5"
-    const val logbackVersion = "1.2.3"
-    const val logstashEncoderVersion = "6.3"
-    const val mockkVersion = "1.10.5"
-    const val nimbusjosejwtVersion = "7.5.1"
-    const val spekVersion = "2.0.15"
-    const val micrometerRegistryVersion = "1.7.1"
-    const val syfotjenesterVersion = "1.2021.06.09-13.09-b3d30de9996e"
+    const val jackson = "2.11.3"
+    const val jedis = "3.6.0"
+    const val ktor = "1.6.3"
+    const val jaxb = "2.3.1"
+    const val kluent = "1.68"
+    const val cxf = "3.3.9"
+    const val javaxActivation = "1.2.0"
+    const val javaxWsRsApi = "2.1.1"
+    const val jaxws = "2.3.5"
+    const val logback = "1.2.3"
+    const val logstashEncoder = "6.3"
+    const val mockk = "1.10.5"
+    const val nimbusJoseJwt = "7.5.1"
+    const val spek = "2.0.15"
+    const val micrometerRegistry = "1.7.1"
+    const val syfotjenester = "1.2021.06.09-13.09-b3d30de9996e"
 }
 
 plugins {
@@ -49,46 +49,46 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    implementation("io.ktor:ktor-auth-jwt:${Versions.ktorVersion}")
-    implementation("io.ktor:ktor-client-apache:${Versions.ktorVersion}")
-    implementation("io.ktor:ktor-client-cio:${Versions.ktorVersion}")
-    implementation("io.ktor:ktor-client-jackson:${Versions.ktorVersion}")
-    implementation("io.ktor:ktor-jackson:${Versions.ktorVersion}")
-    implementation("io.ktor:ktor-server-netty:${Versions.ktorVersion}")
+    implementation("io.ktor:ktor-auth-jwt:${Versions.ktor}")
+    implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
+    implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+    implementation("io.ktor:ktor-client-jackson:${Versions.ktor}")
+    implementation("io.ktor:ktor-jackson:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
 
-    implementation("org.apache.cxf:cxf-rt-features-logging:${Versions.cxfVersion}")
-    implementation("org.apache.cxf:cxf-rt-ws-security:${Versions.cxfVersion}")
-    implementation("org.apache.cxf:cxf-rt-ws-policy:${Versions.cxfVersion}")
-    implementation("org.apache.cxf:cxf-rt-transports-http:${Versions.cxfVersion}")
-    implementation("org.apache.cxf:cxf-rt-frontend-jaxws:${Versions.cxfVersion}")
-    implementation("javax.ws.rs:javax.ws.rs-api:${Versions.javaxWsRsApiVersion}")
-    implementation("com.sun.xml.ws:jaxws-ri:${Versions.jaxwsVersion}")
-    implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxwsVersion}")
-    implementation("com.sun.activation:javax.activation:${Versions.javaxActivationVersion}")
+    implementation("org.apache.cxf:cxf-rt-features-logging:${Versions.cxf}")
+    implementation("org.apache.cxf:cxf-rt-ws-security:${Versions.cxf}")
+    implementation("org.apache.cxf:cxf-rt-ws-policy:${Versions.cxf}")
+    implementation("org.apache.cxf:cxf-rt-transports-http:${Versions.cxf}")
+    implementation("org.apache.cxf:cxf-rt-frontend-jaxws:${Versions.cxf}")
+    implementation("javax.ws.rs:javax.ws.rs-api:${Versions.javaxWsRsApi}")
+    implementation("com.sun.xml.ws:jaxws-ri:${Versions.jaxws}")
+    implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxws}")
+    implementation("com.sun.activation:javax.activation:${Versions.javaxActivation}")
 
-    implementation("no.nav.syfotjenester:adresseregisteretv1-tjenestespesifikasjon:${Versions.syfotjenesterVersion}")
-    implementation("no.nav.syfotjenester:fastlegeinformasjonv1-tjenestespesifikasjon:${Versions.syfotjenesterVersion}")
+    implementation("no.nav.syfotjenester:adresseregisteretv1-tjenestespesifikasjon:${Versions.syfotjenester}")
+    implementation("no.nav.syfotjenester:fastlegeinformasjonv1-tjenestespesifikasjon:${Versions.syfotjenester}")
 
-    implementation("ch.qos.logback:logback-classic:${Versions.logbackVersion}")
-    implementation("net.logstash.logback:logstash-logback-encoder:${Versions.logstashEncoderVersion}")
+    implementation("ch.qos.logback:logback-classic:${Versions.logback}")
+    implementation("net.logstash.logback:logstash-logback-encoder:${Versions.logstashEncoder}")
 
     // Metrics and Prometheus
-    implementation("io.ktor:ktor-metrics-micrometer:${Versions.ktorVersion}")
-    implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistryVersion}")
+    implementation("io.ktor:ktor-metrics-micrometer:${Versions.ktor}")
+    implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistry}")
 
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jacksonVersion}")
-    implementation("javax.xml.bind:jaxb-api:${Versions.jaxbVersion}")
-    implementation("org.glassfish.jaxb:jaxb-runtime:${Versions.jaxbVersion}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
+    implementation("javax.xml.bind:jaxb-api:${Versions.jaxb}")
+    implementation("org.glassfish.jaxb:jaxb-runtime:${Versions.jaxb}")
 
-    testImplementation("com.nimbusds:nimbus-jose-jwt:${Versions.nimbusjosejwtVersion}")
-    testImplementation("io.ktor:ktor-server-test-host:${Versions.ktorVersion}")
-    testImplementation("io.mockk:mockk:${Versions.mockkVersion}")
-    testImplementation("org.amshove.kluent:kluent:${Versions.kluentVersion}")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.ktorVersion}")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.spekVersion}") {
+    testImplementation("com.nimbusds:nimbus-jose-jwt:${Versions.nimbusJoseJwt}")
+    testImplementation("io.ktor:ktor-server-test-host:${Versions.ktor}")
+    testImplementation("io.mockk:mockk:${Versions.mockk}")
+    testImplementation("org.amshove.kluent:kluent:${Versions.kluent}")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.ktor}")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}") {
         exclude(group = "org.jetbrains.kotlin")
     }
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.spekVersion}") {
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.spek}") {
         exclude(group = "org.jetbrains.kotlin")
     }
 }
