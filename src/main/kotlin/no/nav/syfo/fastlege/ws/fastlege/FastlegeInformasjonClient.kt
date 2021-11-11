@@ -34,7 +34,7 @@ class FastlegeInformasjonClient(
                     etternavn = wsgPOnContractAssociation.gp.lastName,
                     fnr = wsgPOnContractAssociation.gp.nin,
                     herId = patientGPDetails.gpHerId,
-                    helsepersonellregisterId = wsgPOnContractAssociation.hprNumber?.toString(),
+                    helsepersonellregisterId = wsgPOnContractAssociation.hprNumber,
                     fastlegekontor = getFastlegekontor(patientGPDetails.gpContract.gpOffice),
                     pasientforhold = getPasientForhold(patientGPDetails.period),
                 )

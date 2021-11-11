@@ -108,7 +108,7 @@ class FastlegeProxyApiSpek : Spek({
                             val fastlege = fastleger[0]
                             fastlege.etternavn shouldBeEqualTo FASTLEGE_ETTERNAVN
                             fastlege.fnr shouldBeEqualTo FASTLEGE_FNR
-                            fastlege.helsepersonellregisterId shouldBeEqualTo HPR_NR.toString()
+                            fastlege.helsepersonellregisterId shouldBeEqualTo HPR_NR
                             fastlege.herId shouldBeEqualTo null
                         }
                         with(
