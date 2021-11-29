@@ -6,28 +6,28 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 object Versions {
-    const val jackson = "2.11.3"
+    const val jackson = "2.13.0"
     const val jedis = "3.6.0"
-    const val ktor = "1.6.3"
+    const val ktor = "1.6.5"
     const val jaxb = "2.3.1"
     const val kluent = "1.68"
     const val cxf = "3.3.9"
     const val javaxActivation = "1.2.0"
     const val javaxWsRsApi = "2.1.1"
     const val jaxws = "2.3.5"
-    const val logback = "1.2.3"
-    const val logstashEncoder = "6.3"
-    const val mockk = "1.10.5"
-    const val nimbusJoseJwt = "7.5.1"
-    const val spek = "2.0.15"
-    const val micrometerRegistry = "1.7.1"
+    const val logback = "1.2.7"
+    const val logstashEncoder = "6.6"
+    const val mockk = "1.12.1"
+    const val nimbusJoseJwt = "9.15.2"
+    const val spek = "2.0.17"
+    const val micrometerRegistry = "1.8.0"
     const val syfotjenester = "1.2021.06.09-13.09-b3d30de9996e"
 }
 
 plugins {
-    kotlin("jvm") version "1.5.30"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
-    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
+    kotlin("jvm") version "1.6.0"
+    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
 val githubUser: String by project
