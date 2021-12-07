@@ -31,11 +31,6 @@ data class Environment(
     val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         syfoveilederApplicationName,
     ),
-    val dkifUrl: String = getEnvVar("DKIF_URL"),
-    val dkifAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        isdialogmoteApplicationName,
-        syfopersonApplicationName,
-    ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
     ),
