@@ -11,8 +11,6 @@ import no.nav.syfo.axsys.api.registerAxsysApi
 import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.sts.StsClient
-import no.nav.syfo.dkif.api.registerDkifApi
-import no.nav.syfo.dkif.client.DkifClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.ereg.api.registerEregProxyApi
@@ -20,9 +18,7 @@ import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
-import no.nav.syfo.fastlege.ws.adresseregister.adresseregisterSoapClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
-import no.nav.syfo.fastlege.ws.fastlege.fastlegeSoapClient
 import no.nav.syfo.norg2.api.registerNorg2Api
 import no.nav.syfo.norg2.client.Norg2Client
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
@@ -61,10 +57,6 @@ fun Application.apiModule(
     val axsysClient = AxsysClient(
         baseUrl = environment.axsysUrl,
     )
-    val dkifClient = DkifClient(
-        baseUrl = environment.dkifUrl,
-        stsClient = stsClient,
-    )
     val dokdistClient = DokdistClient(
         dokdistBaseUrl = environment.dokdistUrl,
         stsClient = stsClient,
@@ -100,11 +92,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.axsysAPIAuthorizedConsumerApplicationNameList,
                 axsysClient = axsysClient,
-            )
-            registerDkifApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.dkifAPIAuthorizedConsumerApplicationNameList,
-                dkifClient = dkifClient,
             )
             registerDokdistApi(
                 apiConsumerAccessService = apiConsumerAccessService,

@@ -8,7 +8,6 @@ import java.net.ServerSocket
 
 fun testEnvironment(
     axsysUrl: String,
-    dkifUrl: String,
     eregUrl: String,
     stsUrl: String,
     stsSamlUrl: String,
@@ -22,7 +21,6 @@ fun testEnvironment(
     serviceuserUsername = "user",
     serviceuserPassword = "password",
     axsysUrl = axsysUrl,
-    dkifUrl = dkifUrl,
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     stsSamlUrl = stsSamlUrl,
