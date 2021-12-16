@@ -7,25 +7,25 @@ version = "1.0.0"
 
 object Versions {
     const val jackson = "2.13.0"
-    const val ktor = "1.6.5"
+    const val ktor = "1.6.7"
     const val jaxb = "2.3.1"
     const val kluent = "1.68"
     const val cxf = "3.3.9"
     const val javaxActivation = "1.2.0"
     const val javaxWsRsApi = "2.1.1"
     const val jaxws = "2.3.5"
-    const val logback = "1.2.7"
+    const val logback = "1.2.8"
     const val logstashEncoder = "7.0.1"
     const val mockk = "1.12.1"
     const val nimbusJoseJwt = "9.15.2"
     const val spek = "2.0.17"
-    const val micrometerRegistry = "1.8.0"
+    const val micrometerRegistry = "1.8.1"
     const val syfotjenester = "1.2021.06.09-13.09-b3d30de9996e"
 }
 
 plugins {
-    kotlin("jvm") version "1.6.0"
-    id("com.github.johnrengelman.shadow") version "7.1.0"
+    kotlin("jvm") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
@@ -83,7 +83,6 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host:${Versions.ktor}")
     testImplementation("io.mockk:mockk:${Versions.mockk}")
     testImplementation("org.amshove.kluent:kluent:${Versions.kluent}")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.ktor}")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}") {
         exclude(group = "org.jetbrains.kotlin")
     }
