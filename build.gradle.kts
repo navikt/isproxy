@@ -14,7 +14,7 @@ object Versions {
     const val javaxActivation = "1.2.0"
     const val javaxWsRsApi = "2.1.1"
     const val jaxws = "2.3.5"
-    const val logback = "1.2.8"
+    const val logback = "1.2.9"
     const val logstashEncoder = "7.0.1"
     const val mockk = "1.12.1"
     const val nimbusJoseJwt = "9.15.2"
