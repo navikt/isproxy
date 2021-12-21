@@ -71,7 +71,7 @@ class EregProxyApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testIsdialogmoteClientId,
+                            testSyfopersonClientId,
                         )
 
                         with(
