@@ -26,6 +26,7 @@ data class Environment(
     val syfopersonApplicationName: String = "syfoperson",
     val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        isdialogmoteApplicationName,
         isnarmestelederApplicationName,
     ),
     val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
