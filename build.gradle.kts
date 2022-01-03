@@ -11,6 +11,7 @@ object Versions {
     const val jaxb = "2.3.1"
     const val kluent = "1.68"
     const val cxf = "3.3.9"
+    const val commonsCollection = "3.2.2"
     const val javaxActivation = "1.2.0"
     const val javaxWsRsApi = "2.1.1"
     const val jaxws = "2.3.5"
@@ -64,6 +65,11 @@ dependencies {
     implementation("com.sun.xml.ws:jaxws-ri:${Versions.jaxws}")
     implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxws}")
     implementation("com.sun.activation:javax.activation:${Versions.javaxActivation}")
+    implementation("commons-collections:commons-collections") {
+        version {
+            strictly(Versions.commonsCollection)
+        }
+    }
 
     implementation("no.nav.syfotjenester:adresseregisteretv1-tjenestespesifikasjon:${Versions.syfotjenester}")
     implementation("no.nav.syfotjenester:fastlegeinformasjonv1-tjenestespesifikasjon:${Versions.syfotjenester}")
