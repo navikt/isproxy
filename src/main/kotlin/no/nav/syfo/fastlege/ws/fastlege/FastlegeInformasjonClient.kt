@@ -36,15 +36,20 @@ class FastlegeInformasjonClient(
                     herId = patientGPDetails.gpHerId,
                     helsepersonellregisterId = wsgPOnContractAssociation.hprNumber,
                     fastlegekontor = getFastlegekontor(patientGPDetails.gpContract.gpOffice),
-                    pasientforhold = getPasientForhold(patientGPDetails.period),
+                    pasientforhold = getPeriode(patientGPDetails.period),
+                    gyldighet = getPeriode(wsgPOnContractAssociation.valid),
+                    relasjon = Relasjon(
+                        kodeVerdi = wsgPOnContractAssociation.relationship.codeValue,
+                        kodeTekst = wsgPOnContractAssociation.relationship.codeText,
+                    ),
                 )
             }
     }
 
-    private fun getPasientForhold(period: WSPeriod): Pasientforhold {
-        return Pasientforhold(
+    private fun getPeriode(period: WSPeriod): Periode {
+        return Periode(
             fom = period.from.toLocalDate(),
-            tom = if (period.to == null) LocalDate.parse("9999-12-31") else period.to.toLocalDate()
+            tom = if (period.to == null) LocalDate.MAX else period.to.toLocalDate()
         )
     }
 

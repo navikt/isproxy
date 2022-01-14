@@ -22,6 +22,16 @@ object UserConstants {
     const val FASTLEGE_FORNAVN = "Willy"
     const val FASTLEGE_ETTERNAVN = "Lege etternavn"
     const val FASTLEGE_FNR = "20202012345"
+    const val FASTLEGE_RELASJON_KODEVERDI = "LPFL"
+    const val FASTLEGE_RELASJON_KODETEKST = "Fastlege"
+
+    const val FASTLEGE_VIKAR_FORNAVN = "Vikar"
+    const val FASTLEGE_VIKAR_ETTERNAVN = "Legevikar etternavn"
+    const val FASTLEGE_VIKAR_FNR = "10202012345"
+    const val FASTLEGE_VIKAR_RELASJON_KODEVERDI = "LPVI"
+    const val FASTLEGE_VIKAR_RELASJON_KODETEKST = "Vikar"
+    const val FASTLEGE_VIKAR_HPR_NR = 23456
+
     const val FASTLEGEKONTOR_NAVN = "Fastlegekontoret"
     const val FASTLEGEKONTOR_ORGNR = 123456789
     const val FASTLEGEKONTOR_TLF = "12345678"
@@ -31,7 +41,8 @@ object UserConstants {
     const val FASTLEGEKONTOR_POSTNR_STRING = "0651"
     const val FASTLEGEKONTOR_ADR = "Storgata 2"
     const val FASTLEGEKONTOR_POSTBOKS = "Boks 99"
-    const val HPR_NR = 12345
+
+    const val FASTLEGE_HPR_NR = 12345
     const val HER_ID = 1234
     const val PARENT_HER_ID = 9876
 

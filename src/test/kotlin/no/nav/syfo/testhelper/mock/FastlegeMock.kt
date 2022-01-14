@@ -2,11 +2,10 @@ package no.nav.syfo.testhelper.mock
 
 import com.microsoft.schemas._2003._10.serialization.arrays.unngaduplikat.ArrayOflong
 import com.microsoft.schemas._2003._10.serialization.arrays.unngaduplikat.ArrayOfstring
-import no.nav.syfo.testhelper.*
-import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_ORGNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_ADR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_EPOST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_NAVN
+import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_ORGNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTBOKS
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEKONTOR_POSTSTED
@@ -20,8 +19,16 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_RE
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_ETTERNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FORNAVN
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODETEKST
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODEVERDI
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_ETTERNAVN
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_FNR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_FORNAVN
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_HPR_NR
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODETEKST
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODEVERDI
 import no.nav.syfo.testhelper.UserConstants.HER_ID
-import no.nav.syfo.testhelper.UserConstants.HPR_NR
 import no.nhn.register.fastlegeinformasjon.common.*
 import no.nhn.schemas.reg.common.en.WSPeriod
 import no.nhn.schemas.reg.flr.*
@@ -84,7 +91,34 @@ class FastlegeMock : IFlrReadOperations {
                                         .withLastName(FASTLEGE_ETTERNAVN)
                                         .withNIN(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN) null else FASTLEGE_FNR)
                                 )
-                                .withHprNumber(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR) null else HPR_NR)
+                                .withHprNumber(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR) null else FASTLEGE_HPR_NR)
+                                .withValid(
+                                    WSPeriod()
+                                        .withFrom(LocalDateTime.now().minusYears(2))
+                                )
+                                .withRelationship(
+                                    WSCode()
+                                        .withCodeValue(FASTLEGE_RELASJON_KODEVERDI)
+                                        .withCodeText(FASTLEGE_RELASJON_KODETEKST)
+                                ),
+                            WSGPOnContractAssociation()
+                                .withGP(
+                                    WSPerson()
+                                        .withDateOfBirth(LocalDateTime.now().minusDays(20))
+                                        .withFirstName(FASTLEGE_VIKAR_FORNAVN)
+                                        .withLastName(FASTLEGE_VIKAR_ETTERNAVN)
+                                        .withNIN(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_NIN) null else FASTLEGE_VIKAR_FNR)
+                                )
+                                .withHprNumber(if (patientNin == FASTLEGEOPPSLAG_PERSON_ID_MISSING_HPR_NR) null else FASTLEGE_VIKAR_HPR_NR)
+                                .withValid(
+                                    WSPeriod()
+                                        .withFrom(LocalDateTime.now().minusYears(2))
+                                )
+                                .withRelationship(
+                                    WSCode()
+                                        .withCodeValue(FASTLEGE_VIKAR_RELASJON_KODEVERDI)
+                                        .withCodeText(FASTLEGE_VIKAR_RELASJON_KODETEKST)
+                                )
                         )
                 )
         } else {
