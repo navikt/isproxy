@@ -8,5 +8,7 @@ data class Fastlege(
     val herId: Int?,
     val helsepersonellregisterId: Int?,
     val fastlegekontor: Fastlegekontor,
-    val pasientforhold: Pasientforhold,
+    val pasientforhold: Periode,
+    val gyldighet: Periode,
+    val relasjon: Relasjon,
 )
