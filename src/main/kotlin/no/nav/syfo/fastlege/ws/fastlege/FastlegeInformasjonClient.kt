@@ -49,7 +49,7 @@ class FastlegeInformasjonClient(
     private fun getPeriode(period: WSPeriod): Periode {
         return Periode(
             fom = period.from.toLocalDate(),
-            tom = if (period.to == null) LocalDate.MAX else period.to.toLocalDate()
+            tom = if (period.to == null) LocalDate.parse("9999-12-31") else period.to.toLocalDate()
         )
     }
 
