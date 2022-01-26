@@ -63,6 +63,8 @@ The variables can alternatively be configured as environment variables or used i
 ```
 
 
-### Contact us
+## Contact
 
-Code/project related questions? Slack --> #isyfo
+### For NAV employees
+
+We are available at the Slack channel `#isyfo`.
