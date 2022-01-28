@@ -9,6 +9,7 @@ class ExternalMockEnvironment() {
     val wellKnown = wellKnownMock()
     val axsysMock = AxsysMock()
     val eregMock = EregMock()
+    val btsysMock = BtsysMock()
     val stsMock = STSMock()
     val dokDistMock = DokDistMock()
     val fastlegeMock = FastlegeMock()
@@ -18,6 +19,7 @@ class ExternalMockEnvironment() {
 
     val externalApplicationMockMap = hashMapOf(
         axsysMock.name to axsysMock.server,
+        btsysMock.name to btsysMock.server,
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         dokDistMock.name to dokDistMock.server,
@@ -27,6 +29,7 @@ class ExternalMockEnvironment() {
 
     val environment = testEnvironment(
         axsysUrl = axsysMock.url,
+        btsysUrl = btsysMock.url,
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
         stsSamlUrl = stsMock.url,
