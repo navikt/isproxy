@@ -9,10 +9,12 @@ import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
 import no.nav.syfo.axsys.api.registerAxsysApi
 import no.nav.syfo.axsys.client.AxsysClient
+import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.dokdist.client.DokdistClient
+import no.nav.syfo.ereg.api.registerBtsysProxyApi
 import no.nav.syfo.ereg.api.registerEregProxyApi
 import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
@@ -65,6 +67,11 @@ fun Application.apiModule(
         baseUrl = environment.eregUrl,
         stsClient = stsClient,
     )
+    val btsysClient = BtsysClient(
+        baseUrl = environment.btsysUrl,
+        stsClient = stsClient,
+        serviceUserName = environment.serviceuserUsername,
+    )
     val norg2Client = Norg2Client(
         baseUrl = environment.norg2Url,
     )
@@ -93,10 +100,20 @@ fun Application.apiModule(
                 authorizedApplicationNameList = environment.axsysAPIAuthorizedConsumerApplicationNameList,
                 axsysClient = axsysClient,
             )
+            registerBtsysProxyApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.btsysAPIAuthorizedConsumerApplicationNameList,
+                btsysClient = btsysClient,
+            )
             registerDokdistApi(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.dokdistAPIAuthorizedConsumerApplicationNameList,
                 dokdistClient = dokdistClient,
+            )
+            registerEregProxyApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
+                eregClient = eregClient,
             )
             registerFastlegeApi(
                 apiConsumerAccessService = apiConsumerAccessService,
@@ -107,11 +124,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.fastlegepraksisAPIAuthorizedConsumerApplicationNameList,
                 adresseregisterClient = adresseregisterClient,
-            )
-            registerEregProxyApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
-                eregClient = eregClient,
             )
             registerNorg2Api(
                 apiConsumerAccessService = apiConsumerAccessService,

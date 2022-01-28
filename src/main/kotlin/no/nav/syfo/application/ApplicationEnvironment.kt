@@ -7,6 +7,7 @@ data class Environment(
     val aadAppClient: String = getEnvVar("AZURE_APP_CLIENT_ID"),
     val azureAppWellKnownUrl: String = getEnvVar("AZURE_APP_WELL_KNOWN_URL"),
     val azureAppPreAuthorizedApps: String = getEnvVar("AZURE_APP_PRE_AUTHORIZED_APPS"),
+    val btsysUrl: String = getEnvVar("BTSYS_URL"),
     val serviceuserUsername: String = getFileAsString("/secrets/serviceuser/isproxy/username"),
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
     val eregUrl: String = getEnvVar("EREG_URL"),
@@ -22,6 +23,7 @@ data class Environment(
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
+    val padm2ApplicationName: String = "padm2",
     val syfobehandlendeenhetApplicationName: String = "syfobehandlendeenhet",
     val syfopersonApplicationName: String = "syfoperson",
     val syfoveilederApplicationName: String = "syfoveileder",
@@ -31,6 +33,9 @@ data class Environment(
     ),
     val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         syfoveilederApplicationName,
+    ),
+    val btsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        padm2ApplicationName,
     ),
     val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,

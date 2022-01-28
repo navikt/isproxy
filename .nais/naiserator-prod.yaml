@@ -52,6 +52,12 @@ spec:
         - application: isnarmesteleder
           namespace: teamsykefravr
           cluster: prod-gcp
+        - application: padm2
+          namespace: teamsykefravr
+          cluster: prod-fss
+        - application: padm2
+          namespace: teamsykefravr
+          cluster: prod-gcp
         - application: syfobehandlendeenhet
           namespace: teamsykefravr
           cluster: prod-gcp
@@ -84,6 +90,8 @@ spec:
       value: "production"
     - name: AXSYS_URL
       value: "https://axsys.nais.adeo.no"
+    - name: BTSYS_URL
+      value: "https://btsys.nais.adeo.no"
     - name: EREG_URL
       value: "https://modapp.adeo.no"
     - name: NORG2_URL
