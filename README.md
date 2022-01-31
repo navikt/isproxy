@@ -7,13 +7,13 @@ Proxy application for accessing internal services from applications running on G
 * Kotlin
 * Ktor
 * Gradle
-* JDK 11
+* JDK 17
 * Spek
 * Jackson
 
 #### Requirements
 
-* JDK 11
+* JDK 17
 
 ### Build and run tests
 
