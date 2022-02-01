@@ -31,6 +31,7 @@ fun testEnvironment(
     syfosyketilfelleUrl = syfosyketilfelleUrl,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
+    subscriptionEndpointURL = "subscriptionUrl",
 )
 
 fun testAppState() = ApplicationState(

@@ -16,6 +16,7 @@ class ExternalMockEnvironment() {
     val adresseregisterMock = AdresseregisterMock()
     val norg2Mock = Norg2Mock()
     val syfosyketilfelleMock = SyfosyketilfelleMock()
+    val subscriptionMock = SubscriptionMock()
 
     val externalApplicationMockMap = hashMapOf(
         axsysMock.name to axsysMock.server,

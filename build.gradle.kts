@@ -26,6 +26,7 @@ object Versions {
 
 plugins {
     kotlin("jvm") version "1.6.10"
+    id("com.github.bjornvester.wsdl2java") version "1.2"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
@@ -109,7 +110,14 @@ tasks {
     }
 
     withType<KotlinCompile> {
+        dependsOn("wsdl2java")
         kotlinOptions.jvmTarget = "17"
+    }
+
+    wsdl2java {
+        cxfVersion.set(Versions.cxf)
+        wsdlDir.set(layout.projectDirectory.dir("$projectDir/src/main/resources/wsdl"))
+        bindingFile.set(layout.projectDirectory.file("$projectDir/src/main/resources/xjb/binding.xml"))
     }
 
     withType<ShadowJar> {
