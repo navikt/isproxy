@@ -108,4 +108,5 @@ spec:
       value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/fastlegeinformasjon"
     - name: ADRESSEREGISTER_URL
       value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/adresseregisteret/v1"
-
+    - name: SUBSCRIPTION_ENDPOINT_URL
+      value: https://wasapp-q1.adeo.no/nav-emottak-eletter-web/services/

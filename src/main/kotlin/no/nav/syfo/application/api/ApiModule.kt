@@ -3,6 +3,7 @@ package no.nav.syfo.application.api
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.routing.*
+import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
@@ -14,8 +15,7 @@ import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.dokdist.client.DokdistClient
-import no.nav.syfo.ereg.api.registerBtsysProxyApi
-import no.nav.syfo.ereg.api.registerEregProxyApi
+import no.nav.syfo.ereg.api.*
 import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
@@ -34,6 +34,7 @@ fun Application.apiModule(
     wellKnown: WellKnown,
     fastlegeSoapClient: IFlrReadOperations,
     adresseregisterSoapClient: ICommunicationPartyService,
+    subscriptionPort: SubscriptionPort,
 ) {
     installMetrics()
     installCallId()
@@ -129,6 +130,11 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.norg2APIAuthorizedConsumerApplicationNameList,
                 norg2Client = norg2Client,
+            )
+            registerSubscriptionProxyApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.subscriptionAPIAuthorizedConsumerApplicationNameList,
+                subscriptionEmottak = subscriptionPort,
             )
             registerSyfosyketilfelleApi(
                 apiConsumerAccessService = apiConsumerAccessService,
