@@ -62,7 +62,6 @@ dependencies {
     implementation("org.apache.cxf:cxf-rt-ws-policy:${Versions.cxf}")
     implementation("org.apache.cxf:cxf-rt-transports-http:${Versions.cxf}")
     implementation("org.apache.cxf:cxf-rt-frontend-jaxws:${Versions.cxf}")
-    implementation("javax.ws.rs:javax.ws.rs-api:${Versions.javaxWsRsApi}")
     implementation("com.sun.xml.ws:jaxws-ri:${Versions.jaxws}")
     implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxws}")
     implementation("com.sun.activation:javax.activation:${Versions.javaxActivation}")
