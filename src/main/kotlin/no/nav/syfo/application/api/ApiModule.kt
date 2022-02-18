@@ -12,6 +12,7 @@ import no.nav.syfo.axsys.api.registerAxsysApi
 import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
+import no.nav.syfo.client.azuread.v2.AzureAdClient
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.dokdist.api.registerDokdistApi
 import no.nav.syfo.dokdist.client.DokdistClient
@@ -21,6 +22,7 @@ import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
+import no.nav.syfo.kuhrsar.client.KuhrSarClient
 import no.nav.syfo.norg2.api.registerNorg2Api
 import no.nav.syfo.norg2.client.Norg2Client
 import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
@@ -57,6 +59,11 @@ fun Application.apiModule(
     val stsClient = StsClient(
         properties = stsClientProperties,
     )
+    val azureAdClient = AzureAdClient(
+        aadAppClient = environment.aadAppClient,
+        aadAppSecret = environment.aadAppSecret,
+        aadTokenEndpoint = environment.aadTokenEndpoint,
+    )
     val axsysClient = AxsysClient(
         baseUrl = environment.axsysUrl,
     )
@@ -72,6 +79,11 @@ fun Application.apiModule(
         baseUrl = environment.btsysUrl,
         stsClient = stsClient,
         serviceUserName = environment.serviceuserUsername,
+    )
+    val kuhrsarClient = KuhrSarClient(
+        azureAdClient = azureAdClient,
+        kuhrsarClientId = environment.kuhrsarClientId,
+        kuhrsarUrl = environment.kuhrsarUrl,
     )
     val norg2Client = Norg2Client(
         baseUrl = environment.norg2Url,
@@ -125,6 +137,12 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.fastlegepraksisAPIAuthorizedConsumerApplicationNameList,
                 adresseregisterClient = adresseregisterClient,
+            )
+            registerKuhrsarApi(
+                apiConsumerAccessService = apiConsumerAccessService,
+                authorizedApplicationNameList = environment.kuhrsarAPIAuthorizedConsumerApplicationNameList,
+                kuhrsarClient = kuhrsarClient,
+                subscriptionPort = subscriptionPort,
             )
             registerNorg2Api(
                 apiConsumerAccessService = apiConsumerAccessService,

@@ -38,7 +38,7 @@ fun Route.registerSubscriptionProxyApi(
     }
 }
 
-private fun startSubscription(
+fun startSubscription(
     subscriptionEmottak: SubscriptionPort,
     request: SubscriptionRequest,
 ) {

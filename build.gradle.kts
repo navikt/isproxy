@@ -7,6 +7,7 @@ version = "1.0.0"
 
 object Versions {
     const val commonsCollection = "3.2.2"
+    const val commonsTextVersion = "1.4"
     const val cxf = "3.5.0"
     const val jackson = "2.13.1"
     const val javaxActivation = "1.2.0"
@@ -57,6 +58,7 @@ dependencies {
     implementation("io.ktor:ktor-jackson:${Versions.ktor}")
     implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
 
+    implementation("org.apache.commons:commons-text:${Versions.commonsTextVersion}")
     implementation("org.apache.cxf:cxf-rt-features-logging:${Versions.cxf}")
     implementation("org.apache.cxf:cxf-rt-ws-security:${Versions.cxf}")
     implementation("org.apache.cxf:cxf-rt-ws-policy:${Versions.cxf}")

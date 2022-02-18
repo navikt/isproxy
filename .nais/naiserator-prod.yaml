@@ -94,6 +94,10 @@ spec:
       value: "https://btsys.nais.adeo.no"
     - name: EREG_URL
       value: "https://modapp.adeo.no"
+    - name: KUHRSAR_CLIENT_ID
+      value: "prod-fss.teamkuhr.kuhr-sar-api"
+    - name: KUHRSAR_URL
+      value: "https://kuhr-sar-api.nais.adeo.no"
     - name: NORG2_URL
       value: "https://app.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
@@ -109,4 +113,4 @@ spec:
     - name: ADRESSEREGISTER_URL
       value: "https://pep-gw.oera.no:9443/ekstern/helse/adresseregisteret/v1"
     - name: SUBSCRIPTION_ENDPOINT_URL
-      value: https://wasapp.adeo.no/nav-emottak-eletter-web/services/
+      value: "https://wasapp.adeo.no/nav-emottak-eletter-web/services/"
