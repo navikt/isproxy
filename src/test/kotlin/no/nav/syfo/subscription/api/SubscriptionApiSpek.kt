@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
+import io.mockk.*
+import no.nav.emottak.subscription.StatusResponse
+import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.ereg.api.SubscriptionRequest
 import no.nav.syfo.ereg.api.subscriptionProxyBasePath
 import no.nav.syfo.testhelper.*
@@ -48,6 +51,8 @@ class SubscriptionApiSpek : Spek({
                     data = "data".toByteArray()
                 )
                 val requestBody = objectMapper.writeValueAsString(subscripionRequest)
+                val subscriptionMock = externalMockEnvironment.subscriptionMock
+                clearSubscriptionMock(subscriptionMock)
 
                 describe("Happy path") {
 
@@ -60,6 +65,8 @@ class SubscriptionApiSpek : Spek({
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.OK
+                            verify(exactly = 1) { subscriptionMock.startSubscription(any()) }
+                            clearSubscriptionMock(subscriptionMock)
                         }
                     }
                 }
@@ -72,6 +79,7 @@ class SubscriptionApiSpek : Spek({
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Unauthorized
+                            verify(exactly = 0) { subscriptionMock.startSubscription(any()) }
                         }
                     }
 
@@ -90,6 +98,7 @@ class SubscriptionApiSpek : Spek({
                             }
                         ) {
                             response.status() shouldBeEqualTo HttpStatusCode.Forbidden
+                            verify(exactly = 0) { subscriptionMock.startSubscription(any()) }
                         }
                     }
                 }
@@ -97,3 +106,8 @@ class SubscriptionApiSpek : Spek({
         }
     }
 })
+
+private fun clearSubscriptionMock(subscriptionMock: SubscriptionPort) {
+    clearMocks(subscriptionMock)
+    every { subscriptionMock.startSubscription(any()) } returns (StatusResponse())
+}

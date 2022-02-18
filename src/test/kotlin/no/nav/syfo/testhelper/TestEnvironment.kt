@@ -7,17 +7,21 @@ import no.nav.syfo.util.configuredJacksonMapper
 import java.net.ServerSocket
 
 fun testEnvironment(
+    azureTokenEndpoint: String = "azureTokenEndpoint",
     axsysUrl: String,
     btsysUrl: String,
     eregUrl: String,
     stsUrl: String,
     stsSamlUrl: String,
     dokdistUrl: String,
+    kuhrsarUrl: String,
     norg2Url: String,
     syfosyketilfelleUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
     azureAppWellKnownUrl = "wellknown",
+    aadTokenEndpoint = azureTokenEndpoint,
+    aadAppSecret = "client-secret",
     azureAppPreAuthorizedApps = configuredJacksonMapper().writeValueAsString(testAzureAppPreAuthorizedApps),
     serviceuserUsername = "user",
     serviceuserPassword = "password",
@@ -31,6 +35,8 @@ fun testEnvironment(
     syfosyketilfelleUrl = syfosyketilfelleUrl,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
+    kuhrsarClientId = "kuhrsar",
+    kuhrsarUrl = kuhrsarUrl,
     subscriptionEndpointURL = "subscriptionUrl",
 )
 

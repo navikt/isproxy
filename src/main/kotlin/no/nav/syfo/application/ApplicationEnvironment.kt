@@ -5,6 +5,8 @@ import no.nav.syfo.util.getFileAsString
 
 data class Environment(
     val aadAppClient: String = getEnvVar("AZURE_APP_CLIENT_ID"),
+    val aadAppSecret: String = getEnvVar("AZURE_APP_CLIENT_SECRET"),
+    val aadTokenEndpoint: String = getEnvVar("AZURE_OPENID_CONFIG_TOKEN_ENDPOINT"),
     val azureAppWellKnownUrl: String = getEnvVar("AZURE_APP_WELL_KNOWN_URL"),
     val azureAppPreAuthorizedApps: String = getEnvVar("AZURE_APP_PRE_AUTHORIZED_APPS"),
     val btsysUrl: String = getEnvVar("BTSYS_URL"),
@@ -17,6 +19,8 @@ data class Environment(
     val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
+    val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
+    val kuhrsarUrl: String = getEnvVar("KUHRSAR_URL"),
     val norg2Url: String = getEnvVar("NORG2_URL"),
     val syfosyketilfelleUrl: String = getEnvVar("SYFOSYKETILFELLE_URL"),
     val subscriptionEndpointURL: String = getEnvVar("SUBSCRIPTION_ENDPOINT_URL"),
@@ -49,6 +53,9 @@ data class Environment(
     ),
     val fastlegepraksisAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
+    ),
+    val kuhrsarAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
+        padm2ApplicationName,
     ),
     val subscriptionAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         padm2ApplicationName,
