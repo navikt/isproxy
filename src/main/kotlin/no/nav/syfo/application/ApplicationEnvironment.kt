@@ -57,9 +57,6 @@ data class Environment(
     val kuhrsarAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         padm2ApplicationName,
     ),
-    val subscriptionAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        padm2ApplicationName,
-    ),
     val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
         syfopersonApplicationName,
@@ -68,13 +65,3 @@ data class Environment(
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =
     System.getenv(varName) ?: defaultValue ?: throw RuntimeException("Missing required variable \"$varName\"")
-
-val Application.envKind get() = environment.config.property("ktor.environment").getString()
-
-fun Application.isDev(block: () -> Unit) {
-    if (envKind == "dev") block()
-}
-
-fun Application.isProd(block: () -> Unit) {
-    if (envKind == "production") block()
-}

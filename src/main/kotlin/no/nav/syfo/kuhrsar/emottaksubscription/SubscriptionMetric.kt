@@ -1,4 +1,4 @@
-package no.nav.syfo.subscription.api
+package no.nav.syfo.kuhrsar.emottaksubscription
 
 import io.micrometer.core.instrument.Counter
 import no.nav.syfo.metric.METRICS_NS
