@@ -149,11 +149,6 @@ fun Application.apiModule(
                 authorizedApplicationNameList = environment.norg2APIAuthorizedConsumerApplicationNameList,
                 norg2Client = norg2Client,
             )
-            registerSubscriptionProxyApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.subscriptionAPIAuthorizedConsumerApplicationNameList,
-                subscriptionEmottak = subscriptionPort,
-            )
             registerSyfosyketilfelleApi(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.syfosyketilfelleAPIAuthorizedConsumerApplicationNameList,

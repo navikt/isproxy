@@ -2,9 +2,13 @@ package no.nav.syfo.kuhrsar.model
 
 import net.logstash.logback.argument.StructuredArguments
 import no.nav.emottak.subscription.SubscriptionPort
-import no.nav.syfo.ereg.api.*
+import no.nav.syfo.kuhrsar.emottaksubscription.SubscriptionRequest
+import no.nav.syfo.kuhrsar.emottaksubscription.startSubscription
 import org.apache.commons.text.similarity.LevenshteinDistance
+import org.slf4j.LoggerFactory
 import kotlin.math.max
+
+private val logger = LoggerFactory.getLogger(Samhandler::class.java)
 
 fun List<Samhandler>.findBestSamhandlerPraksis(
     orgName: String,
