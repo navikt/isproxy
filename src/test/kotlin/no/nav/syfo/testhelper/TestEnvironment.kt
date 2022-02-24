@@ -54,7 +54,6 @@ const val testIsdialogmoteClientId = "isdialogmote-client-id"
 const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
 const val testPadm2ClientId = "padm2-client-id"
 const val testSyfobehandlendeenhetClientId = "syfobehandlendeenhet-client-id"
-const val testSyfopersonClientId = "syfoperson-client-id"
 const val testSyfoveilederClientId = "syfoveileder-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
@@ -73,10 +72,6 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:syfobehandlendeenhet",
         clientId = testSyfobehandlendeenhetClientId,
-    ),
-    PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:syfoperson",
-        clientId = testSyfopersonClientId,
     ),
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:syfoveileder",

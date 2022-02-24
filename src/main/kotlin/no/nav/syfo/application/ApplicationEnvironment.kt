@@ -30,7 +30,6 @@ data class Environment(
     val fastlegerestApplicationName: String = "fastlegerest",
     val padm2ApplicationName: String = "padm2",
     val syfobehandlendeenhetApplicationName: String = "syfobehandlendeenhet",
-    val syfopersonApplicationName: String = "syfoperson",
     val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
@@ -59,7 +58,6 @@ data class Environment(
     ),
     val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
-        syfopersonApplicationName,
     ),
 )
 
