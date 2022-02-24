@@ -78,7 +78,7 @@ class BtsysApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testSyfopersonClientId,
+                            testIsnarmestelederClientId,
                         )
 
                         with(
