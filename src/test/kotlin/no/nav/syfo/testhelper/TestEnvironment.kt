@@ -15,7 +15,6 @@ fun testEnvironment(
     stsSamlUrl: String,
     kuhrsarUrl: String,
     norg2Url: String,
-    syfosyketilfelleUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
     azureAppWellKnownUrl = "wellknown",
@@ -30,7 +29,6 @@ fun testEnvironment(
     stsUrl = stsUrl,
     stsSamlUrl = stsSamlUrl,
     norg2Url = norg2Url,
-    syfosyketilfelleUrl = syfosyketilfelleUrl,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
     kuhrsarClientId = "kuhrsar",

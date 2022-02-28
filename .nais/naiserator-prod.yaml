@@ -101,8 +101,6 @@ spec:
       value: "https://security-token-service.nais.adeo.no"
     - name: STS_SAML_URL
       value: "https://sts.adeo.no/SecurityTokenServiceProvider/"
-    - name: SYFOSYKETILFELLE_URL
-      value: "https://syfosyketilfelle.nais.adeo.no"
     - name: FASTLEGE_URL
       value: "https://pep-gw.oera.no:9443/ekstern/helse/fastlegeinformasjon"
     - name: ADRESSEREGISTER_URL

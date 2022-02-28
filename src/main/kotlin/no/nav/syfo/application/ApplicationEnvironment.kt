@@ -1,6 +1,5 @@
 package no.nav.syfo.application
 
-import io.ktor.application.*
 import no.nav.syfo.util.getFileAsString
 
 data class Environment(
@@ -21,7 +20,6 @@ data class Environment(
     val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
     val kuhrsarUrl: String = getEnvVar("KUHRSAR_URL"),
     val norg2Url: String = getEnvVar("NORG2_URL"),
-    val syfosyketilfelleUrl: String = getEnvVar("SYFOSYKETILFELLE_URL"),
     val subscriptionEndpointURL: String = getEnvVar("SUBSCRIPTION_ENDPOINT_URL"),
 
     val isdialogmoteApplicationName: String = "isdialogmote",
@@ -51,9 +49,6 @@ data class Environment(
     ),
     val kuhrsarAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         padm2ApplicationName,
-    ),
-    val syfosyketilfelleAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        isdialogmoteApplicationName,
     ),
 )
 
