@@ -23,8 +23,6 @@ import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
 import no.nav.syfo.kuhrsar.client.KuhrSarClient
 import no.nav.syfo.norg2.api.registerNorg2Api
 import no.nav.syfo.norg2.client.Norg2Client
-import no.nav.syfo.syfosyketilfelle.api.registerSyfosyketilfelleApi
-import no.nav.syfo.syfosyketilfelle.client.SyfosyketilfelleClient
 import no.nhn.register.communicationparty.ICommunicationPartyService
 import no.nhn.schemas.reg.flr.IFlrReadOperations
 
@@ -82,10 +80,6 @@ fun Application.apiModule(
     val norg2Client = Norg2Client(
         baseUrl = environment.norg2Url,
     )
-    val syfosyketilfelleClient = SyfosyketilfelleClient(
-        baseUrl = environment.syfosyketilfelleUrl,
-        stsClient = stsClient,
-    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
         fastlegeSoapClient = fastlegeSoapClient,
     )
@@ -137,11 +131,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.norg2APIAuthorizedConsumerApplicationNameList,
                 norg2Client = norg2Client,
-            )
-            registerSyfosyketilfelleApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.syfosyketilfelleAPIAuthorizedConsumerApplicationNameList,
-                syfosyketilfelleClient = syfosyketilfelleClient,
             )
         }
     }

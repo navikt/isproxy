@@ -101,8 +101,6 @@ spec:
       value: "https://security-token-service.nais.preprod.local"
     - name: STS_SAML_URL
       value: "https://sts-q1.preprod.local/SecurityTokenServiceProvider/"
-    - name: SYFOSYKETILFELLE_URL
-      value: "https://syfosyketilfelle.nais.preprod.local"
     - name: FASTLEGE_URL
       value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/fastlegeinformasjon"
     - name: ADRESSEREGISTER_URL
