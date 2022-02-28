@@ -4,7 +4,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import no.nav.syfo.client.azuread.v2.AzureAdClient
+import no.nav.syfo.client.azuread.AzureAdClient
 import no.nav.syfo.client.httpClientDefault
 import no.nav.syfo.domain.PersonIdent
 import no.nav.syfo.kuhrsar.model.Samhandler

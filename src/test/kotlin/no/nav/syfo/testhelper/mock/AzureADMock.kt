@@ -7,7 +7,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import no.nav.syfo.application.api.authentication.WellKnown
 import no.nav.syfo.application.api.authentication.installContentNegotiation
-import no.nav.syfo.client.azuread.v2.AzureAdTokenResponse
+import no.nav.syfo.client.azuread.AzureAdTokenResponse
 import no.nav.syfo.testhelper.UserConstants.AZUREAD_TOKEN
 import no.nav.syfo.testhelper.getRandomPort
 import java.nio.file.Paths
