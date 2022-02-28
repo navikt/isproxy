@@ -14,8 +14,6 @@ import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.azuread.v2.AzureAdClient
 import no.nav.syfo.client.sts.StsClient
-import no.nav.syfo.dokdist.api.registerDokdistApi
-import no.nav.syfo.dokdist.client.DokdistClient
 import no.nav.syfo.ereg.api.*
 import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
@@ -67,10 +65,6 @@ fun Application.apiModule(
     val axsysClient = AxsysClient(
         baseUrl = environment.axsysUrl,
     )
-    val dokdistClient = DokdistClient(
-        dokdistBaseUrl = environment.dokdistUrl,
-        stsClient = stsClient,
-    )
     val eregClient = EregClient(
         baseUrl = environment.eregUrl,
         stsClient = stsClient,
@@ -117,11 +111,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.btsysAPIAuthorizedConsumerApplicationNameList,
                 btsysClient = btsysClient,
-            )
-            registerDokdistApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.dokdistAPIAuthorizedConsumerApplicationNameList,
-                dokdistClient = dokdistClient,
             )
             registerEregProxyApi(
                 apiConsumerAccessService = apiConsumerAccessService,

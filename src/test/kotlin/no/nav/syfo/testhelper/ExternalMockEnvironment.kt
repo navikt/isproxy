@@ -14,7 +14,6 @@ class ExternalMockEnvironment() {
     val eregMock = EregMock()
     val btsysMock = BtsysMock()
     val stsMock = STSMock()
-    val dokDistMock = DokDistMock()
     val fastlegeMock = FastlegeMock()
     val adresseregisterMock = AdresseregisterMock()
     val kuhrsarMock = KuhrsarMock()
@@ -28,7 +27,6 @@ class ExternalMockEnvironment() {
         btsysMock.name to btsysMock.server,
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
-        dokDistMock.name to dokDistMock.server,
         kuhrsarMock.name to kuhrsarMock.server,
         norg2Mock.name to norg2Mock.server,
         syfosyketilfelleMock.name to syfosyketilfelleMock.server,
@@ -41,7 +39,6 @@ class ExternalMockEnvironment() {
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
         stsSamlUrl = stsMock.url,
-        dokdistUrl = dokDistMock.url,
         kuhrsarUrl = kuhrsarMock.url,
         norg2Url = norg2Mock.url,
         syfosyketilfelleUrl = syfosyketilfelleMock.url,

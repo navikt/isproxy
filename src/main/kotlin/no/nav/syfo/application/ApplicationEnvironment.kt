@@ -16,7 +16,6 @@ data class Environment(
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
     val stsSamlUrl: String = getEnvVar("STS_SAML_URL"),
     val axsysUrl: String = getEnvVar("AXSYS_URL"),
-    val dokdistUrl: String = getEnvVar("DOKDIST_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
     val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
@@ -40,9 +39,6 @@ data class Environment(
     ),
     val btsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         padm2ApplicationName,
-    ),
-    val dokdistAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        isdialogmoteApplicationName,
     ),
     val fastlegeAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
