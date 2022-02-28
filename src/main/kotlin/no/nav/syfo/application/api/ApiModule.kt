@@ -12,7 +12,7 @@ import no.nav.syfo.axsys.api.registerAxsysApi
 import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
-import no.nav.syfo.client.azuread.v2.AzureAdClient
+import no.nav.syfo.client.azuread.AzureAdClient
 import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.ereg.api.*
 import no.nav.syfo.ereg.client.EregClient
