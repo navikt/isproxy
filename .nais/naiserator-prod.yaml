@@ -42,9 +42,6 @@ spec:
       rules:
         - application: fastlegerest
           namespace: teamsykefravr
-          cluster: prod-fss
-        - application: fastlegerest
-          namespace: teamsykefravr
           cluster: prod-gcp
         - application: isdialogmote
           namespace: teamsykefravr
@@ -54,16 +51,10 @@ spec:
           cluster: prod-gcp
         - application: padm2
           namespace: teamsykefravr
-          cluster: prod-fss
-        - application: padm2
-          namespace: teamsykefravr
           cluster: prod-gcp
         - application: syfobehandlendeenhet
           namespace: teamsykefravr
           cluster: prod-gcp
-        - application: syfobehandlendeenhet
-          namespace: teamsykefravr
-          cluster: prod-fss
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: prod-gcp
