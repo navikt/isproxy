@@ -42,9 +42,6 @@ spec:
       rules:
         - application: fastlegerest
           namespace: teamsykefravr
-          cluster: dev-fss
-        - application: fastlegerest
-          namespace: teamsykefravr
           cluster: dev-gcp
         - application: isdialogmote
           namespace: teamsykefravr
@@ -54,16 +51,10 @@ spec:
           cluster: dev-gcp
         - application: padm2
           namespace: teamsykefravr
-          cluster: dev-fss
-        - application: padm2
-          namespace: teamsykefravr
           cluster: dev-gcp
         - application: syfobehandlendeenhet
           namespace: teamsykefravr
           cluster: dev-gcp
-        - application: syfobehandlendeenhet
-          namespace: teamsykefravr
-          cluster: dev-fss
         - application: syfoveileder
           namespace: teamsykefravr
           cluster: dev-gcp
