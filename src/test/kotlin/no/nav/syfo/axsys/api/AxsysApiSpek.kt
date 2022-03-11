@@ -9,12 +9,13 @@ import no.nav.syfo.axsys.domain.AxsysVeileder
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.testhelper.UserConstants.ENHET_NR
 import no.nav.syfo.util.bearerHeader
+import no.nav.syfo.util.configuredJacksonMapper
 import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 class AxsysApiSpek : Spek({
-    val objectMapper: ObjectMapper = apiConsumerObjectMapper()
+    val objectMapper: ObjectMapper = configuredJacksonMapper()
 
     describe(AxsysApiSpek::class.java.simpleName) {
 

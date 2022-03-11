@@ -28,15 +28,14 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_HPR_NR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODETEKST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODEVERDI
 import no.nav.syfo.testhelper.UserConstants.HER_ID
-import no.nav.syfo.util.NAV_PERSONIDENT_HEADER
-import no.nav.syfo.util.bearerHeader
+import no.nav.syfo.util.*
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldNotBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 class FastlegeProxyApiSpek : Spek({
-    val objectMapper: ObjectMapper = apiConsumerObjectMapper()
+    val objectMapper: ObjectMapper = configuredJacksonMapper()
 
     describe(FastlegeProxyApiSpek::class.java.simpleName) {
 

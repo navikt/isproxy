@@ -6,15 +6,17 @@ import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.http.HttpHeaders.ContentType
 import io.ktor.server.testing.*
-import no.nav.syfo.norg2.domain.*
+import no.nav.syfo.norg2.domain.ArbeidsfordelingCriteria
+import no.nav.syfo.norg2.domain.NorgEnhet
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.util.bearerHeader
+import no.nav.syfo.util.configuredJacksonMapper
 import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 class Norg2ApiSpek : Spek({
-    val objectMapper: ObjectMapper = apiConsumerObjectMapper()
+    val objectMapper: ObjectMapper = configuredJacksonMapper()
 
     describe(Norg2ApiSpek::class.java.simpleName) {
 
