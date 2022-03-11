@@ -20,22 +20,14 @@ class STSMock {
     )
 
     val name = "sts"
-    val server = mockSTSServer(
-        port
-    )
-
-    private fun mockSTSServer(
-        port: Int
-    ): NettyApplicationEngine {
-        return embeddedServer(
-            factory = Netty,
-            port = port
-        ) {
-            installContentNegotiation()
-            routing {
-                get("/rest/v1/sts/token") {
-                    call.respond(token)
-                }
+    val server = embeddedServer(
+        factory = Netty,
+        port = port,
+    ) {
+        installContentNegotiation()
+        routing {
+            get("/rest/v1/sts/token") {
+                call.respond(token)
             }
         }
     }

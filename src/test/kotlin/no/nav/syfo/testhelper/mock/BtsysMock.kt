@@ -17,22 +17,14 @@ class BtsysMock {
     val url = "http://localhost:$port"
 
     val name = "btsys"
-    val server = mockBtsysServer(
-        port
-    )
-
-    private fun mockBtsysServer(
-        port: Int
-    ): NettyApplicationEngine {
-        return embeddedServer(
-            factory = Netty,
-            port = port
-        ) {
-            installContentNegotiation()
-            routing {
-                get(BtsysClient.BTSYS_PATH) {
-                    call.respond(generateResponse(false))
-                }
+    val server = embeddedServer(
+        factory = Netty,
+        port = port,
+    ) {
+        installContentNegotiation()
+        routing {
+            get(BtsysClient.BTSYS_PATH) {
+                call.respond(generateResponse(false))
             }
         }
     }

@@ -6,7 +6,7 @@ import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import no.nav.syfo.application.api.authentication.installContentNegotiation
-import no.nav.syfo.ereg.client.*
+import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.ereg.domain.EregOrganisasjonNavn
 import no.nav.syfo.ereg.domain.EregOrganisasjonResponse
 import no.nav.syfo.testhelper.getRandomPort
@@ -28,22 +28,14 @@ class EregMock {
     val eregResponse = generateEregOrganisasjonResponse()
 
     val name = "ereg"
-    val server = mockEregServer(
-        port
-    )
-
-    private fun mockEregServer(
-        port: Int
-    ): NettyApplicationEngine {
-        return embeddedServer(
-            factory = Netty,
-            port = port
-        ) {
-            installContentNegotiation()
-            routing {
-                get("${EregClient.EREG_PATH}/$EregResponseOrgNr") {
-                    call.respond(eregResponse)
-                }
+    val server = embeddedServer(
+        factory = Netty,
+        port = port,
+    ) {
+        installContentNegotiation()
+        routing {
+            get("${EregClient.EREG_PATH}/$EregResponseOrgNr") {
+                call.respond(eregResponse)
             }
         }
     }
