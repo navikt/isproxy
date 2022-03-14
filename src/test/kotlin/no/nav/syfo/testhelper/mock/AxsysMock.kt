@@ -31,18 +31,14 @@ class AxsysMock {
     val axsysResponse = generateAxsysResponse()
 
     val name = "axsys"
-    val server = mockAxsysServer()
-
-    private fun mockAxsysServer(): NettyApplicationEngine {
-        return embeddedServer(
-            factory = Netty,
-            port = port
-        ) {
-            installContentNegotiation()
-            routing {
-                get("${AxsysClient.AXSYS_ENHET_BASE_PATH}/$ENHET_NR${AxsysClient.AXSYS_BRUKERE_PATH}") {
-                    call.respond(axsysResponse)
-                }
+    val server = embeddedServer(
+        factory = Netty,
+        port = port,
+    ) {
+        installContentNegotiation()
+        routing {
+            get("${AxsysClient.AXSYS_ENHET_BASE_PATH}/$ENHET_NR${AxsysClient.AXSYS_BRUKERE_PATH}") {
+                call.respond(axsysResponse)
             }
         }
     }
