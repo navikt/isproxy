@@ -6,10 +6,10 @@ import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
 import no.nav.syfo.btsys.client.BtsysClient
-import no.nav.syfo.ereg.api.*
+import no.nav.syfo.ereg.api.btsysProxyBasePath
+import no.nav.syfo.ereg.api.btsysProxySuspendertPath
 import no.nav.syfo.testhelper.*
-import no.nav.syfo.util.NAV_PERSONIDENT_HEADER
-import no.nav.syfo.util.bearerHeader
+import no.nav.syfo.util.*
 import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -17,7 +17,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class BtsysApiSpek : Spek({
-    val objectMapper: ObjectMapper = apiConsumerObjectMapper()
+    val objectMapper: ObjectMapper = configuredJacksonMapper()
 
     describe(BtsysApiSpek::class.java.simpleName) {
 

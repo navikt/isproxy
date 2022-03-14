@@ -9,12 +9,13 @@ import no.nav.syfo.ereg.domain.EregOrganisasjonResponse
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.testhelper.mock.EregResponseOrgNr
 import no.nav.syfo.util.bearerHeader
+import no.nav.syfo.util.configuredJacksonMapper
 import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 class EregProxyApiSpek : Spek({
-    val objectMapper: ObjectMapper = apiConsumerObjectMapper()
+    val objectMapper: ObjectMapper = configuredJacksonMapper()
 
     describe(EregProxyApiSpek::class.java.simpleName) {
 
