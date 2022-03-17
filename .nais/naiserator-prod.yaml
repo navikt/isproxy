@@ -81,7 +81,7 @@ spec:
     - name: BTSYS_URL
       value: "https://btsys.nais.adeo.no"
     - name: EREG_URL
-      value: "https://modapp.adeo.no"
+      value: "https://ereg-services.intern.nav.no"
     - name: KUHRSAR_CLIENT_ID
       value: "prod-fss.teamkuhr.kuhr-sar-api"
     - name: KUHRSAR_URL
