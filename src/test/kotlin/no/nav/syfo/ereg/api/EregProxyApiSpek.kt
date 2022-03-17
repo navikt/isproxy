@@ -39,23 +39,31 @@ class EregProxyApiSpek : Spek({
             val urlEregOrganisasjonWithParam = "$eregProxyBasePath$eregProxyOrganisasjonPath/$EregResponseOrgNr"
 
             describe("Get Organisasjon from Ereg") {
-                val validToken = generateJWT(
-                    externalMockEnvironment.environment.aadAppClient,
-                    externalMockEnvironment.wellKnown.issuer,
-                    testIsnarmestelederClientId,
-                )
 
                 describe("Happy path") {
 
-                    it("should return OK if request is successful") {
-                        with(
-                            handleRequest(HttpMethod.Get, urlEregOrganisasjonWithParam) {
-                                addHeader(Authorization, bearerHeader(validToken))
+                    externalMockEnvironment.environment.eregAPIAuthorizedConsumerApplicationNameList.forEach { consumerApplicationName ->
+                        val azp = testAzureAppPreAuthorizedApps.find { preAuthorizedClient ->
+                            preAuthorizedClient.clientId.contains(consumerApplicationName)
+                        }?.clientId ?: ""
+
+                        val validToken = generateJWT(
+                            audience = externalMockEnvironment.environment.aadAppClient,
+                            issuer = externalMockEnvironment.wellKnown.issuer,
+                            azp = azp,
+                        )
+
+                        it("should return OK if request is successful") {
+                            with(
+                                handleRequest(HttpMethod.Get, urlEregOrganisasjonWithParam) {
+                                    addHeader(Authorization, bearerHeader(validToken))
+                                }
+                            ) {
+                                response.status() shouldBeEqualTo HttpStatusCode.OK
+                                val eregOrganisasjonResponse =
+                                    objectMapper.readValue<EregOrganisasjonResponse>(response.content!!)
+                                eregOrganisasjonResponse.navn.navnelinje1 shouldBeEqualTo externalMockEnvironment.eregMock.eregResponse.navn.navnelinje1
                             }
-                        ) {
-                            response.status() shouldBeEqualTo HttpStatusCode.OK
-                            val eregOrganisasjonResponse = objectMapper.readValue<EregOrganisasjonResponse>(response.content!!)
-                            eregOrganisasjonResponse.navn.navnelinje1 shouldBeEqualTo externalMockEnvironment.eregMock.eregResponse.navn.navnelinje1
                         }
                     }
                 }

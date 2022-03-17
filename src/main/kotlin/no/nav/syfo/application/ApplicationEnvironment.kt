@@ -27,10 +27,12 @@ data class Environment(
     val fastlegerestApplicationName: String = "fastlegerest",
     val padm2ApplicationName: String = "padm2",
     val syfobehandlendeenhetApplicationName: String = "syfobehandlendeenhet",
+    val syfooversiktsrvApplicationName: String = "syfooversiktsrv",
     val syfoveilederApplicationName: String = "syfoveileder",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
         isnarmestelederApplicationName,
+        syfooversiktsrvApplicationName,
     ),
     val axsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         syfoveilederApplicationName,
