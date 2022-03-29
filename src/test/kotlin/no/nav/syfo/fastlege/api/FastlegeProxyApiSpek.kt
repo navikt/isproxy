@@ -22,11 +22,13 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_HPR_NR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODETEKST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODEVERDI
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_STILLINGSPROSENT
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_ETTERNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_FNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_HPR_NR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODETEKST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODEVERDI
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_STILLINGSPROSENT
 import no.nav.syfo.testhelper.UserConstants.HER_ID
 import no.nav.syfo.util.*
 import org.amshove.kluent.shouldBeEqualTo
@@ -136,6 +138,7 @@ class FastlegeProxyApiSpek : Spek({
                             fastlege.herId shouldBeEqualTo null
                             fastlege.relasjon.kodeVerdi shouldBeEqualTo FASTLEGE_RELASJON_KODEVERDI
                             fastlege.relasjon.kodeTekst shouldBeEqualTo FASTLEGE_RELASJON_KODETEKST
+                            fastlege.stillingsprosent shouldBeEqualTo FASTLEGE_STILLINGSPROSENT
 
                             val fastlegeVikar = fastleger.last()
                             fastlegeVikar.etternavn shouldBeEqualTo FASTLEGE_VIKAR_ETTERNAVN
@@ -144,6 +147,7 @@ class FastlegeProxyApiSpek : Spek({
                             fastlegeVikar.herId shouldBeEqualTo null
                             fastlegeVikar.relasjon.kodeVerdi shouldBeEqualTo FASTLEGE_VIKAR_RELASJON_KODEVERDI
                             fastlegeVikar.relasjon.kodeTekst shouldBeEqualTo FASTLEGE_VIKAR_RELASJON_KODETEKST
+                            fastlegeVikar.stillingsprosent shouldBeEqualTo FASTLEGE_VIKAR_STILLINGSPROSENT
                         }
                         with(
                             handleRequest(HttpMethod.Get, urlFastlege) {

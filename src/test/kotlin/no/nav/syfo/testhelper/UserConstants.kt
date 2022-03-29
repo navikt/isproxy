@@ -15,6 +15,7 @@ object UserConstants {
     const val FASTLEGE_FNR = "20202012345"
     const val FASTLEGE_RELASJON_KODEVERDI = "LPFL"
     const val FASTLEGE_RELASJON_KODETEKST = "Fastlege"
+    const val FASTLEGE_STILLINGSPROSENT = 100
 
     const val FASTLEGE_VIKAR_FORNAVN = "Vikar"
     const val FASTLEGE_VIKAR_ETTERNAVN = "Legevikar etternavn"
@@ -22,6 +23,7 @@ object UserConstants {
     const val FASTLEGE_VIKAR_RELASJON_KODEVERDI = "LPVI"
     const val FASTLEGE_VIKAR_RELASJON_KODETEKST = "Vikar"
     const val FASTLEGE_VIKAR_HPR_NR = 23456
+    const val FASTLEGE_VIKAR_STILLINGSPROSENT = 60
 
     const val FASTLEGEKONTOR_NAVN = "Fastlegekontoret"
     const val FASTLEGEKONTOR_ORGNR = 123456789

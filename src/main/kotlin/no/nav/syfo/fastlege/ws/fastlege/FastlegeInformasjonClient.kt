@@ -42,6 +42,7 @@ class FastlegeInformasjonClient(
                         kodeVerdi = wsgPOnContractAssociation.relationship.codeValue,
                         kodeTekst = wsgPOnContractAssociation.relationship.codeText,
                     ),
+                    stillingsprosent = wsgPOnContractAssociation.workingPercentage,
                 )
             }
     }

@@ -11,4 +11,5 @@ data class Fastlege(
     val pasientforhold: Periode,
     val gyldighet: Periode,
     val relasjon: Relasjon,
+    val stillingsprosent: Int,
 )
