@@ -22,12 +22,14 @@ import no.nav.syfo.testhelper.UserConstants.FASTLEGE_FORNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_HPR_NR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODETEKST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_RELASJON_KODEVERDI
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_STILLINGSPROSENT
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_ETTERNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_FNR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_FORNAVN
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_HPR_NR
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODETEKST
 import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_RELASJON_KODEVERDI
+import no.nav.syfo.testhelper.UserConstants.FASTLEGE_VIKAR_STILLINGSPROSENT
 import no.nav.syfo.testhelper.UserConstants.HER_ID
 import no.nhn.register.fastlegeinformasjon.common.*
 import no.nhn.schemas.reg.common.en.WSPeriod
@@ -100,7 +102,8 @@ class FastlegeMock : IFlrReadOperations {
                                     WSCode()
                                         .withCodeValue(FASTLEGE_RELASJON_KODEVERDI)
                                         .withCodeText(FASTLEGE_RELASJON_KODETEKST)
-                                ),
+                                )
+                                .withWorkingPercentage(FASTLEGE_STILLINGSPROSENT),
                             WSGPOnContractAssociation()
                                 .withGP(
                                     WSPerson()
@@ -119,6 +122,7 @@ class FastlegeMock : IFlrReadOperations {
                                         .withCodeValue(FASTLEGE_VIKAR_RELASJON_KODEVERDI)
                                         .withCodeText(FASTLEGE_VIKAR_RELASJON_KODETEKST)
                                 )
+                                .withWorkingPercentage(FASTLEGE_VIKAR_STILLINGSPROSENT)
                         )
                 )
         } else {
