@@ -1,9 +1,9 @@
 package no.nav.syfo.norg2.api
 
-import io.ktor.application.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.norg2.client.Norg2Client
 import no.nav.syfo.norg2.domain.ArbeidsfordelingCriteria

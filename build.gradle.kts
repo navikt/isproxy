@@ -15,7 +15,7 @@ object Versions {
     const val jaxb = "2.3.1"
     const val jaxws = "2.3.5"
     const val kluent = "1.68"
-    const val ktor = "1.6.7"
+    const val ktor = "2.0.0"
     const val logback = "1.2.10"
     const val logstashEncoder = "7.0.1"
     const val micrometerRegistry = "1.8.2"
@@ -51,12 +51,15 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    implementation("io.ktor:ktor-auth-jwt:${Versions.ktor}")
     implementation("io.ktor:ktor-client-apache:${Versions.ktor}")
     implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
-    implementation("io.ktor:ktor-client-jackson:${Versions.ktor}")
-    implementation("io.ktor:ktor-jackson:${Versions.ktor}")
+    implementation("io.ktor:ktor-client-content-negotiation:${Versions.ktor}")
+    implementation("io.ktor:ktor-serialization-jackson:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-auth-jwt:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-call-id:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-content-negotiation:${Versions.ktor}")
     implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-status-pages:${Versions.ktor}")
 
     implementation("org.apache.commons:commons-text:${Versions.commonsTextVersion}")
     implementation("org.apache.cxf:cxf-rt-features-logging:${Versions.cxf}")
@@ -81,7 +84,7 @@ dependencies {
     implementation("net.logstash.logback:logstash-logback-encoder:${Versions.logstashEncoder}")
 
     // Metrics and Prometheus
-    implementation("io.ktor:ktor-metrics-micrometer:${Versions.ktor}")
+    implementation("io.ktor:ktor-server-metrics-micrometer:${Versions.ktor}")
     implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistry}")
 
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")

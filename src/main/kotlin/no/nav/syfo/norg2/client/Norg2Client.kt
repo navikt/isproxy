@@ -1,6 +1,7 @@
 package no.nav.syfo.norg2.client
 
-import io.ktor.client.features.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import no.nav.syfo.client.httpClientDefault
@@ -20,13 +21,13 @@ class Norg2Client(
         arbeidsfordelingCriteria: ArbeidsfordelingCriteria,
     ): List<NorgEnhet> {
         try {
-            val response: List<NorgEnhet> = httpClient.post(norg2ArbeidsfordelingBestmatchUrl) {
+            val response = httpClient.post(norg2ArbeidsfordelingBestmatchUrl) {
                 accept(ContentType.Application.Json)
                 contentType(ContentType.Application.Json)
-                body = arbeidsfordelingCriteria
+                setBody(arbeidsfordelingCriteria)
             }
             COUNT_CALL_EREG_ORGANISASJON_SUCCESS.increment()
-            return response
+            return response.body()
         } catch (responseException: ResponseException) {
             COUNT_CALL_EREG_ORGANISASJON_FAIL.increment()
             throw responseException

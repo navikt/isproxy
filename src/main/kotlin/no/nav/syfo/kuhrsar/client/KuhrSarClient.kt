@@ -27,7 +27,7 @@ class KuhrSarClient(
             parameter("ident", behandlerIdent.value)
         }
         return if (response.status == HttpStatusCode.OK) {
-            response.receive()
+            response.body()
         } else {
             throw RuntimeException("Call to KuhrSar failed with http status: ${response.status}")
         }

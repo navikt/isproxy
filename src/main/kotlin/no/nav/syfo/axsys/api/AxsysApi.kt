@@ -1,8 +1,8 @@
 package no.nav.syfo.axsys.api
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.util.getCallId
