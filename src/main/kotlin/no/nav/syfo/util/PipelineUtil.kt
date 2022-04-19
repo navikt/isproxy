@@ -1,9 +1,9 @@
 package no.nav.syfo.util
 
-import io.ktor.application.*
-import io.ktor.client.features.*
+import io.ktor.server.application.*
+import io.ktor.client.plugins.*
 import io.ktor.http.*
-import io.ktor.response.*
+import io.ktor.server.response.*
 import io.ktor.util.pipeline.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.access.ForbiddenProxyConsumer

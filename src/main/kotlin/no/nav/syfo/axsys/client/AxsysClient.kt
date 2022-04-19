@@ -1,6 +1,7 @@
 package no.nav.syfo.axsys.client
 
-import io.ktor.client.features.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import no.nav.syfo.axsys.COUNT_CALL_AXSYS_ENHET_BRUKERE_FAIL
@@ -22,13 +23,13 @@ class AxsysClient(
     ): List<AxsysVeileder> {
         try {
             val url = "$axsysEnhetUrl/$enhetNr$AXSYS_BRUKERE_PATH"
-            val response: List<AxsysVeileder> = httpClient.get(url) {
+            val response = httpClient.get(url) {
                 header(NAV_CALL_ID_HEADER, callId)
                 header(NAV_CONSUMER_ID_HEADER, NAV_CONSUMER_APP_ID)
                 accept(ContentType.Application.Json)
             }
             COUNT_CALL_AXSYS_ENHET_BRUKERE_SUCCESS.increment()
-            return response
+            return response.body()
         } catch (responseException: ResponseException) {
             COUNT_CALL_AXSYS_ENHET_BRUKERE_FAIL.increment()
             throw responseException

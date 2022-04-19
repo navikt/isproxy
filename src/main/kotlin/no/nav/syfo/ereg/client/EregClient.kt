@@ -1,6 +1,7 @@
 package no.nav.syfo.ereg.client
 
-import io.ktor.client.features.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import no.nav.syfo.client.httpClientDefault
@@ -24,12 +25,12 @@ class EregClient(
         val stsToken = stsClient.token()
         try {
             val url = "$eregOrganisasjonUrl/$orgNr"
-            val response: EregOrganisasjonResponse = httpClient.get(url) {
+            val response = httpClient.get(url) {
                 header(HttpHeaders.Authorization, bearerHeader(stsToken))
                 accept(ContentType.Application.Json)
             }
             COUNT_CALL_EREG_ORGANISASJON_SUCCESS.increment()
-            return response
+            return response.body()
         } catch (responseException: ResponseException) {
             COUNT_CALL_EREG_ORGANISASJON_FAIL.increment()
             throw responseException

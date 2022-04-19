@@ -8,7 +8,6 @@ import io.ktor.server.testing.*
 import io.mockk.*
 import no.nav.emottak.subscription.*
 import no.nav.syfo.domain.PersonIdent
-import no.nav.syfo.ereg.api.*
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID
 import no.nav.syfo.testhelper.UserConstants.FASTLEGEOPPSLAG_PERSON_ID_MISSING_PRAKSIS_NAME

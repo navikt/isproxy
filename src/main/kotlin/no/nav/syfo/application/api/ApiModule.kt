@@ -1,8 +1,8 @@
 package no.nav.syfo.application.api
 
-import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.routing.*
 import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
@@ -20,6 +20,7 @@ import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
+import no.nav.syfo.kuhrsar.api.registerKuhrsarApi
 import no.nav.syfo.kuhrsar.client.KuhrSarClient
 import no.nav.syfo.norg2.api.registerNorg2Api
 import no.nav.syfo.norg2.client.Norg2Client

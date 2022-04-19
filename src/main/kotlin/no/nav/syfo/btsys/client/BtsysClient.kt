@@ -1,6 +1,7 @@
 package no.nav.syfo.btsys.client
 
-import io.ktor.client.features.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import no.nav.syfo.btsys.COUNT_CALL_BTSYS_SUSPENSJON_FAIL
@@ -25,7 +26,7 @@ class BtsysClient(
     ): Suspendert {
         val stsToken = stsClient.token()
         try {
-            val response: Suspendert = httpClient.get(btsysUrl) {
+            val response = httpClient.get(btsysUrl) {
                 accept(ContentType.Application.Json)
                 headers {
                     append(NAV_CALL_ID_HEADER, callId)
@@ -36,7 +37,7 @@ class BtsysClient(
                 parameter("oppslagsdato", oppslagsdato)
             }
             COUNT_CALL_BTSYS_SUSPENSJON_SUCCESS.increment()
-            return response
+            return response.body()
         } catch (responseException: ResponseException) {
             COUNT_CALL_BTSYS_SUSPENSJON_FAIL.increment()
             throw responseException

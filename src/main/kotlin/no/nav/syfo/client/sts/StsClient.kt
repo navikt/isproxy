@@ -1,7 +1,7 @@
 package no.nav.syfo.client.sts
 
 import io.ktor.client.call.*
-import io.ktor.client.features.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -32,7 +32,7 @@ class StsClient(
                     header(HttpHeaders.Authorization, authHeader)
                     accept(ContentType.Application.Json)
                 }
-                cachedOidcToken = response.receive<Token>()
+                cachedOidcToken = response.body<Token>()
                 COUNT_CALL_STS_SUCCESS.increment()
             } catch (e: ResponseException) {
                 log.error(

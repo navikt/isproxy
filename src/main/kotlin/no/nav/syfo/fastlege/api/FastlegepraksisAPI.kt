@@ -1,9 +1,9 @@
 package no.nav.syfo.fastlege.api
 
-import io.ktor.application.*
+import io.ktor.server.application.*
 import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.util.*

@@ -1,10 +1,10 @@
-package no.nav.syfo.ereg.api
+package no.nav.syfo.kuhrsar.api
 
-import io.ktor.application.*
-import io.ktor.client.features.*
-import io.ktor.request.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.client.plugins.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.btsys.*
@@ -22,7 +22,7 @@ fun Route.registerKuhrsarApi(
     subscriptionPort: SubscriptionPort,
 ) {
     route(kuhrsarProxyBasePath) {
-        get() {
+        get {
             proxyRequestHandler(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = authorizedApplicationNameList,
