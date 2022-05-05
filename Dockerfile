@@ -1,4 +1,9 @@
-FROM navikt/java:17
+FROM gcr.io/distroless/java17
+WORKDIR /app
 COPY build/libs/app.jar app.jar
-ENV JAVA_OPTS="-Dlogback.configurationFile=logback.xml \
-               -Dhttp.nonProxyHosts=*.adeo.no|*.preprod.local|*oera-q.local|*.oera.no"
+ENV JDK_JAVA_OPTIONS="-Dlogback.configurationFile=logback.xml \
+                      -Dhttp.nonProxyHosts=*.adeo.no|*.preprod.local|*oera-q.local|*.oera.no"
+ENV TZ="Europe/Oslo"
+EXPOSE 8080
+USER nonroot
+CMD [ "app.jar" ]
