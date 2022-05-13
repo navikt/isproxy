@@ -15,7 +15,7 @@ object Versions {
     const val jaxb = "2.3.1"
     const val jaxws = "2.3.5"
     const val kluent = "1.68"
-    const val ktor = "2.0.0"
+    const val ktor = "2.0.1"
     const val logback = "1.2.10"
     const val logstashEncoder = "7.0.1"
     const val micrometerRegistry = "1.8.2"
