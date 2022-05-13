@@ -77,5 +77,5 @@ fun main() {
         applicationState.ready = true
         application.environment.log.info("Application is ready")
     }
-    server.start(wait = false)
+    server.start(wait = true)
 }
