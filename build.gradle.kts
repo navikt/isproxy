@@ -15,18 +15,18 @@ object Versions {
     const val jaxb = "2.3.1"
     const val jaxws = "2.3.5"
     const val kluent = "1.68"
-    const val ktor = "2.0.1"
+    const val ktor = "2.0.2"
     const val logback = "1.2.11"
     const val logstashEncoder = "7.2"
-    const val micrometerRegistry = "1.9.0"
+    const val micrometerRegistry = "1.9.1"
     const val mockk = "1.12.4"
-    const val nimbusJoseJwt = "9.22"
+    const val nimbusJoseJwt = "9.23"
     const val spek = "2.0.18"
     const val syfotjenester = "1.2021.06.09-13.09-b3d30de9996e"
 }
 
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.0"
     id("com.github.bjornvester.wsdl2java") version "1.2"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
