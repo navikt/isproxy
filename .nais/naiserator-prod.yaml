@@ -52,9 +52,6 @@ spec:
         - application: padm2
           namespace: teamsykefravr
           cluster: prod-gcp
-        - application: syfobehandlendeenhet
-          namespace: teamsykefravr
-          cluster: prod-gcp
         - application: syfooversiktsrv
           namespace: teamsykefravr
           cluster: prod-gcp
@@ -84,8 +81,6 @@ spec:
       value: "prod-fss.teamkuhr.kuhr-sar-api"
     - name: KUHRSAR_URL
       value: "https://kuhr-sar-api.nais.adeo.no"
-    - name: NORG2_URL
-      value: "https://app.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.adeo.no"
     - name: STS_SAML_URL

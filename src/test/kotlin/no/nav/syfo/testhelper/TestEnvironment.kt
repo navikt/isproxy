@@ -13,7 +13,6 @@ fun testEnvironment(
     stsUrl: String,
     stsSamlUrl: String,
     kuhrsarUrl: String,
-    norg2Url: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
     azureAppWellKnownUrl = "wellknown",
@@ -26,7 +25,6 @@ fun testEnvironment(
     eregUrl = eregUrl,
     stsUrl = stsUrl,
     stsSamlUrl = stsSamlUrl,
-    norg2Url = norg2Url,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
     kuhrsarClientId = "kuhrsar",
@@ -47,7 +45,6 @@ const val testFastlegerestClientId = "fastlegerest-client-id"
 const val testIsdialogmoteClientId = "isdialogmote-client-id"
 const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
 const val testPadm2ClientId = "padm2-client-id"
-const val testSyfobehandlendeenhetClientId = "syfobehandlendeenhet-client-id"
 const val testSyfooversiktsrvClientId = "syfooversiktsrv-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
@@ -62,10 +59,6 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:padm2",
         clientId = testPadm2ClientId,
-    ),
-    PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:syfobehandlendeenhet",
-        clientId = testSyfobehandlendeenhetClientId,
     ),
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:syfooversiktsrv",
