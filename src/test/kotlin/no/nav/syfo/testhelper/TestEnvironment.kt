@@ -8,7 +8,6 @@ import java.net.ServerSocket
 
 fun testEnvironment(
     azureTokenEndpoint: String = "azureTokenEndpoint",
-    axsysUrl: String,
     btsysUrl: String,
     eregUrl: String,
     stsUrl: String,
@@ -23,7 +22,6 @@ fun testEnvironment(
     azureAppPreAuthorizedApps = configuredJacksonMapper().writeValueAsString(testAzureAppPreAuthorizedApps),
     serviceuserUsername = "user",
     serviceuserPassword = "password",
-    axsysUrl = axsysUrl,
     btsysUrl = btsysUrl,
     eregUrl = eregUrl,
     stsUrl = stsUrl,
@@ -51,7 +49,6 @@ const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
 const val testPadm2ClientId = "padm2-client-id"
 const val testSyfobehandlendeenhetClientId = "syfobehandlendeenhet-client-id"
 const val testSyfooversiktsrvClientId = "syfooversiktsrv-client-id"
-const val testSyfoveilederClientId = "syfoveileder-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
@@ -73,10 +70,6 @@ val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:syfooversiktsrv",
         clientId = testSyfooversiktsrvClientId,
-    ),
-    PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:syfoveileder",
-        clientId = testSyfoveilederClientId,
     ),
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:fastlegerest",

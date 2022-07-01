@@ -8,8 +8,6 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
-import no.nav.syfo.axsys.api.registerAxsysApi
-import no.nav.syfo.axsys.client.AxsysClient
 import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.azuread.AzureAdClient
@@ -61,9 +59,6 @@ fun Application.apiModule(
         aadAppSecret = environment.aadAppSecret,
         aadTokenEndpoint = environment.aadTokenEndpoint,
     )
-    val axsysClient = AxsysClient(
-        baseUrl = environment.axsysUrl,
-    )
     val eregClient = EregClient(
         baseUrl = environment.eregUrl,
         stsClient = stsClient,
@@ -97,11 +92,6 @@ fun Application.apiModule(
         registerPrometheusApi()
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
-            registerAxsysApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.axsysAPIAuthorizedConsumerApplicationNameList,
-                axsysClient = axsysClient,
-            )
             registerBtsysProxyApi(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.btsysAPIAuthorizedConsumerApplicationNameList,

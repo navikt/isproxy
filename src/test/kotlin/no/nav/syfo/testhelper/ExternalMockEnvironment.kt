@@ -10,7 +10,6 @@ class ExternalMockEnvironment() {
     val applicationState: ApplicationState = testAppState()
     val wellKnown = wellKnownMock()
     val azureAdMock = AzureAdMock()
-    val axsysMock = AxsysMock()
     val eregMock = EregMock()
     val btsysMock = BtsysMock()
     val stsMock = STSMock()
@@ -22,7 +21,6 @@ class ExternalMockEnvironment() {
 
     val externalApplicationMockMap = hashMapOf(
         azureAdMock.name to azureAdMock.server,
-        axsysMock.name to axsysMock.server,
         btsysMock.name to btsysMock.server,
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
@@ -32,7 +30,6 @@ class ExternalMockEnvironment() {
 
     val environment = testEnvironment(
         azureTokenEndpoint = azureAdMock.url,
-        axsysUrl = axsysMock.url,
         btsysUrl = btsysMock.url,
         eregUrl = eregMock.url,
         stsUrl = stsMock.url,
