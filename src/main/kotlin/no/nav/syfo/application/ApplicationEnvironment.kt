@@ -18,14 +18,12 @@ data class Environment(
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
     val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
     val kuhrsarUrl: String = getEnvVar("KUHRSAR_URL"),
-    val norg2Url: String = getEnvVar("NORG2_URL"),
     val subscriptionEndpointURL: String = getEnvVar("SUBSCRIPTION_ENDPOINT_URL"),
 
     val isdialogmoteApplicationName: String = "isdialogmote",
     val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
     val padm2ApplicationName: String = "padm2",
-    val syfobehandlendeenhetApplicationName: String = "syfobehandlendeenhet",
     val syfooversiktsrvApplicationName: String = "syfooversiktsrv",
     val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         isdialogmoteApplicationName,
@@ -37,9 +35,6 @@ data class Environment(
     ),
     val fastlegeAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
-    ),
-    val norg2APIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        syfobehandlendeenhetApplicationName,
     ),
     val fastlegepraksisAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,

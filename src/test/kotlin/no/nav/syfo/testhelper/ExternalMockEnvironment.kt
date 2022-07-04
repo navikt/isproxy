@@ -16,7 +16,6 @@ class ExternalMockEnvironment() {
     val fastlegeMock = FastlegeMock()
     val adresseregisterMock = AdresseregisterMock()
     val kuhrsarMock = KuhrsarMock()
-    val norg2Mock = Norg2Mock()
     val subscriptionMock = mockk<SubscriptionPort>()
 
     val externalApplicationMockMap = hashMapOf(
@@ -25,7 +24,6 @@ class ExternalMockEnvironment() {
         eregMock.name to eregMock.server,
         stsMock.name to stsMock.server,
         kuhrsarMock.name to kuhrsarMock.server,
-        norg2Mock.name to norg2Mock.server,
     )
 
     val environment = testEnvironment(
@@ -35,7 +33,6 @@ class ExternalMockEnvironment() {
         stsUrl = stsMock.url,
         stsSamlUrl = stsMock.url,
         kuhrsarUrl = kuhrsarMock.url,
-        norg2Url = norg2Mock.url,
     )
 }
 

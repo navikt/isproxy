@@ -20,8 +20,6 @@ import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
 import no.nav.syfo.kuhrsar.api.registerKuhrsarApi
 import no.nav.syfo.kuhrsar.client.KuhrSarClient
-import no.nav.syfo.norg2.api.registerNorg2Api
-import no.nav.syfo.norg2.client.Norg2Client
 import no.nhn.register.communicationparty.ICommunicationPartyService
 import no.nhn.schemas.reg.flr.IFlrReadOperations
 
@@ -73,9 +71,6 @@ fun Application.apiModule(
         kuhrsarClientId = environment.kuhrsarClientId,
         kuhrsarUrl = environment.kuhrsarUrl,
     )
-    val norg2Client = Norg2Client(
-        baseUrl = environment.norg2Url,
-    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
         fastlegeSoapClient = fastlegeSoapClient,
     )
@@ -117,11 +112,6 @@ fun Application.apiModule(
                 authorizedApplicationNameList = environment.kuhrsarAPIAuthorizedConsumerApplicationNameList,
                 kuhrsarClient = kuhrsarClient,
                 subscriptionPort = subscriptionPort,
-            )
-            registerNorg2Api(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.norg2APIAuthorizedConsumerApplicationNameList,
-                norg2Client = norg2Client,
             )
         }
     }
