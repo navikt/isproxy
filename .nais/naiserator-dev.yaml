@@ -58,9 +58,6 @@ spec:
         - application: syfooversiktsrv
           namespace: teamsykefravr
           cluster: dev-gcp
-        - application: syfoveileder
-          namespace: teamsykefravr
-          cluster: dev-gcp
   azure:
     application:
       enabled: true
@@ -79,8 +76,6 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
-    - name: AXSYS_URL
-      value: "https://axsys.nais.preprod.local"
     - name: BTSYS_URL
       value: "https://btsys.nais.preprod.local"
     - name: EREG_URL

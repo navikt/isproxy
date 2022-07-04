@@ -7,7 +7,7 @@ const val NAV_CONSUMER_TOKEN_HEADER = "Nav-Consumer-Token"
 const val NAV_PERSONIDENT_HEADER = "nav-personident"
 
 const val NAV_CONSUMER_ID_HEADER = "Nav-Consumer-Id"
-const val NAV_CONSUMER_APP_ID = "syfoveileder"
+const val NAV_CONSUMER_APP_ID = "isproxy"
 
 fun bearerHeader(token: String) = "Bearer $token"
 
