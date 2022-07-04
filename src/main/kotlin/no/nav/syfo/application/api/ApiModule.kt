@@ -8,12 +8,11 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
+import no.nav.syfo.btsys.api.registerBtsysProxyApi
 import no.nav.syfo.btsys.client.BtsysClient
 import no.nav.syfo.client.StsClientProperties
 import no.nav.syfo.client.azuread.AzureAdClient
 import no.nav.syfo.client.sts.StsClient
-import no.nav.syfo.ereg.api.*
-import no.nav.syfo.ereg.client.EregClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
@@ -57,10 +56,6 @@ fun Application.apiModule(
         aadAppSecret = environment.aadAppSecret,
         aadTokenEndpoint = environment.aadTokenEndpoint,
     )
-    val eregClient = EregClient(
-        baseUrl = environment.eregUrl,
-        stsClient = stsClient,
-    )
     val btsysClient = BtsysClient(
         baseUrl = environment.btsysUrl,
         stsClient = stsClient,
@@ -91,11 +86,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.btsysAPIAuthorizedConsumerApplicationNameList,
                 btsysClient = btsysClient,
-            )
-            registerEregProxyApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.eregAPIAuthorizedConsumerApplicationNameList,
-                eregClient = eregClient,
             )
             registerFastlegeApi(
                 apiConsumerAccessService = apiConsumerAccessService,

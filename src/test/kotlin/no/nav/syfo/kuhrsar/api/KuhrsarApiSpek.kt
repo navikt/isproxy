@@ -159,7 +159,7 @@ class KuhrsarApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testIsnarmestelederClientId,
+                            testFastlegerestClientId,
                         )
                         val requestBody = objectMapper.writeValueAsString(kuhrsarRequest)
 

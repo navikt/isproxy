@@ -244,7 +244,7 @@ class FastlegeProxyApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testIsdialogmoteClientId,
+                            testPadm2ClientId,
                         )
 
                         with(

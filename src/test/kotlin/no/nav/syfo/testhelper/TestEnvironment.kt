@@ -9,7 +9,6 @@ import java.net.ServerSocket
 fun testEnvironment(
     azureTokenEndpoint: String = "azureTokenEndpoint",
     btsysUrl: String,
-    eregUrl: String,
     stsUrl: String,
     stsSamlUrl: String,
     kuhrsarUrl: String,
@@ -22,7 +21,6 @@ fun testEnvironment(
     serviceuserUsername = "user",
     serviceuserPassword = "password",
     btsysUrl = btsysUrl,
-    eregUrl = eregUrl,
     stsUrl = stsUrl,
     stsSamlUrl = stsSamlUrl,
     fastlegeUrl = "dummyUrl",
@@ -42,27 +40,12 @@ fun getRandomPort() = ServerSocket(0).use {
 }
 
 const val testFastlegerestClientId = "fastlegerest-client-id"
-const val testIsdialogmoteClientId = "isdialogmote-client-id"
-const val testIsnarmestelederClientId = "isnarmesteleder-client-id"
 const val testPadm2ClientId = "padm2-client-id"
-const val testSyfooversiktsrvClientId = "syfooversiktsrv-client-id"
 
 val testAzureAppPreAuthorizedApps = listOf(
     PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:isdialogmote",
-        clientId = testIsdialogmoteClientId,
-    ),
-    PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:isnarmesteleder",
-        clientId = testIsnarmestelederClientId,
-    ),
-    PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:padm2",
         clientId = testPadm2ClientId,
-    ),
-    PreAuthorizedClient(
-        name = "dev-gcp:teamsykefravr:syfooversiktsrv",
-        clientId = testSyfooversiktsrvClientId,
     ),
     PreAuthorizedClient(
         name = "dev-gcp:teamsykefravr:fastlegerest",
