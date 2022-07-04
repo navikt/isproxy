@@ -11,7 +11,6 @@ data class Environment(
     val btsysUrl: String = getEnvVar("BTSYS_URL"),
     val serviceuserUsername: String = getFileAsString("/secrets/serviceuser/isproxy/username"),
     val serviceuserPassword: String = getFileAsString("/secrets/serviceuser/isproxy/password"),
-    val eregUrl: String = getEnvVar("EREG_URL"),
     val stsUrl: String = getEnvVar("SECURITY_TOKEN_SERVICE_URL"),
     val stsSamlUrl: String = getEnvVar("STS_SAML_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
@@ -19,17 +18,8 @@ data class Environment(
     val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
     val kuhrsarUrl: String = getEnvVar("KUHRSAR_URL"),
     val subscriptionEndpointURL: String = getEnvVar("SUBSCRIPTION_ENDPOINT_URL"),
-
-    val isdialogmoteApplicationName: String = "isdialogmote",
-    val isnarmestelederApplicationName: String = "isnarmesteleder",
     val fastlegerestApplicationName: String = "fastlegerest",
     val padm2ApplicationName: String = "padm2",
-    val syfooversiktsrvApplicationName: String = "syfooversiktsrv",
-    val eregAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        isdialogmoteApplicationName,
-        isnarmestelederApplicationName,
-        syfooversiktsrvApplicationName,
-    ),
     val btsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         padm2ApplicationName,
     ),

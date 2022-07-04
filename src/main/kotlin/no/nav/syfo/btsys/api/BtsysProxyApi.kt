@@ -1,4 +1,4 @@
-package no.nav.syfo.ereg.api
+package no.nav.syfo.btsys.api
 
 import io.ktor.server.application.*
 import io.ktor.server.response.*

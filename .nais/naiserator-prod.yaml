@@ -43,16 +43,7 @@ spec:
         - application: fastlegerest
           namespace: teamsykefravr
           cluster: prod-gcp
-        - application: isdialogmote
-          namespace: teamsykefravr
-          cluster: prod-gcp
-        - application: isnarmesteleder
-          namespace: teamsykefravr
-          cluster: prod-gcp
         - application: padm2
-          namespace: teamsykefravr
-          cluster: prod-gcp
-        - application: syfooversiktsrv
           namespace: teamsykefravr
           cluster: prod-gcp
   azure:
@@ -75,8 +66,6 @@ spec:
       value: "production"
     - name: BTSYS_URL
       value: "https://btsys.nais.adeo.no"
-    - name: EREG_URL
-      value: "https://ereg-services.intern.nav.no"
     - name: KUHRSAR_CLIENT_ID
       value: "prod-fss.teamkuhr.kuhr-sar-api"
     - name: KUHRSAR_URL

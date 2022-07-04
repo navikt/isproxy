@@ -6,8 +6,6 @@ import io.ktor.http.*
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.server.testing.*
 import no.nav.syfo.btsys.client.BtsysClient
-import no.nav.syfo.ereg.api.btsysProxyBasePath
-import no.nav.syfo.ereg.api.btsysProxySuspendertPath
 import no.nav.syfo.testhelper.*
 import no.nav.syfo.util.*
 import org.amshove.kluent.shouldBeEqualTo
@@ -78,7 +76,7 @@ class BtsysApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testIsnarmestelederClientId,
+                            testFastlegerestClientId,
                         )
 
                         with(
