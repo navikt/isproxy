@@ -1,6 +1,7 @@
 package no.nav.syfo.testhelper.mock
 
 import com.microsoft.schemas._2003._10.serialization.arrays.WSArrayOfint
+import com.sun.xml.ws.api.WSService
 import no.nav.syfo.testhelper.UserConstants.HER_ID
 import no.nav.syfo.testhelper.UserConstants.PARENT_HER_ID
 import no.nhn.register.certificatedetails.WSArrayOfCertificateDetails
@@ -29,7 +30,7 @@ class AdresseregisterMock : ICommunicationPartyService {
         TODO("Not yet implemented")
     }
 
-    override fun getServiceDetails(herId: Int?): WSService {
+    override fun getServiceDetails(herId: Int?): no.nhn.register.communicationparty.WSService {
         TODO("Not yet implemented")
     }
 
@@ -105,7 +106,7 @@ class AdresseregisterMock : ICommunicationPartyService {
         TODO("Not yet implemented")
     }
 
-    override fun createService(t: WSServiceCreate?): WSService {
+    override fun createService(t: WSServiceCreate?): no.nhn.register.communicationparty.WSService {
         TODO("Not yet implemented")
     }
 
@@ -201,6 +202,10 @@ class AdresseregisterMock : ICommunicationPartyService {
     }
 
     override fun removeCustomAttribute(herId: Int?, code: WSCode?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallbackCertificates(p0: String): WSCertificateSearchResult {
         TODO("Not yet implemented")
     }
 }

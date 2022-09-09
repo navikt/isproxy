@@ -34,6 +34,7 @@ import no.nav.syfo.testhelper.UserConstants.HER_ID
 import no.nhn.register.fastlegeinformasjon.common.*
 import no.nhn.schemas.reg.common.en.WSPeriod
 import no.nhn.schemas.reg.flr.*
+import org.datacontract.schemas._2004._07.nhn_dtocontracts.FileResponse
 import org.datacontract.schemas._2004._07.nhn_dtocontracts_flr.GetNavPatientListsParameters
 import java.time.LocalDateTime
 
@@ -246,6 +247,14 @@ class FastlegeMock : IFlrReadOperations {
     }
 
     override fun getPrimaryHealthCareTeam(id: Long?): WSPrimaryHealthCareTeam {
+        TODO("Not yet implemented")
+    }
+
+    override fun getGuestResidentsInMunicipality(p0: String, p1: Int, p2: Int): FileResponse {
+        TODO("Not yet implemented")
+    }
+
+    override fun getGuestResidentsFromMunicipality(p0: String, p1: Int, p2: Int): FileResponse {
         TODO("Not yet implemented")
     }
 }
