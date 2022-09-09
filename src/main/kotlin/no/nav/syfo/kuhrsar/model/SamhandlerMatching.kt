@@ -32,6 +32,10 @@ fun List<Samhandler>.findBestSamhandlerPraksis(
                 data = data,
             )
         )
+    } else {
+        logger.info(
+            "SamhandlerPraksis is null or Legevakt or partnerReferanse is empty or blank, subscription_emottak is not created, orgName: $orgName and herId: $legekontorHerId"
+        )
     }
     return samhandlerPraksis
 }
