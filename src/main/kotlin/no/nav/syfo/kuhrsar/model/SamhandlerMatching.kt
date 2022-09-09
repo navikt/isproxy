@@ -2,6 +2,7 @@ package no.nav.syfo.kuhrsar.model
 
 import net.logstash.logback.argument.StructuredArguments
 import no.nav.emottak.subscription.SubscriptionPort
+import no.nav.syfo.fastlege.api.herid
 import no.nav.syfo.kuhrsar.emottaksubscription.SubscriptionRequest
 import no.nav.syfo.kuhrsar.emottaksubscription.startSubscription
 import org.apache.commons.text.similarity.LevenshteinDistance
@@ -31,6 +32,10 @@ fun List<Samhandler>.findBestSamhandlerPraksis(
                 partnerId = partnerId,
                 data = data,
             )
+        )
+    } else {
+        logger.info(
+            "SamhandlerPraksis is null or Legevakt or partnerReferanse is empty or blank, subscription_emottak is not created, orgName: $orgName and herId: $herid"
         )
     }
     return samhandlerPraksis
