@@ -22,7 +22,7 @@ object Versions {
     const val mockk = "1.12.4"
     const val nimbusJoseJwt = "9.23"
     const val spek = "2.0.18"
-    const val syfotjenester = "1.2021.06.09-13.09-b3d30de9996e"
+    const val syfotjenester = "1.2022.09.09-14.42-5356e2174b6c"
 }
 
 plugins {
