@@ -25,48 +25,55 @@ fun main() {
         ready = false
     )
 
-    val server = embeddedServer(
-        Netty,
-        applicationEngineEnvironment {
-            log = LoggerFactory.getLogger("ktor.application")
-            config = HoconApplicationConfig(ConfigFactory.load())
+    val applicationEngineEnvironment = applicationEngineEnvironment {
+        log = LoggerFactory.getLogger("ktor.application")
+        config = HoconApplicationConfig(ConfigFactory.load())
 
-            val environment = Environment()
+        val environment = Environment()
 
-            connector {
-                port = applicationPort
-            }
-            val wellKnown = getWellKnown(environment.azureAppWellKnownUrl)
-
-            val stsSamlProperties = StsClientProperties(
-                baseUrl = environment.stsSamlUrl,
-                serviceuserUsername = environment.serviceuserUsername,
-                serviceuserPassword = environment.serviceuserPassword,
-            )
-            val fastlegeSoapClient = fastlegeSoapClient(
-                serviceUrl = environment.fastlegeUrl,
-                stsProperties = stsSamlProperties,
-            )
-            val adresseregisterSoapClient = adresseregisterSoapClient(
-                serviceUrl = environment.adresseregisterUrl,
-                stsProperties = stsSamlProperties,
-            )
-            val subscriptionEmottak = createPort<SubscriptionPort>(environment.subscriptionEndpointURL) {
-                port { withBasicAuth(environment.serviceuserUsername, environment.serviceuserPassword) }
-            }
-
-            module {
-                apiModule(
-                    applicationState = applicationState,
-                    environment = environment,
-                    wellKnown = wellKnown,
-                    fastlegeSoapClient = fastlegeSoapClient,
-                    adresseregisterSoapClient = adresseregisterSoapClient,
-                    subscriptionPort = subscriptionEmottak,
-                )
-            }
+        connector {
+            port = applicationPort
         }
-    )
+        val wellKnown = getWellKnown(environment.azureAppWellKnownUrl)
+
+        val stsSamlProperties = StsClientProperties(
+            baseUrl = environment.stsSamlUrl,
+            serviceuserUsername = environment.serviceuserUsername,
+            serviceuserPassword = environment.serviceuserPassword,
+        )
+        val fastlegeSoapClient = fastlegeSoapClient(
+            serviceUrl = environment.fastlegeUrl,
+            stsProperties = stsSamlProperties,
+        )
+        val adresseregisterSoapClient = adresseregisterSoapClient(
+            serviceUrl = environment.adresseregisterUrl,
+            stsProperties = stsSamlProperties,
+        )
+        val subscriptionEmottak = createPort<SubscriptionPort>(environment.subscriptionEndpointURL) {
+            port { withBasicAuth(environment.serviceuserUsername, environment.serviceuserPassword) }
+        }
+
+        module {
+            apiModule(
+                applicationState = applicationState,
+                environment = environment,
+                wellKnown = wellKnown,
+                fastlegeSoapClient = fastlegeSoapClient,
+                adresseregisterSoapClient = adresseregisterSoapClient,
+                subscriptionPort = subscriptionEmottak,
+            )
+        }
+    }
+
+    val server = embeddedServer(
+        factory = Netty,
+        environment = applicationEngineEnvironment,
+    ) {
+        connectionGroupSize = 8
+        workerGroupSize = 8
+        callGroupSize = 16
+    }
+
     Runtime.getRuntime().addShutdownHook(
         Thread {
             server.stop(10, 10, TimeUnit.SECONDS)
