@@ -9,7 +9,8 @@ object Versions {
     const val commonsCollection = "3.2.2"
     const val commonsTextVersion = "1.4"
     const val cxf = "3.5.0"
-    const val jackson = "2.13.3"
+    const val jackson = "2.13.4.2"
+    const val jacksonDataType = "2.14.0"
     const val javaxActivation = "1.2.0"
     const val javaxWsRsApi = "2.1.1"
     const val jaxb = "2.3.1"
@@ -87,7 +88,7 @@ dependencies {
     implementation("io.ktor:ktor-server-metrics-micrometer:${Versions.ktor}")
     implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistry}")
 
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jacksonDataType}")
     implementation("javax.xml.bind:jaxb-api:${Versions.jaxb}")
     implementation("org.glassfish.jaxb:jaxb-runtime:${Versions.jaxb}")
 
