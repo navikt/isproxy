@@ -8,17 +8,11 @@ on:
         required: true
         default: ""
 
-env:
-  IMAGE: ghcr.io/${{ github.repository }}/isproxy:${{ github.event.inputs.gitCommit }}
-
 jobs:
   deploy-dev:
     name: Deploy to NAIS Dev-fss
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-fss
-          RESOURCE: .nais/naiserator-dev.yaml
+    uses: navikt/isworkflows/.github/workflows/manual-deploy-dev.yml@master
+    with:
+      git-commit: ${{ github.event.inputs.gitCommit }}
+      dev-cluster: dev-fss
+    secrets: inherit
