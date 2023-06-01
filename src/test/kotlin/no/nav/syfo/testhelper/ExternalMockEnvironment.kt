@@ -1,8 +1,6 @@
 package no.nav.syfo.testhelper
 
 import io.ktor.server.netty.*
-import io.mockk.mockk
-import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.testhelper.mock.*
 
@@ -14,14 +12,11 @@ class ExternalMockEnvironment() {
     val stsMock = STSMock()
     val fastlegeMock = FastlegeMock()
     val adresseregisterMock = AdresseregisterMock()
-    val kuhrsarMock = KuhrsarMock()
-    val subscriptionMock = mockk<SubscriptionPort>()
 
     val externalApplicationMockMap = hashMapOf(
         azureAdMock.name to azureAdMock.server,
         btsysMock.name to btsysMock.server,
         stsMock.name to stsMock.server,
-        kuhrsarMock.name to kuhrsarMock.server,
     )
 
     val environment = testEnvironment(
@@ -29,7 +24,6 @@ class ExternalMockEnvironment() {
         btsysUrl = btsysMock.url,
         stsUrl = stsMock.url,
         stsSamlUrl = stsMock.url,
-        kuhrsarUrl = kuhrsarMock.url,
     )
 }
 

@@ -11,7 +11,6 @@ fun testEnvironment(
     btsysUrl: String,
     stsUrl: String,
     stsSamlUrl: String,
-    kuhrsarUrl: String,
 ) = Environment(
     aadAppClient = "isproxy-client-id",
     azureAppWellKnownUrl = "wellknown",
@@ -25,9 +24,6 @@ fun testEnvironment(
     stsSamlUrl = stsSamlUrl,
     fastlegeUrl = "dummyUrl",
     adresseregisterUrl = "dummyUrl",
-    kuhrsarClientId = "kuhrsar",
-    kuhrsarUrl = kuhrsarUrl,
-    subscriptionEndpointURL = "subscriptionUrl",
 )
 
 fun testAppState() = ApplicationState(

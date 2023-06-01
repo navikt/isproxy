@@ -67,10 +67,6 @@ spec:
       value: "production"
     - name: BTSYS_URL
       value: "https://btsys.nais.preprod.local"
-    - name: KUHRSAR_CLIENT_ID
-      value: "dev-fss.teamkuhr.kuhr-sar-api"
-    - name: KUHRSAR_URL
-      value: "https://kuhr-sar-api.dev.adeo.no"
     - name: SECURITY_TOKEN_SERVICE_URL
       value: "https://security-token-service.nais.preprod.local"
     - name: STS_SAML_URL
@@ -79,5 +75,3 @@ spec:
       value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/fastlegeinformasjon"
     - name: ADRESSEREGISTER_URL
       value: "https://pep-gw-q4.oera-q.local:9443/ekstern/helse/adresseregisteret/v1"
-    - name: SUBSCRIPTION_ENDPOINT_URL
-      value: "https://wasapp-q1.adeo.no/nav-emottak-eletter-web/services/"

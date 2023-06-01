@@ -15,9 +15,6 @@ data class Environment(
     val stsSamlUrl: String = getEnvVar("STS_SAML_URL"),
     val fastlegeUrl: String = getEnvVar("FASTLEGE_URL"),
     val adresseregisterUrl: String = getEnvVar("ADRESSEREGISTER_URL"),
-    val kuhrsarClientId: String = getEnvVar("KUHRSAR_CLIENT_ID"),
-    val kuhrsarUrl: String = getEnvVar("KUHRSAR_URL"),
-    val subscriptionEndpointURL: String = getEnvVar("SUBSCRIPTION_ENDPOINT_URL"),
     val fastlegerestApplicationName: String = "fastlegerest",
     val padm2ApplicationName: String = "padm2",
     val btsysAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
@@ -28,9 +25,6 @@ data class Environment(
     ),
     val fastlegepraksisAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
         fastlegerestApplicationName,
-    ),
-    val kuhrsarAPIAuthorizedConsumerApplicationNameList: List<String> = listOf(
-        padm2ApplicationName,
     ),
 )
 

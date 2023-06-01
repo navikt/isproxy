@@ -3,7 +3,6 @@ package no.nav.syfo.application.api
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.routing.*
-import no.nav.emottak.subscription.SubscriptionPort
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
@@ -17,8 +16,6 @@ import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
 import no.nav.syfo.fastlege.ws.fastlege.FastlegeInformasjonClient
-import no.nav.syfo.kuhrsar.api.registerKuhrsarApi
-import no.nav.syfo.kuhrsar.client.KuhrSarClient
 import no.nhn.register.communicationparty.ICommunicationPartyService
 import no.nhn.schemas.reg.flr.IFlrReadOperations
 
@@ -28,7 +25,6 @@ fun Application.apiModule(
     wellKnown: WellKnown,
     fastlegeSoapClient: IFlrReadOperations,
     adresseregisterSoapClient: ICommunicationPartyService,
-    subscriptionPort: SubscriptionPort,
 ) {
     installMetrics()
     installCallId()
@@ -61,11 +57,6 @@ fun Application.apiModule(
         stsClient = stsClient,
         serviceUserName = environment.serviceuserUsername,
     )
-    val kuhrsarClient = KuhrSarClient(
-        azureAdClient = azureAdClient,
-        kuhrsarClientId = environment.kuhrsarClientId,
-        kuhrsarUrl = environment.kuhrsarUrl,
-    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
         fastlegeSoapClient = fastlegeSoapClient,
     )
@@ -96,12 +87,6 @@ fun Application.apiModule(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.fastlegepraksisAPIAuthorizedConsumerApplicationNameList,
                 adresseregisterClient = adresseregisterClient,
-            )
-            registerKuhrsarApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.kuhrsarAPIAuthorizedConsumerApplicationNameList,
-                kuhrsarClient = kuhrsarClient,
-                subscriptionPort = subscriptionPort,
             )
         }
     }
