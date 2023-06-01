@@ -12,6 +12,5 @@ fun Application.testApiModule(
         wellKnown = externalMockEnvironment.wellKnown,
         fastlegeSoapClient = externalMockEnvironment.fastlegeMock,
         adresseregisterSoapClient = externalMockEnvironment.adresseregisterMock,
-        subscriptionPort = externalMockEnvironment.subscriptionMock,
     )
 }

@@ -123,12 +123,6 @@ tasks {
         dependsOn("wsdl2java")
     }
 
-    wsdl2java {
-        cxfVersion.set(Versions.cxf)
-        wsdlDir.set(layout.projectDirectory.dir("$projectDir/src/main/resources/wsdl"))
-        bindingFile.set(layout.projectDirectory.file("$projectDir/src/main/resources/xjb/binding.xml"))
-    }
-
     withType<ShadowJar> {
         transform(ServiceFileTransformer::class.java) {
             setPath("META-INF/cxf")
