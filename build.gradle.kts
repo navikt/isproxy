@@ -27,7 +27,7 @@ object Versions {
 }
 
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.9.0"
     id("com.github.bjornvester.wsdl2java") version "1.2"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
