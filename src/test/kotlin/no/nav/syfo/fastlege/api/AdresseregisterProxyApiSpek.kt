@@ -23,14 +23,6 @@ class AdresseregisterProxyApiSpek : Spek({
 
             val externalMockEnvironment = ExternalMockEnvironment()
 
-            beforeGroup {
-                externalMockEnvironment.startExternalMocks()
-            }
-
-            afterGroup {
-                externalMockEnvironment.stopExternalMocks()
-            }
-
             application.testApiModule(
                 externalMockEnvironment = externalMockEnvironment,
             )
@@ -81,7 +73,7 @@ class AdresseregisterProxyApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testPadm2ClientId,
+                            "unauthorizedAzpClientId",
                         )
 
                         with(

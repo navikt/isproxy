@@ -46,19 +46,11 @@ class FastlegeProxyApiSpek : Spek({
 
             val externalMockEnvironment = ExternalMockEnvironment()
 
-            beforeGroup {
-                externalMockEnvironment.startExternalMocks()
-            }
-
-            afterGroup {
-                externalMockEnvironment.stopExternalMocks()
-            }
-
             application.testApiModule(
                 externalMockEnvironment = externalMockEnvironment,
             )
 
-            val urlFastlege = "$fastlegeBasePath"
+            val urlFastlege = fastlegeBasePath
             val fnrNotFound = "10101012346"
 
             describe("Get Fastlege") {
@@ -244,7 +236,7 @@ class FastlegeProxyApiSpek : Spek({
                         val validTokenUnauthorizedAZP = generateJWT(
                             externalMockEnvironment.environment.aadAppClient,
                             externalMockEnvironment.wellKnown.issuer,
-                            testPadm2ClientId,
+                            "unauthorizedAzpClientId",
                         )
 
                         with(
