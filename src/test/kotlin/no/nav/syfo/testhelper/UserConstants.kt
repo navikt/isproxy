@@ -1,10 +1,8 @@
 package no.nav.syfo.testhelper
 
 object UserConstants {
-    const val ENHET_NR = "0123"
 
     const val FASTLEGEOPPSLAG_PERSON_ID = "10101012345"
-    const val FASTLEGEOPPSLAG_PERSON_ID_MISSING_PRAKSIS_NAME = "10101012346"
     const val FASTLEGEOPPSLAG_PERSON_ID_MISSING_PST_ADR = "11101012345"
     const val FASTLEGEOPPSLAG_PERSON_ID_MISSING_RES_ADR = "12101012345"
     const val FASTLEGEOPPSLAG_PERSON_ID_MISSING_HER_ID = "13101012345"
@@ -38,9 +36,4 @@ object UserConstants {
     const val FASTLEGE_HPR_NR = 12345
     const val HER_ID = 1234
     const val PARENT_HER_ID = 9876
-
-    const val VEILEDER_IDENT = "Z999999"
-    const val VEILEDER_IDENT_2 = "Z111111"
-
-    val AZUREAD_TOKEN = "tokenReturnedByAzureAd"
 }

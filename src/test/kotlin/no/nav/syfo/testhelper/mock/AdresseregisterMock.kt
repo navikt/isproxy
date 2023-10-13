@@ -1,7 +1,6 @@
 package no.nav.syfo.testhelper.mock
 
 import com.microsoft.schemas._2003._10.serialization.arrays.WSArrayOfint
-import com.sun.xml.ws.api.WSService
 import no.nav.syfo.testhelper.UserConstants.HER_ID
 import no.nav.syfo.testhelper.UserConstants.PARENT_HER_ID
 import no.nhn.register.certificatedetails.WSArrayOfCertificateDetails

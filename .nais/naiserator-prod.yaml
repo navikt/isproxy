@@ -42,9 +42,6 @@ spec:
         - application: fastlegerest
           namespace: teamsykefravr
           cluster: prod-gcp
-        - application: padm2
-          namespace: teamsykefravr
-          cluster: prod-gcp
   azure:
     application:
       allowAllUsers: true
@@ -64,10 +61,6 @@ spec:
   env:
     - name: KTOR_ENV
       value: "production"
-    - name: BTSYS_URL
-      value: "https://btsys.nais.adeo.no"
-    - name: SECURITY_TOKEN_SERVICE_URL
-      value: "https://security-token-service.nais.adeo.no"
     - name: STS_SAML_URL
       value: "https://sts.adeo.no/SecurityTokenServiceProvider/"
     - name: FASTLEGE_URL

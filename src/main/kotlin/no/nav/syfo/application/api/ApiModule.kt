@@ -7,11 +7,6 @@ import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.Environment
 import no.nav.syfo.application.api.access.APIConsumerAccessService
 import no.nav.syfo.application.api.authentication.*
-import no.nav.syfo.btsys.api.registerBtsysProxyApi
-import no.nav.syfo.btsys.client.BtsysClient
-import no.nav.syfo.client.StsClientProperties
-import no.nav.syfo.client.azuread.AzureAdClient
-import no.nav.syfo.client.sts.StsClient
 import no.nav.syfo.fastlege.api.registerFastlegeApi
 import no.nav.syfo.fastlege.api.registerFastlegepraksisApi
 import no.nav.syfo.fastlege.ws.adresseregister.AdresseregisterClient
@@ -39,24 +34,6 @@ fun Application.apiModule(
             ),
         ),
     )
-    val stsClientProperties = StsClientProperties(
-        baseUrl = environment.stsUrl,
-        serviceuserUsername = environment.serviceuserUsername,
-        serviceuserPassword = environment.serviceuserPassword,
-    )
-    val stsClient = StsClient(
-        properties = stsClientProperties,
-    )
-    val azureAdClient = AzureAdClient(
-        aadAppClient = environment.aadAppClient,
-        aadAppSecret = environment.aadAppSecret,
-        aadTokenEndpoint = environment.aadTokenEndpoint,
-    )
-    val btsysClient = BtsysClient(
-        baseUrl = environment.btsysUrl,
-        stsClient = stsClient,
-        serviceUserName = environment.serviceuserUsername,
-    )
     val fastlegeInformasjonClient = FastlegeInformasjonClient(
         fastlegeSoapClient = fastlegeSoapClient,
     )
@@ -73,11 +50,6 @@ fun Application.apiModule(
         registerPrometheusApi()
 
         authenticate(JwtIssuerType.AZUREAD_V2.name) {
-            registerBtsysProxyApi(
-                apiConsumerAccessService = apiConsumerAccessService,
-                authorizedApplicationNameList = environment.btsysAPIAuthorizedConsumerApplicationNameList,
-                btsysClient = btsysClient,
-            )
             registerFastlegeApi(
                 apiConsumerAccessService = apiConsumerAccessService,
                 authorizedApplicationNameList = environment.fastlegeAPIAuthorizedConsumerApplicationNameList,
